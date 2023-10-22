@@ -1,0 +1,271 @@
+
+:root{
+    --textcolor--: sandybrown;
+    --secondarycolor--: rgba(56, 121, 145, 0.9);
+    --lettercolor--: #fff;
+    --contentBG--: #65675C;
+}
+
+@keyframes hero-sec {
+   0%{
+      transform: scaleX(0);
+      opacity: 0;
+   }
+   100%{
+      transform: scaleX(1);
+      opacity: 1;
+   }
+}
+
+ /* my slider  */
+
+
+ .carousel_menu{
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+    padding: 1rem 1vw;
+    margin-top: 1rem;
+    animation: hero-sec 1s cubic-bezier(0.250, 0.450, 0.455, 0.950)both;
+
+ }
+ .my_carousel{
+   position: relative;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: end;
+   height: 100%;
+ }
+ .my_carousel .carousel{
+    width: 700px;
+
+ }
+ .my_carousel .carousel-inner{
+    border-radius: 10px;
+ }
+ .carousel-inner h5{
+   color: var(--textcolor--);
+ }
+
+ .my_carousel .carousel-control-prev,
+ .my_carousel .carousel-control-next{
+    background-color: var(--secondarycolor--);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+ }
+ .my_carousel .carousel-control-prev{
+    top: 88%;
+    left: 10px;
+ }
+ .my_carousel .carousel-control-next{
+    top: 88%;
+    right: 84%;
+ }
+ 
+ .carousel_content{
+    text-align: center;
+    margin-top: 2rem;
+    padding: 0 1rem;
+    width: 40%;
+ }
+ .carousel_content h1{
+    font-size: 3.5rem;
+    font-weight: bolder;
+    margin-bottom: 1rem;
+    line-height: normal;
+    letter-spacing: normal;
+ }
+ .carousel_content h1 span{
+   color: var(--secondarycolor--);
+ }
+ .carousel_content p{
+    font-size: large;
+    line-height: 2rem;
+    font-weight: lighter;
+ }
+ .carousel_content button{
+    padding: 13px 3.3rem;
+    background-color:var(--lettercolor--);
+    color: var(--secondarycolor--);
+    border-radius: 5px;
+    border: 2px solid var(--secondarycolor--);
+    font-size: 20px;
+    margin-top: 2rem;
+ }
+ .carousel_content button:hover{
+    background-color: var(--secondarycolor--);
+    color: var(--lettercolor--);
+    transition: all .2s ease;
+ }
+.my_carousel .active_btn{
+   position: absolute;
+   top: 0px !important;
+}
+
+
+/* Join us menu  */
+
+.joinus_menu{
+   text-align: center;
+   margin: 5rem 0;
+   padding: 2rem 0;
+   border-top: 1px solid rgba(128, 128, 128, 0.2);
+   border-bottom: 1px solid rgba(128, 128, 128, 0.2);
+   background-color: #fafafa;
+}
+.joinus_menu h1{
+   font-size: 3.5rem;
+   color: var(--secondarycolor--);
+   padding-bottom: 1.5rem;
+   font-weight: bold;
+   line-height: normal;
+}
+.joinus_menu p{
+   font-size: x-large;
+   font-weight: lighter;
+   color: var(--contentBG--);
+}
+
+
+
+
+
+
+/* Media Queries  */
+
+ @media (max-width: 1166px) {
+    .my_carousel .carousel{
+        width: 650px;
+     }
+     .carousel_content p{
+        font-size: medium;
+     }
+     .carousel_menu{
+      padding: 1rem 0;
+     }
+     .carousel_content h1{
+      font-size: 3rem;
+     }
+
+     .my_carousel .carousel-control-prev{
+        left: 10px;
+     }
+     .my_carousel .carousel-control-next{
+        right: 83%;
+     }
+ }
+
+
+
+
+ @media (max-width: 1034px){
+   .carousel_content h1{
+      font-size: 2.5rem;
+   }
+   .my_carousel .carousel{
+      width: 600px;
+   }
+   .my_carousel .carousel-control-prev{
+      top: 86%;
+      left: 5px;
+   }
+   .my_carousel .carousel-control-next{
+      top: 86%;
+      right: 82%;
+   }
+ }
+
+
+
+
+ @media (max-width: 984px){
+    .carousel_menu{
+        flex-wrap: wrap-reverse;
+        justify-content: center;
+    }
+    .carousel_content h1{
+      font-size: 3rem;
+   }
+   .carousel_content{
+      width: 100%;
+   }
+ }
+
+
+
+
+ @media (max-width: 610px){
+   .my_carousel .carousel{
+      width: 500px;
+   }
+   .carousel_menu{
+      padding: 1rem 1vw;
+   }
+
+   .my_carousel .carousel-control-prev{
+      top: 84%;
+      left: 5px;
+   }
+   .my_carousel .carousel-control-next{
+      top: 84%;
+      right: 78%;
+   }
+ }
+
+
+
+
+ @media (max-width: 510px){
+   .my_carousel .carousel{
+      width: 400px;
+   }
+   .my_carousel .carousel-control-prev{
+      top: 83%;
+      left: 5px;
+      width: 40px;
+      height: 40px;
+   }
+   .my_carousel .carousel-control-next{
+      top: 83%;
+      right: 78%;
+      width: 40px;
+      height: 40px;
+   }
+ }
+
+
+
+
+ @media (max-width: 410px){
+
+   .carousel_content h1,
+   .joinus_menu h1{
+      font-size: 2rem;
+   }
+   .carousel_content button{
+      padding: 12px 2.5rem;
+   }
+   .my_carousel .carousel{
+      width: 310px;
+   }
+
+   .my_carousel .carousel-control-prev{
+      top: 80%;
+      left: 5px;
+      width: 40px;
+      height: 40px;
+   }
+   .my_carousel .carousel-control-next{
+      top: 80%;
+      right: 72%;
+      width: 40px;
+      height: 40px;
+   }
+   .joinus_menu p{
+      font-size: medium;
+      line-height: normal;
+   }
+ }

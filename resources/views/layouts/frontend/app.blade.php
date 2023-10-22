@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
     <!-- Stylesheets -->
 
-    <link href="{{ asset('assets/frontend/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/frontend/css/bootstrap.min.css') }}" rel="stylesheet">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/frontend/css/home/style.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/frontend/css/home/header & footer.css') }}">
 
     <link href="{{ asset('assets/frontend/css/swiper.css') }}" rel="stylesheet">
 
@@ -39,11 +41,11 @@
 
 <script src="{{ asset('assets/frontend/js/tether.min.js') }}"></script>
 
-<script src="{{ asset('assets/frontend/js/bootstrap.js') }}"></script>
+<script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/swiper.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/scripts.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-{!! Toastr::message() !!}
+{{-- {!! Toastr::message() !!} --}}
 <script>
     @if($errors->any())
     @foreach($errors->all() as $error)

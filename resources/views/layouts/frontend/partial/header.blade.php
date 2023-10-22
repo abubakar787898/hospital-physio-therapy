@@ -1,4 +1,32 @@
-<header class="bg-success text-white">
+
+<header>
+
+    <nav class="navbar">
+
+       <div class="brand_logo">
+         <a href="index.html">
+           <img src="{{ asset('assets/frontend/images/logo real.png') }}" alt="" width="120px" height="95px">
+         </a>
+             <h2>Physio-Works</h2>
+       </div>
+
+       <input type="checkbox" id="check">
+       <label for="check" class="checkbtn">
+       <img src="Assets/svg/Burger Menu.svg" alt="" width="40px" height="40px">
+       </label>
+
+       <ul>
+         <a href="index.html"><li>About</li></a>
+         <a href="Services/services.html"><li>Services</li></a>
+         <a href="Book Now/Book Now.html"><li>Book Now</li></a>
+         <a href="Contact/contact.html"><li>Contact</li></a>
+         <a href="FAQ/FAQ.html"><li>FAQ</li></a>
+       </ul>
+
+   </nav>
+
+  </header>
+{{-- <header class="bg-success text-white">
     <div class="container-fluid position-relative no-side-padding">
 
         <a href="{{ route('home') }}" class="logo">{{ env('APP_NAME') }}</a>
@@ -29,4 +57,4 @@
         </div>
 
     </div><!-- conatiner -->
-</header>
+</header> --}}

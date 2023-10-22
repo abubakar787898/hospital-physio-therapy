@@ -1,0 +1,89 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    list-style-type: none;
+    font-family: sans-serif;
+    letter-spacing: .35px;
+}
+
+:root{
+    --textcolor--: royalblue !important;
+    --secondarycolor--: rgba(56, 121, 145, 0.9);
+    --lettercolor--: #fff;
+    --contentBG--: #FAFAFA !important;
+}
+
+.hero_section{
+    position: relative;
+    top: -80px;
+    background: url(../Assets/images/faq.jpg) white 50% / cover no-repeat;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:0 1vw;
+}
+.hero_title h1{
+    font-size: 6rem;
+    font-weight: bold;
+    color: var(--lettercolor--);
+    text-align: center;
+}
+
+/* FAQ Section  */
+.faq_section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--contentBG--);
+    padding: 3rem 0 4rem 0;
+    gap: 3rem;
+}
+.faq_section .faq_head h1{
+    font-size: 4rem;
+    font-weight: 1000;
+}
+.faq_section .faq_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2.5rem;
+    width: 60%;
+    margin-bottom: 2rem;
+}
+.faq_section .faq_content h5{
+    margin-bottom: 2rem;
+}
+.faq_section .faq_btn button{
+    background-color: var(--secondarycolor--);
+    color: var(--lettercolor--);
+    border-radius: 3px;
+    border: none;
+    padding: 14px 1rem;
+    width: 250px;
+}
+.faq_section .faq_btn button:hover{
+    opacity: .9;
+}
+
+@media (max-width: 990px) {
+    .services_menu .service_cards .card_group{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+    }
+}
+
+@media (max-width: 700px) {
+.hero_section .hero_title h1{
+    font-size: 5rem;
+}
+}
+
+@media (max-width: 632px){
+  
+}

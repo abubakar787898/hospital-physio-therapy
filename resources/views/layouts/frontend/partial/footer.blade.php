@@ -1,4 +1,47 @@
-<footer>
+ <!-- footer  -->
+
+ <footer>
+
+    <div class="footer_end">
+
+      <div class="footer_list">
+
+        <div class="list_first">
+          <a href="index.html">
+            <img src="{{ asset('assets/frontend/images/logo real.png') }}" alt="" width="120px" height="100px">
+          </a>
+          <h3>Physio-Therapy</h3>
+      </div>
+
+        <div class="list_sec">
+          <h3>Explore More</h3>
+          <a href="index.html">About</a>
+          <a href="Services/services.html">Services</a>
+          <a href="Book Now/Book Now.html">Book Now</a>
+          <a href="Contact/contact.html">Contact</a>
+          <a href="FAQ/FAQ.html">FAQ</a>
+        </div>
+  
+        <div class="list_third">
+          <h3>Read More</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus nihil pariatur, hic perspiciatis reprehenderit magni, veniam nesciunt tempora natus quisquam iure nostrum quod eligendi eum labore aut eos aliquid consectetur.
+
+          </p>
+        </div>
+        
+      </div>
+    </div>
+
+  </footer>
+
+  <!-- icons  -->
+  <div class="footer_icons">
+    <a href="#"><i class="fa fa-brand fa-facebook"></i></a>
+    <a href="#"><i class="fa fa-brand fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-brand fa-linkedin"></i></a>
+    <a href="#"><i class="fa fa-brand fa-instagram"></i></a>
+  </div>
+{{-- <footer>
 
     <div class="container">
         <div class="row">
@@ -6,7 +49,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="footer-section">
 
-                    {{--<a class="logo" href="#"><img src="images/logo.png" alt="Logo Image"></a>--}}
+                   
                     <p class="copyright">{{ env('APP_NAME') }} @ {{ date('Y') }}. All rights reserved.</p>
                     <p class="copyright"><strong> Developed &amp; <i class="far fa-heart"></i> by </strong>
                         <a href="https://www.itsourcecode.com" target="_blank">Itsourcecode</a></p>
@@ -17,8 +60,8 @@
                         <li><a target="_blank" href="https://www.youtube.com/programmingkit"><i class="ion-social-youtube-outline"></i></a></li>
                     </ul>
 
-                </div><!-- footer-section -->
-            </div><!-- col-lg-4 col-md-6 -->
+                </div>
+            </div>
 
             <div class="col-lg-4 col-md-6">
                 <div class="footer-section">
@@ -28,8 +71,8 @@
                             <li><a href="{{ route('category.posts',$category->slug) }}">{{ $category->name }}</a></li>
                         @endforeach
                     </ul>
-                </div><!-- footer-section -->
-            </div><!-- col-lg-4 col-md-6 -->
+                </div>
+            </div>
 
             <div class="col-lg-4 col-md-6">
                 <div class="footer-section">
@@ -43,9 +86,9 @@
                         </form>
                     </div>
 
-                </div><!-- footer-section -->
-            </div><!-- col-lg-4 col-md-6 -->
+                </div>
+            </div>
 
-        </div><!-- row -->
-    </div><!-- container -->
-</footer>
+        </div>
+    </div>
+</footer> --}}
