@@ -59,7 +59,7 @@
 <!-- #END# Overlay For Sidebars -->
 <!-- Search Bar -->
 <div class="search-bar">
-    <form action="{{ route('search') }}">
+    {{-- <form action="{{ route('search') }}">
         <div class="search-icon">
             <i class="material-icons">search</i>
         </div>
@@ -67,7 +67,7 @@
         <div class="close-search">
             <i class="material-icons">close</i>
         </div>
-    </form>
+    </form> --}}
 </div>
 <!-- #END# Search Bar -->
 <!-- Top Bar -->

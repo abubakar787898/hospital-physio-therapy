@@ -45,7 +45,7 @@
 <script src="{{ asset('assets/frontend/js/swiper.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/scripts.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-{{-- {!! Toastr::message() !!} --}}
+{!! Toastr::message() !!}
 <script>
     @if($errors->any())
     @foreach($errors->all() as $error)

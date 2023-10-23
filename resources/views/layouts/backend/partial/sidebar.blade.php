@@ -13,7 +13,7 @@
                 <ul class="dropdown-menu pull-right">
 
                     <li>
-                        <a href="{{ Auth::user()->role->id == 1 ? route('admin.settings') : route('author.settings')}}"><i class="material-icons">settings</i>Settings</a>
+                        {{-- <a href="{{ Auth::user()->role->id == 1 ? route('admin.settings') : route('author.settings')}}"><i class="material-icons">settings</i>Settings</a> --}}
                     </li>
 
                     <li role="seperator" class="divider"></li>
@@ -45,7 +45,25 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('admin/tag*') ? 'active' : '' }}">
+                <li>
+                    <a href="{{ route('admin.appointment-types.index') }}">
+                        <i class="material-icons">photo_album</i>
+                        <span>Appointment Type</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.services.index') }}">
+                        <i class="material-icons">local_library</i>
+                        <span>Service</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.users.index') }}">
+                        <i class="material-icons">group</i>
+                        <span>User</span>
+                    </a>
+                </li>
+                {{-- <li class="{{ Request::is('admin/tag*') ? 'active' : '' }}">
                     <a href="{{ route('admin.tag.index') }}">
                         <i class="material-icons">label</i>
                         <span>Tag</span>
@@ -100,7 +118,7 @@
                         <i class="material-icons">settings</i>
                         <span>Settings</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault();
@@ -114,54 +132,7 @@
                     </form>
                 </li>
             @endif
-            @if(Request::is('author*'))
-                <li class="{{ Request::is('author/dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('author.dashboard') }}">
-                        <i class="material-icons">dashboard</i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('author/post*') ? 'active' : '' }}">
-                    <a href="{{ route('author.post.index') }}">
-                        <i class="material-icons">library_books</i>
-                        <span>Posts</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('author/favorite') ? 'active' : '' }}">
-                    <a href="{{ route('author.favorite.index') }}">
-                        <i class="material-icons">favorite</i>
-                        <span>Favorite Posts</span>
-                    </a>
-                </li>
-
-                <li class="{{ Request::is('author/comments') ? 'active' : '' }}">
-                    <a href="{{ route('author.comment.index') }}">
-                        <i class="material-icons">comment</i>
-                        <span>Comments</span>
-                    </a>
-                </li>
-
-                <li class="header">System</li>
-                <li class="{{ Request::is('author/settings') ? 'active' : '' }}">
-                    <a href="{{ route('author.settings') }}">
-                        <i class="material-icons">settings</i>
-                        <span>Settings</span>
-                    </a>
-                </li>
-                <li>
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        <i class="material-icons">input</i>
-                        <span>Logout</span>
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </li>
-            @endif
-
+         
         </ul>
     </div>
     <!-- #Menu -->
