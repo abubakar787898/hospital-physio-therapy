@@ -3,8 +3,12 @@
 use App\Http\Controllers\Admin\AppointmentTypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\GeneralController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SlotController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -24,15 +28,24 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route::get('/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('dashboard');
+
+
+Route::get('about', [FrontendController::class, 'about'])->name('about');
+Route::get('service', [FrontendController::class, 'service'])->name('service');
+Route::get('booking', [FrontendController::class, 'booking'])->name('booking');
+Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
+
 Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function (){
     Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    Route::put('update-about', [GeneralController::class, 'updateAbout'])->name('about.update');
+    Route::get('about', [GeneralController::class, 'about'])->name('about');
    
     Route::resource('appointment-types', AppointmentTypeController::class);
     Route::resource('users', UserController::class);
     Route::resource('services', ServiceController::class);
-
+    Route::get('slots', [SlotController::class, 'index']);
+    Route::post('slots', [SlotController::class, 'create']);
+    Route::patch('slots/{id}/book', [SlotController::class, 'book']);
 
     // Route::resource('dead_lines', DeadLineController::class);
     // Route::resource('educations', EducationLevelController::class);

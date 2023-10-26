@@ -35,13 +35,24 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
+        // dd($request->image);
         $this->validate($request,[
             'name' => 'required',
             'image' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
         ]);
         $image = $request->file('image');
+        // dd($request->image);
         $slug = Str::slug($request->name);
+        // Check if the slug already exists, and if it does, append a unique identifier
+$originalSlug = $slug;
+$count = 1;
+
+while (Services::where('slug', $slug)->exists()) {
+    $slug = $originalSlug . '-' . $count;
+    $count++;
+}
         if (isset($image)) {
 
             $destinationPath = 'image/';
@@ -61,6 +72,8 @@ class ServiceController extends Controller
         $service->slug = $slug;
         $service->image = $profileImage;
         $service->description = $request->description;
+        $service->meta_title = $request->meta_title;
+        $service->meta_description = $request->meta_description;
         if(isset($request->status))
         {
             $service->status = true;
@@ -101,7 +114,8 @@ class ServiceController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-            
+            'meta_title' => 'required',
+            'meta_description' => 'required',
         ]);
         $image = $request->file('image');
         $service = Services::find($id);

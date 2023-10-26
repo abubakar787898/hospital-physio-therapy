@@ -18,9 +18,9 @@
 .hero_section{
     position: relative;
     top: -80px;
-    background: url(../Assets/images/faq.jpg) white 50% / cover no-repeat;
+    background: url(../../images/faq.jpg) white 50% / cover no-repeat;
     width: 100%;
-    height: 100vh;
+    height: 70vh;
     display: flex;
     align-items: center;
     justify-content: center;

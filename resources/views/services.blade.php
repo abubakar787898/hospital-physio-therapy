@@ -1,10 +1,19 @@
 @extends('layouts.frontend.app')
 
 @section('title','Serivces')
-
+@push('meta')
+    <meta name="title" content="{{ $meta_title }}">
+    <meta name="description" content="{{ $meta_description }}">
+    {{-- <meta name="description" content="Your dynamic meta description here"> --}}
+    <!-- You can add other meta tags as needed -->
+@endpush
+{{-- @push('meta')
+    <meta name="description" content="{{ $metaDescription }}">
+    <!-- You can add other meta tags as needed -->
+@endpush --}}
 @push('css')
-    <link href="{{ asset('assets/frontend/css/serivces/services.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('assets/frontend/css/services/services.css') }}" rel="stylesheet">
+ 
     
 @endpush
 
@@ -35,7 +44,7 @@
             <div class="card_single">
             
                 <div class="card_img">
-                    <img src="../Assets/images/cardimg.jpg" alt="" width="100%" height="100%">
+                    <img src="{{ asset('assets/frontend/images/cardimg.jpg') }}" alt="" width="100%" height="100%">
                 </div>
 
                 <div class="card_title">
@@ -51,24 +60,8 @@
             <div class="card_single">
             
                 <div class="card_img">
-                    <img src="../Assets/images/cardimg1.jpg" alt="" width="100%" height="100%">
-                </div>
+                    <img src="{{ asset('assets/frontend/images/cardimg1.jpg') }}" alt="" width="100%" height="100%">
 
-                <div class="card_title">
-                    <h5>Manual Therapy</h5>
-                </div>
-
-                <div class="card_btn">
-                    <a href="#"><button>Learn More</button></a>
-                </div>
-
-            </div>
-
-
-            <div class="card_single">
-            
-                <div class="card_img">
-                    <img src="../Assets/images/cardimg2.jpg" alt="" width="100%" height="100%">
                 </div>
 
                 <div class="card_title">
@@ -85,7 +78,8 @@
             <div class="card_single">
             
                 <div class="card_img">
-                    <img src="../Assets/images/cardimg1.jpg" alt="" width="100%" height="100%">
+                    <img src="{{ asset('assets/frontend/images/cardimg2.jpg') }}" alt="" width="100%" height="100%">
+
                 </div>
 
                 <div class="card_title">
@@ -102,7 +96,8 @@
             <div class="card_single">
             
                 <div class="card_img">
-                    <img src="../Assets/images/cardimg2.jpg" alt="" width="100%" height="100%">
+                    <img src="{{ asset('assets/frontend/images/cardimg1.jpg') }}" alt="" width="100%" height="100%">
+
                 </div>
 
                 <div class="card_title">
@@ -119,7 +114,26 @@
             <div class="card_single">
             
                 <div class="card_img">
-                    <img src="../Assets/images/cardimg.jpg" alt="" width="100%" height="100%">
+                    <img src="{{ asset('assets/frontend/images/cardimg2.jpg') }}" alt="" width="100%" height="100%">
+
+                </div>
+
+                <div class="card_title">
+                    <h5>Manual Therapy</h5>
+                </div>
+
+                <div class="card_btn">
+                    <a href="#"><button>Learn More</button></a>
+                </div>
+
+            </div>
+
+
+            <div class="card_single">
+            
+                <div class="card_img">
+                    <img src="{{ asset('assets/frontend/images/cardimg.jpg') }}" alt="" width="100%" height="100%">
+
                 </div>
 
                 <div class="card_title">

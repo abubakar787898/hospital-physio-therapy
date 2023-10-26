@@ -63,6 +63,12 @@
                         <span>User</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.about') }}">
+                        <i class="material-icons">group</i>
+                        <span>About</span>
+                    </a>
+                </li>
                 {{-- <li class="{{ Request::is('admin/tag*') ? 'active' : '' }}">
                     <a href="{{ route('admin.tag.index') }}">
                         <i class="material-icons">label</i>

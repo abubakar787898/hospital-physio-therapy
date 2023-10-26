@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Service')
+@section('title','About')
 
 @push('css')
     <!-- Bootstrap Select Css -->
@@ -10,7 +10,7 @@
 @section('content')
     <div class="container-fluid">
         <!-- Vertical Layout | With Floating Label -->
-        <form action="{{ route('admin.services.update',$service->id) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.about.update') }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row clearfix">
@@ -18,28 +18,31 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                EDIT SERVICE
+                                Update About Page
                             </h2>
                         </div>
                         <div class="body">
+                         
                             <div class="form-group form-float">
-                                <div >
-                                    <label for="appointment">Select Appointment Type</label>
-                                    <select name="appointment" id="appointment" class="form-control"  >
-                                        @foreach($appointments as $appointment)
-                                            <option    {{ $appointment->id == $service->appointment_type_id ? 'selected' : '' }} value="{{ $appointment->id }}">{{ $appointment->name }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="form-line">
+                                    <input type="text" id="title" class="form-control" name="title" value="{{ $about->title }}">
+                                    <label class="form-label">About Title</label>
                                 </div>
                             </div>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="text" id="name" class="form-control" name="name" value="{{ $service->name }}">
-                                    <label class="form-label">Service Title</label>
+                                    <input type="text" id="meta_title" class="form-control"  value="{{ $about->meta_title }}" name="meta_title" required>
+                                    <label class="form-label">Meta Title</label>
                                 </div>
                             </div>
-
-                            <div class="form-group">
+                            
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <textarea  id="meta_description" class="form-control"   name="meta_description" required> {{ $about->meta_description }}</textarea>
+                                    <label class="form-label">Meta Description</label>
+                                </div>
+                            </div>
+                            {{-- <div class="form-group">
                                 <label for="image">Featured Image</label>
                                 <input type="file" name="image">
                             </div>
@@ -50,48 +53,23 @@
                                     </h2>
                                 </div>
                                 <div class="body">
-                                    <img class="img-responsive thumbnail" src="/image/{{ $service->image }}" height="300" width="300" alt="">
+                                    <img class="img-responsive thumbnail" src="/image/{{ $about->image }}" height="300" width="300" alt="">
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="form-group">
-                                <input type="checkbox" id="publish" class="filled-in" name="status" value="1" {{ $service->status == true ? 'checked' : '' }}>
+                            {{-- <div class="form-group">
+                                <input type="checkbox" id="publish" class="filled-in" name="status" value="1" {{ $about->status == true ? 'checked' : '' }}>
                                 <label for="publish">Publish</label>
-                            </div>
+                            </div> --}}
 
-                            <a  class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.services.index') }}">BACK</a>
+                            {{-- <a  class="btn btn-danger m-t-15 waves-effect" href="{{ route('admin.abouts.index') }}">BACK</a> --}}
                             <button type="submit" class="btn btn-primary m-t-15 waves-effect">SUBMIT</button>
                         </div>
                     </div>
                 </div>
                
             </div>
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                               Meta Data
-                            </h2>
-                        </div>
-                        <div class="body">
-                            <div class="form-group form-float">
-                                <div class="form-line">
-                                    <input type="text" id="meta_title" class="form-control"  value="{{ $service->meta_title }}" name="meta_title" required>
-                                    <label class="form-label">Meta Title</label>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group form-float">
-                                <div class="form-line">
-                                    <textarea  id="meta_description" class="form-control"   name="meta_description" required> {{ $service->meta_description }}</textarea>
-                                    <label class="form-label">Meta Description</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -101,7 +79,7 @@
                             </h2>
                         </div>
                         <div class="body">
-                            <textarea id="tinymce" name="description">{{ $service->description }}</textarea>
+                            <textarea id="tinymce" name="description">{{ $about->description }}</textarea>
                         </div>
                     </div>
                 </div>

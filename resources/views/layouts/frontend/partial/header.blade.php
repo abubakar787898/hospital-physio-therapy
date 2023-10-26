@@ -16,11 +16,12 @@
        </label>
 
        <ul>
-         <a href="index.html"><li>About</li></a>
-         <a href="Services/services.html"><li>Services</li></a>
-         <a href="Book Now/Book Now.html"><li>Book Now</li></a>
-         <a href="Contact/contact.html"><li>Contact</li></a>
-         <a href="FAQ/FAQ.html"><li>FAQ</li></a>
+         <a href="{{ route('home') }}"><li>Home</li></a>
+         <a href="{{ route('about') }}"><li>About</li></a>
+         <a href="{{ route('service') }}"><li>Services</li></a>
+         <a href="{{ route('booking') }}"><li>Book Now</li></a>
+         <a href="{{ route('contact') }}"><li>Contact</li></a>
+         {{-- <a href="FAQ/FAQ.html"><li>FAQ</li></a> --}}
        </ul>
 
    </nav>

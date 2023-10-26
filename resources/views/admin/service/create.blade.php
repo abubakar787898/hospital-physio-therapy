@@ -31,16 +31,17 @@
                                     </select>
                                 </div>
                             </div>
+                             
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="text" id="name" class="form-control" name="name">
+                                        <input type="text" id="name" class="form-control" name="name" required>
                                         <label class="form-label">Title</label>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="image">Featured Image</label>
-                                    <input type="file" name="image">
+                                    <input type="file" name="image" required>
                                 </div>
 
                             <div class="form-group">
@@ -59,11 +60,37 @@
                     <div class="card">
                         <div class="header">
                             <h2>
+                               Meta Data
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="text" id="meta_title" class="form-control" name="meta_title" required>
+                                    <label class="form-label">Meta Title</label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <textarea  id="meta_description" class="form-control" name="meta_description" required></textarea>
+                                    <label class="form-label">Meta Description</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
                                BODY
                             </h2>
                         </div>
                         <div class="body">
-                            <textarea id="tinymce" name="description"></textarea>
+                            <textarea id="tinymce" name="description" ></textarea>
                         </div>
                     </div>
                 </div>
