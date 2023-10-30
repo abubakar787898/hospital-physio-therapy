@@ -3,6 +3,7 @@
 @section('title','Dashboard')
 
 @push('css')
+<link href="{{ asset('assets/backend/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css') }}" rel="stylesheet">
 
 @endpush
 
@@ -14,62 +15,52 @@
 
         <!-- Widgets -->
         <div class="row clearfix">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box bg-green hover-expand-effect">
                     <div class="icon">
                         <i class="material-icons">playlist_add_check</i>
                     </div>
                     <div class="content">
-                        <div class="text">TOTAL POSTS</div>
-                        {{-- <div class="number count-to" data-from="0" data-to="{{ $posts->count() }}" data-speed="15" data-fresh-interval="20"></div> --}}
+                        <div class="text">TOTAL BOOKINGS</div>
+                        <div class="number count-to" data-from="0" data-to="{{ $patientbookings->count() }}" data-speed="15" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box bg-cyan hover-expand-effect">
-                    <div class="icon">
-                        <i class="material-icons">favorite</i>
-                    </div>
-                    <div class="content">
-                        <div class="text">TOTAL FAVORITE</div>
-                        {{-- <div class="number count-to" data-from="0" data-to="{{ Auth::user() ->favorite_posts()->count() }}" data-speed="1000" data-fresh-interval="20"></div> --}}
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="info-box bg-red hover-expand-effect">
                     <div class="icon">
                         <i class="material-icons">library_books</i>
                     </div>
                     <div class="content">
-                        <div class="text">PENDING POSTS</div>
-                        {{-- <div class="number count-to" data-from="0" data-to="{{ $total_pending_posts }}" data-speed="1000" data-fresh-interval="20"></div> --}}
+                        <div class="text">APPOINTMENT TYPES</div>
+                        <div class="number count-to" data-from="0" data-to="{{$appointments }}" data-speed="1000" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            
+            {{-- <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="info-box bg-orange hover-expand-effect">
                     <div class="icon">
                         <i class="material-icons">person_add</i>
                     </div>
                     <div class="content">
                         <div class="text">TOTAL VIEWS</div>
-                        {{-- <div class="number count-to" data-from="0" data-to="{{ $all_views }}" data-speed="1000" data-fresh-interval="20"></div> --}}
+                        <div class="number count-to" data-from="0" data-to="{{ $all_views }}" data-speed="1000" data-fresh-interval="20"></div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
         <!-- #END# Widgets -->
         <!-- Widgets -->
         <div class="row clearfix">
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-3">
-                <div class="info-box bg-pink hover-zoom-effect">
+                {{-- <div class="info-box bg-pink hover-zoom-effect">
                     <div class="icon">
                         <i class="material-icons">apps</i>
                     </div>
                     <div class="content">
                         <div class="text">CATEGORIES</div>
-                        {{-- <div class="number count-to" data-from="0" data-to="{{ $category_count }}" data-speed="15" data-fresh-interval="20"></div> --}}
+                     
                     </div>
                 </div>
                 <div class="info-box bg-blue-grey hover-zoom-effect">
@@ -78,7 +69,7 @@
                     </div>
                     <div class="content">
                         <div class="text">TAGS</div>
-                        {{-- <div class="number count-to" data-from="0" data-to="{{ $tag_count }}" data-speed="15" data-fresh-interval="20"></div> --}}
+                       
                     </div>
                 </div>
                 <div class="info-box bg-purple hover-zoom-effect">
@@ -87,7 +78,7 @@
                     </div>
                     <div class="content">
                         <div class="text">TOTAL AUTHOR</div>
-                        {{-- <div class="number count-to" data-from="0" data-to="{{ $author_count }}" data-speed="15" data-fresh-interval="20"></div> --}}
+                       
                     </div>
                 </div>
                 <div class="info-box bg-deep-purple hover-zoom-effect">
@@ -96,51 +87,79 @@
                     </div>
                     <div class="content">
                         <div class="text">TODAY AUTHOR</div>
-                        {{-- <div class="number count-to" data-from="0" data-to="{{ $new_authors_today }}" data-speed="15" data-fresh-interval="20"></div> --}}
+                       
                     </div>
-                </div>
+                </div> --}}
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-9">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="header">
-                        <h2>MOST POPULAR POST</h2>
+                        <h2> ALL PATIENT BOOKINGS</h2>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
-                            <table class="table table-hover dashboard-task-infos">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
-                                    <tr>
-                                        <th>Rank</th>
-                                        <th>Title</th>
-                                        <th>Author</th>
-                                        <th>Views</th>
-                                        <th>Favorite</th>
-                                        <th>Comments</th>
-                                        <th>Status</th>
-                                        <th>Action</th>
-                                    </tr>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+                                    <th>Appointment Type</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                  
+                              
+                                    <th>Action</th>
+                                </tr>
                                 </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Email</th>
+
+                                    <th>Appointment Type</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                 
+                            
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
                                 <tbody>
-                                    {{-- @foreach($popular_posts as $key=>$post)
+                                    @foreach($patientbookings as $key=>$patientbooking)
+                                  
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ str_limit($post->title,'20') }}</td>
-                                            <td>{{ $post->user->name }}</td>
-                                            <td>{{ $post->view_count }}</td>
-                                            <td>{{ $post->favorite_to_users_count }}</td>
-                                            <td>{{ $post->comments_count }}</td>
-                                            <td>
-                                                @if($post->status == true)
-                                                    <span class="label bg-green">Published</span>
-                                                @else
-                                                    <span class="label bg-red">Pending</span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-sm btn-primary waves-effect" target="_blank" href="{{ route('post.details',$post->slug) }}">View</a>
+                                            <td>{{ $patientbooking->id }}</td>
+                                            <td>{{ $patientbooking->f_name ." ".$patientbooking->l_name}}</td>
+                                            <td><a href="mailto:{{ $patientbooking->email}}">{{ $patientbooking->email}}</a></td>
+                                            <td>{{ $patientbooking?->slot?->appointment_type->name }}</td>
+                                            <td>{{ $patientbooking?->slot?->date }}</td>
+                                            <td>{{ $patientbooking?->slot?->from_time."-".$patientbooking?->slot?->to_time }}</td>
+                                            
+                                          
+                                           
+                                         
+                        
+                                            {{-- <td>{{ $patientbooking->created_at }}</td> --}}
+                                            {{--<td>{{ $patientbooking->updated_at }}</td>--}}
+                                            <td class="text-center">
+                                                <a href="{{ route('admin.patients.show',$patientbooking->id) }}" class="btn btn-info waves-effect">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                {{-- <a href="{{ route('admin.patients.edit',$patientbooking->id) }}" class="btn btn-info waves-effect">
+                                                    <i class="material-icons">edit</i>
+                                                </a> --}}
+                                                {{-- <button class="btn btn-danger waves-effect" type="button" onclick="deletePatientBooking({{ $patientbooking->id }})">
+                                                    <i class="material-icons">delete</i>
+                                                </button> --}}
+                                                {{-- <form id="delete-form-{{ $patientbooking->id }}" action="{{ route('admin.patients.destroy',$patientbooking->id) }}" method="POST" style="display: none;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form> --}}
                                             </td>
                                         </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -150,47 +169,22 @@
         </div>
         <!-- #END# Widgets -->
 
-        <div class="row clearfix">
-            <!-- Task Info -->
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="card">
-                    <div class="header">
-                        <h2>TOP 10 ACTIVE AUTHOR</h2>
-                    </div>
-                    <div class="body">
-                        <div class="table-responsive">
-                            <table class="table table-hover dashboard-task-infos">
-                                <thead>
-                                <tr>
-                                    <th>Rank List</th>
-                                    <th>Name</th>
-                                    <th>Posts</th>
-                                    <th>Comments</th>
-                                    <th>Favorite</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                    {{-- @foreach($active_authors as $key=>$author)
-                                        <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $author->name }}</td>
-                                            <td>{{ $author->posts_count }}</td>
-                                            <td>{{ $author->comments_count }}</td>
-                                            <td>{{ $author->favorite_posts_count }}</td>
-                                        </tr>
-                                    @endforeach --}}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Task Info -->
-        </div>
+       
     </div>
 @endsection
 
 @push('js')
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/extensions/export/buttons.flash.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/extensions/export/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/extensions/export/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/extensions/export/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/extensions/export/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/backend/plugins/jquery-datatable/extensions/export/buttons.print.min.js') }}"></script>
+
+<script src="{{ asset('assets/backend/js/pages/tables/jquery-datatable.js') }}"></script>
     <!-- Jquery CountTo Plugin Js -->
     <script src="{{ asset('assets/backend/plugins/jquery-countto/jquery.countTo.js') }}"></script>
 
@@ -211,4 +205,6 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="assets/backend/plugins/jquery-sparkline/jquery.sparkline.js"></script>
     <script src="{{ asset('assets/backend/js/pages/index.js') }}"></script>
+ 
+    
 @endpush

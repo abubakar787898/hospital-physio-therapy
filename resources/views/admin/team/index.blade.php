@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Slots')
+@section('title','Team')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -8,29 +8,11 @@
 @endpush
 
 @section('content')
-<?php
-// This function takes two time values in the format HH:MM and returns the difference in the same format
-function diff($start, $end) {
-  // Convert to unix timestamps
-  $start = strtotime($start);
-  $end = strtotime($end);
-  // Perform subtraction to get the difference (in seconds) between times
-  $diff = $end - $start;
-  // Convert to minutes
-  $minutes = $diff / 60;
-  // Return the difference
-  return $minutes;
-}
-
-
-
-?>
-
     <div class="container-fluid">
         <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{ route('admin.slots.create') }}">
+            <a class="btn btn-primary waves-effect" href="{{ route('admin.teams.create') }}">
                 <i class="material-icons">add</i>
-                <span>Add New Slot</span>
+                <span>Add New Team & Slider</span>
             </a>
         </div>
         <!-- Exportable Table -->
@@ -39,8 +21,8 @@ function diff($start, $end) {
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL Slots
-                            <span class="badge bg-blue">{{ $slots->count() }}</span>
+                            ALL TEAMS & SLIDER
+                            <span class="badge bg-blue">{{ $teams->count() }}</span>
                         </h2>
                     </div>
                     
@@ -50,63 +32,54 @@ function diff($start, $end) {
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Appointment Type</th>
-                                    <th>Date</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Duration</th>
-                                    <th>Status</th>
-                                  
+                         
+                                    <th>Title</th>
+                                    <th>Image</th>
+                                 
+                                    <th>Type</th>
+                                    <th>Created At</th>
                                 
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Appointment Type</th>
-                                        <th>Date</th>
-                                        <th>Start Time</th>
-                                        <th>End Time</th>
-                                        <th>Duration</th>
-                                        <th>Status</th>
-                                      
-                                    
-                                        <th>Action</th>
-                                    </tr>
+                                <tr>
+                                    <th>ID</th>
+                                
+                                    <th>Title</th>
+                                    <th>Image</th>
+                                 
+                                    <th>Type</th>
+                                    <th>Created At</th>
+                                 
+                                    <th>Action</th>
+                                </tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach($slots as $key=>$slot)
+                                    @foreach($teams as $key=>$team)
                                   
                                         <tr>
-                                            <td>{{ $slot->id }}</td>
-                                            <td>{{ $slot?->appointment_type?->name }}</td>
-                                            <td>{{$slot->date }}</td>
-                                            <td>{{$slot->from_time }}</td>
-                                            <td>{{$slot->to_time }}</td>
-                                            <td>{{diff($slot->from_time,$slot->to_time ) }}</td>
-                                           
+                                            <td>{{ $team->id }}</td>
+                             
+                                            <td>{{ \Illuminate\Support\Str::limit($team->title, 10) }}</td>
+                                            <td><img src="/image/{{ $team->image }}" width="100px"></td>
                                          
                                             <td>
-                                                @if($slot->status == "booked")
-                                                    <span class="badge bg-blue">Booked</span>
-                                                @else
-                                                    <span class="badge bg-pink">Available</span>
-                                                @endif
+                                                {{$team->type}}
                                             </td>
-                                         
-                                            {{--<td>{{ $slot->updated_at }}</td>--}}
+                                            <td>{{ $team->created_at }}</td>
+                                            {{--<td>{{ $team->updated_at }}</td>--}}
                                             <td class="text-center">
-                                                {{-- <a href="{{ route('admin.slots.show',$slot->id) }}" class="btn btn-info waves-effect">
+                                                <a href="{{ route('admin.teams.show',$team->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">visibility</i>
-                                                </a> --}}
-                                                <a href="{{ route('admin.slots.edit',$slot->id) }}" class="btn btn-info waves-effect">
+                                                </a>
+                                                <a href="{{ route('admin.teams.edit',$team->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteSlot({{ $slot->id }})">
+                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteTeam({{ $team->id }})">
                                                     <i class="material-icons">delete</i>
                                                 </button>
-                                                <form id="delete-form-{{ $slot->id }}" action="{{ route('admin.slots.destroy',$slot->id) }}" method="SERVICE" style="display: none;">
+                                                <form id="delete-form-{{ $team->id }}" action="{{ route('admin.teams.destroy',$team->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -139,7 +112,7 @@ function diff($start, $end) {
     <script src="{{ asset('assets/backend/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script type="text/javascript">
-        function deleteSlot(id) {
+        function deleteTeam(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

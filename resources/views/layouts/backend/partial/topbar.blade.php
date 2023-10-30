@@ -14,3 +14,13 @@
         </div>
     </div>
 </nav>
+<script type="text/javascript">
+    const _baseUrl = "{{ url('/') }}/admin/"
+    const _urlStore = "{{ url('/') }}/"
+
+    // $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+</script>

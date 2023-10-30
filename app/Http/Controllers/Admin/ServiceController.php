@@ -121,7 +121,11 @@ while (Services::where('slug', $slug)->exists()) {
         $service = Services::find($id);
         $slug = Str::slug($request->name);
         $service->appointment_type_id = $request->appointment;
-
+        if (Services::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+            
+        }else{
+            $service->slug = $slug;
+        }
         if (isset($image)) {
 
             $destinationPath = 'image/';
@@ -135,7 +139,7 @@ while (Services::where('slug', $slug)->exists()) {
       
         // $service->user_id = Auth::id();
         $service->name = $request->name;
-        $service->slug = $slug;
+   
         $service->description = $request->description;
         if(isset($request->status))
         {
@@ -144,7 +148,7 @@ while (Services::where('slug', $slug)->exists()) {
             $service->status = false;
         }
         // $service->is_approved = true;
-        $service->save();
+        $service->update();
 
       
         Toastr::success('Service Updated Successfully :)' ,'Success');

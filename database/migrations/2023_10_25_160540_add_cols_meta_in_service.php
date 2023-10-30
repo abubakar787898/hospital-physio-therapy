@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('services', function (Blueprint $table) {
             //
-            $table->string('meta_title')->nullable();
-            $table->string('meta_description')->nullable();
+            // $table->string('meta_title')->nullable();
+            // $table->string('meta_description')->nullable();
 
         });
     }

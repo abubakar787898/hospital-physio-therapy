@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Slots')
+@section('title','PatientBooking')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -8,39 +8,21 @@
 @endpush
 
 @section('content')
-<?php
-// This function takes two time values in the format HH:MM and returns the difference in the same format
-function diff($start, $end) {
-  // Convert to unix timestamps
-  $start = strtotime($start);
-  $end = strtotime($end);
-  // Perform subtraction to get the difference (in seconds) between times
-  $diff = $end - $start;
-  // Convert to minutes
-  $minutes = $diff / 60;
-  // Return the difference
-  return $minutes;
-}
-
-
-
-?>
-
     <div class="container-fluid">
-        <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{ route('admin.slots.create') }}">
+        {{-- <div class="block-header">
+            <a class="btn btn-primary waves-effect" href="{{ route('admin.patients.create') }}">
                 <i class="material-icons">add</i>
-                <span>Add New Slot</span>
+                <span>Add New PatientBooking</span>
             </a>
-        </div>
+        </div> --}}
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL Slots
-                            <span class="badge bg-blue">{{ $slots->count() }}</span>
+                            ALL PATIENT BOOKINGS
+                            <span class="badge bg-blue">{{ $patientbookings->count() }}</span>
                         </h2>
                     </div>
                     
@@ -50,63 +32,60 @@ function diff($start, $end) {
                                 <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Full Name</th>
                                     <th>Appointment Type</th>
                                     <th>Date</th>
-                                    <th>Start Time</th>
-                                    <th>End Time</th>
-                                    <th>Duration</th>
-                                    <th>Status</th>
-                                  
-                                
+                                    <th>Time</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Age</th>
+                              
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Appointment Type</th>
-                                        <th>Date</th>
-                                        <th>Start Time</th>
-                                        <th>End Time</th>
-                                        <th>Duration</th>
-                                        <th>Status</th>
-                                      
-                                    
-                                        <th>Action</th>
-                                    </tr>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Full Name</th>
+                                    <th>Appointment Type</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Age</th>
+                            
+                                    <th>Action</th>
+                                </tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach($slots as $key=>$slot)
+                                    @foreach($patientbookings as $key=>$patientbooking)
                                   
                                         <tr>
-                                            <td>{{ $slot->id }}</td>
-                                            <td>{{ $slot?->appointment_type?->name }}</td>
-                                            <td>{{$slot->date }}</td>
-                                            <td>{{$slot->from_time }}</td>
-                                            <td>{{$slot->to_time }}</td>
-                                            <td>{{diff($slot->from_time,$slot->to_time ) }}</td>
+                                            <td>{{ $patientbooking->id }}</td>
+                                            <td>{{ $patientbooking->f_name ." ".$patientbooking->l_name}}</td>
+                                            <td>{{ $patientbooking?->slot?->appointment_type->name }}</td>
+                                            <td>{{ $patientbooking?->slot?->date }}</td>
+                                            <td>{{ $patientbooking?->slot?->from_time."-".$patientbooking?->slot?->to_time }}</td>
+                                            <td>{{ $patientbooking->email}}</td>
+                                            <td>{{ $patientbooking->mobile}}</td>
+                                            <td>{{ $patientbooking->age}}</td>
+                                          
                                            
                                          
-                                            <td>
-                                                @if($slot->status == "booked")
-                                                    <span class="badge bg-blue">Booked</span>
-                                                @else
-                                                    <span class="badge bg-pink">Available</span>
-                                                @endif
-                                            </td>
-                                         
-                                            {{--<td>{{ $slot->updated_at }}</td>--}}
+                        
+                                            {{-- <td>{{ $patientbooking->created_at }}</td> --}}
+                                            {{--<td>{{ $patientbooking->updated_at }}</td>--}}
                                             <td class="text-center">
-                                                {{-- <a href="{{ route('admin.slots.show',$slot->id) }}" class="btn btn-info waves-effect">
+                                                <a href="{{ route('admin.patients.show',$patientbooking->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">visibility</i>
-                                                </a> --}}
-                                                <a href="{{ route('admin.slots.edit',$slot->id) }}" class="btn btn-info waves-effect">
-                                                    <i class="material-icons">edit</i>
                                                 </a>
-                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteSlot({{ $slot->id }})">
+                                                {{-- <a href="{{ route('admin.patients.edit',$patientbooking->id) }}" class="btn btn-info waves-effect">
+                                                    <i class="material-icons">edit</i>
+                                                </a> --}}
+                                                <button class="btn btn-danger waves-effect" type="button" onclick="deletePatientBooking({{ $patientbooking->id }})">
                                                     <i class="material-icons">delete</i>
                                                 </button>
-                                                <form id="delete-form-{{ $slot->id }}" action="{{ route('admin.slots.destroy',$slot->id) }}" method="SERVICE" style="display: none;">
+                                                <form id="delete-form-{{ $patientbooking->id }}" action="{{ route('admin.patients.destroy',$patientbooking->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -139,7 +118,7 @@ function diff($start, $end) {
     <script src="{{ asset('assets/backend/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script type="text/javascript">
-        function deleteSlot(id) {
+        function deletePatientBooking(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

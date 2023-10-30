@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Slot extends Model
 {
     use HasFactory;
-    protected $fillable = ['date_time', 'status'];
+    protected $fillable = ['appointment_type_id', 'from_time','to_time','date'];
+    public function appointment_type()
+    {
+        return $this->belongsTo(AppointmentType::class);
+    }
+
 }

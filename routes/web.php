@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\AppointmentTypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\GeneralController;
+use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
@@ -42,10 +44,16 @@ Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function
    
     Route::resource('appointment-types', AppointmentTypeController::class);
     Route::resource('users', UserController::class);
+    Route::resource('patients', PatientController::class);
+    Route::resource('teams', TeamController::class);
     Route::resource('services', ServiceController::class);
-    Route::get('slots', [SlotController::class, 'index']);
-    Route::post('slots', [SlotController::class, 'create']);
-    Route::patch('slots/{id}/book', [SlotController::class, 'book']);
+    Route::resource('slots', SlotController::class);
+    Route::get('appointment-slot', [SlotController::class, 'getAppointmentSlot'])->name('getAppointmentSlot');
+
+
+    // Route::get('slots', [SlotController::class, 'index']);
+    // Route::post('slots', [SlotController::class, 'create']);
+    // Route::patch('slots/{id}/book', [SlotController::class, 'book']);
 
     // Route::resource('dead_lines', DeadLineController::class);
     // Route::resource('educations', EducationLevelController::class);

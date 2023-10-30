@@ -46,6 +46,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.patients.index') }}">
+                        <i class="material-icons">photo_album</i>
+                        <span>Bookings</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('admin.appointment-types.index') }}">
                         <i class="material-icons">photo_album</i>
                         <span>Appointment Type</span>
@@ -55,6 +61,18 @@
                     <a href="{{ route('admin.services.index') }}">
                         <i class="material-icons">local_library</i>
                         <span>Service</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.teams.index') }}">
+                        <i class="material-icons">local_library</i>
+                        <span>Team & Slider</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.slots.index') }}">
+                        <i class="material-icons">local_library</i>
+                        <span>Slots</span>
                     </a>
                 </li>
                 <li>
