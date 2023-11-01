@@ -12,7 +12,7 @@
 
        <input type="checkbox" id="check">
        <label for="check" class="checkbtn">
-       <img src="Assets/svg/Burger Menu.svg" alt="" width="40px" height="40px">
+       <img src="assets/svg/Burger Menu.svg" alt="" width="40px" height="40px">
        </label>
 
        <ul>
@@ -59,3 +59,6 @@
 
     </div><!-- conatiner -->
 </header> --}}
+<script>
+      const _urlStore = "{{ url('/') }}/"
+</script>

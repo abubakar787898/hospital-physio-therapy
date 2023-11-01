@@ -24,17 +24,23 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+// Route::get('/', function () {
+//     return view('welcome');
+// })->name('home');
 
 Auth::routes();
 
 
 
+Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('about', [FrontendController::class, 'about'])->name('about');
 Route::get('service', [FrontendController::class, 'service'])->name('service');
+Route::get('service/{slug}', [FrontendController::class, 'service_slug'])->name('service.slug');
 Route::get('booking', [FrontendController::class, 'booking'])->name('booking');
+Route::get('booking-form/{id}', [FrontendController::class, 'book'])->name('booking-form');
+Route::post('patient-booked', [FrontendController::class, 'patient_booked'])->name('patient-booked');
+Route::post('get-slot', [FrontendController::class, 'booking'])->name('get.slot');
+Route::get('getSlot', [FrontendController::class, 'getSlot'])->name('getSlot');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 
 Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function (){
