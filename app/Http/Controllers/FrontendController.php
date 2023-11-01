@@ -81,7 +81,11 @@ $today = Carbon::now()->toDateString();
 
       
         $data = Slot::with('appointment_type')->find($request->slot_id);
-      
+        if ($data) {
+            # code...
+            $data->status="booked";
+        }
+        $data->save();
       $patient=new PatientBooking();
       $patient->slot_id=$request->slot_id;
       $patient->f_name=$request->f_name;

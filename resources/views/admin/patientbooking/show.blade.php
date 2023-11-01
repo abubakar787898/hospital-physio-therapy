@@ -72,6 +72,8 @@
                                 <p class="">{{ $patientbooking->slot->date}}</p><br>
                                 <label for="">Timing:</label>
                                 <p class="">{{ $patientbooking->slot->from_time."-".$patientbooking->slot->to_time }}</p>
+                                <label for="">Status:</label>
+                                <p class="">{{ $patientbooking->slot->status }}</p>
                          
                         </div>
                     </div>
