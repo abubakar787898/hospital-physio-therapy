@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Team;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TeamController extends Controller
 {
@@ -33,14 +34,15 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-     // dd($request->image);
+ 
      $this->validate($request,[
         'title' => 'required',
         'image' => 'required',
         
     ]);
+    $slug = Str::slug($request->title);
     $image = $request->file('image');
-    // dd($request->image);
+
 
     if (isset($image)) {
 
@@ -57,6 +59,7 @@ class TeamController extends Controller
     $team = new Team();
     // $team->user_id = Auth::id();
     $team->title = $request->title;
+    $team->slug = $slug;
     $team->title_color = $request->title_color;
     $team->description = $request->description;
   
@@ -107,7 +110,13 @@ class TeamController extends Controller
         ]);
         $image = $request->file('image');
         $team = Team::find($id);
-     
+        $slug = Str::slug($request->title);
+  
+        if (Team::where('slug', $slug)->where('id', '!=', $id)->exists()) {
+            
+        }else{
+            $team->slug = $slug;
+        }
       
    
         if (isset($image)) {
