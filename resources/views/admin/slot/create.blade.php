@@ -61,15 +61,22 @@
                             @csrf
 
                             <div class="row " style="margin-top: 20px">
-                                <div class="col-lg-8  col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-6  col-md-12 col-sm-12 col-xs-12">
 
 
                                     <select class="form-control" onChange="fetchAppointments()" id="appointment-id">
                                         <option value="">{{ __('Select Appointment Type') }}</option>
                                         @foreach ($appointment_types as $appointment_type)
-        <option value="{{ $appointment_type->id }}">{{ $appointment_type->name }}</option>
-    @endforeach
+                                           <option value="{{ $appointment_type->id }}">{{ $appointment_type->name }}</option>
+                                              @endforeach
                                     </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                  
+                                    <input type="number" class="form-control" id="price"  placeholder="Amount"
+                                        aria-describedby="inputGroupPrepend" required>
+    
+    
                                 </div>
 
                             </div>
@@ -89,6 +96,7 @@
 
 
                             </div>
+                       
                             </div>
 
                             <button style="margin-top: 20px" type="button" class="btn btn-primary" onclick="saveSlots()"><i class="fa fa-fw fa-save"></i>&nbsp;{{ __('Save') }}</button>
@@ -207,6 +215,7 @@ $.ajax({
             slots=result.data.slots;
 
             setLabels()
+     
             
         }
 
@@ -226,6 +235,7 @@ function isTimeValid() {
 if( $('#appointment-id').val() == '' 
     || $('#from-time').val() == '' 
     || $('#to-time').val() == ''
+    || $('#price').val() == ''
     || $('#slot-calendar').multiDatesPicker('getDates').length == 0
 ) {
     return false;
@@ -250,6 +260,7 @@ function saveSlots() {
             appointment_type_id: $('#appointment-id').val()*1,
             from_time: $('#from-time').val(),
             to_time: $('#to-time').val(),
+            price: $('#price').val(),
             dates: $('#slot-calendar').multiDatesPicker('getDates'),
         },
         dataType: 'json',
@@ -272,8 +283,10 @@ function saveSlots() {
                 slots=result.data.slots;
 
                 setLabels()
-                
-                $.notify(result.message, "success");
+                setTimeout(function() {
+    location.reload();
+}, 3000);
+                // $.notify(result.message, "success");
             }
 
             // $('.showId').text(id);

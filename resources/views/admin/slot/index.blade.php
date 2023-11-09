@@ -35,7 +35,7 @@ function diff($start, $end) {
         </div>
         <!-- Exportable Table -->
         <div class="row clearfix">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="col-lg- col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
@@ -54,9 +54,10 @@ function diff($start, $end) {
                                     <th>Date</th>
                                     <th>Start Time</th>
                                     <th>End Time</th>
+                                    <th>Amount</th>
                                     <th>Duration</th>
                                     <th>Status</th>
-                                  
+                                    <th>Book New Slot</th>
                                 
                                     <th>Action</th>
                                 </tr>
@@ -68,8 +69,10 @@ function diff($start, $end) {
                                         <th>Date</th>
                                         <th>Start Time</th>
                                         <th>End Time</th>
+                                        <th>Amount</th>
                                         <th>Duration</th>
                                         <th>Status</th>
+                                        <th>Book New Slot</th>
                                       
                                     
                                         <th>Action</th>
@@ -84,6 +87,7 @@ function diff($start, $end) {
                                             <td>{{$slot->date }}</td>
                                             <td>{{$slot->from_time }}</td>
                                             <td>{{$slot->to_time }}</td>
+                                            <td>{{$slot->price }}</td>
                                             <td>{{diff($slot->from_time,$slot->to_time ) }}</td>
                                            
                                          
@@ -94,12 +98,22 @@ function diff($start, $end) {
                                                     <span class="badge bg-pink">Available</span>
                                                 @endif
                                             </td>
+                                            <td>
+                                                @if($slot->status != "booked")
+                                                <a href="{{ route('admin.booking-slot',$slot->id) }}" >
+                                                    <span class="badge bg-blue">Book New Slot</span>
+                                                </a>
+                                              
+                                                @endif
+                                            </td>
                                          
                                             {{--<td>{{ $slot->updated_at }}</td>--}}
                                             <td class="text-center">
+                                                @if($slot->status != "booked")
                                                 {{-- <a href="{{ route('admin.slots.show',$slot->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">visibility</i>
                                                 </a> --}}
+                                            
                                                 <a href="{{ route('admin.slots.edit',$slot->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
                                                 </a>
@@ -110,6 +124,7 @@ function diff($start, $end) {
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach

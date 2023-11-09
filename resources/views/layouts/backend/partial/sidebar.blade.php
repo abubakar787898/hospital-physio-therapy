@@ -1,3 +1,38 @@
+
+
+<style>
+    /* Add this CSS to your styles */
+    .list {
+list-style: circle;
+padding: 0;
+}
+
+.list li {
+margin: 0;
+padding: 5px;
+}
+
+.has-submenu .arrow {
+float: right;
+transition: transform 0.3s ease; /* Add smooth transition */
+}
+
+.submenu {
+display: none;
+}
+
+.submenu.active {
+display: block;
+}
+
+.submenu.active + .toggle-submenu .arrow {
+transform: rotate(180deg);
+}
+
+
+
+
+</style>
 <aside id="leftsidebar" class="sidebar">
     <!-- User Info -->
     <div class="user-info">
@@ -81,12 +116,47 @@
                         <span>User</span>
                     </a>
                 </li>
-                <li>
+           
+                  <li class="has-submenu">
+                    <a href="#" class="toggle-submenu">
+                        <i class="material-icons">group</i>
+                        <span>Pages</span>
+                        <span class="arrow">&#9654;</span>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="{{ route('admin.home') }}">
+                                
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.about') }}">
+                               
+                                <span>About</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                               
+                                <span>Home</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+              
+                {{-- <li>
                     <a href="{{ route('admin.about') }}">
                         <i class="material-icons">group</i>
                         <span>About</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('admin.home') }}">
+                        <i class="material-icons">group</i>
+                        <span>Home</span>
+                    </a>
+                </li> --}}
                 {{-- <li class="{{ Request::is('admin/tag*') ? 'active' : '' }}">
                     <a href="{{ route('admin.tag.index') }}">
                         <i class="material-icons">label</i>
@@ -173,3 +243,22 @@
     </div>
     <!-- #Footer -->
 </aside>
+<script>
+                  
+    document.addEventListener("DOMContentLoaded", function() {
+var submenuItems = document.querySelectorAll('.has-submenu > a');
+
+submenuItems.forEach(function(item) {
+item.addEventListener('click', function(e) {
+e.preventDefault();
+var submenu = this.parentElement.querySelector('.submenu');
+toggleSubMenu(submenu);
+});
+});
+
+function toggleSubMenu(submenu) {
+submenu.classList.toggle('active');
+}
+});
+
+  </script>

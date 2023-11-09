@@ -62,7 +62,7 @@
                                             <td>{{ $team->id }}</td>
                              
                                             <td>{{ \Illuminate\Support\Str::limit($team->title, 10) }}</td>
-                                            <td><img src="/image/{{ $team->image }}" width="100px"></td>
+                                            <td><img src="/image/{{ $team->image }}" width="100px" height="70px"></td>
                                          
                                             <td>
                                                 {{$team->type}}

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PatientBookingController;
 use App\Http\Controllers\SlotController;
 use Illuminate\Support\Facades\Auth;
 
@@ -36,6 +37,7 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('about', [FrontendController::class, 'about'])->name('about');
 Route::get('service', [FrontendController::class, 'service'])->name('service');
 Route::get('service/{slug}', [FrontendController::class, 'service_slug'])->name('service.slug');
+Route::get('team/{slug}', [FrontendController::class, 'team_slug'])->name('team.slug');
 Route::get('booking', [FrontendController::class, 'booking'])->name('booking');
 Route::get('booking-form/{id}', [FrontendController::class, 'book'])->name('booking-form');
 Route::post('patient-booked', [FrontendController::class, 'patient_booked'])->name('patient-booked');
@@ -43,10 +45,17 @@ Route::post('get-slot', [FrontendController::class, 'booking'])->name('get.slot'
 Route::get('getSlot', [FrontendController::class, 'getSlot'])->name('getSlot');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 
+
+Route::post('/initiate-payment', [PatientBookingController::class, 'initiatePayment']);
+Route::post('/handle-payment-response', [PatientBookingController::class, 'handlePaymentResponse']);
+
 Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function (){
     Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard');
     Route::put('update-about', [GeneralController::class, 'updateAbout'])->name('about.update');
     Route::get('about', [GeneralController::class, 'about'])->name('about');
+
+    Route::get('home', [GeneralController::class, 'home'])->name('home');
+    Route::put('update-home', [GeneralController::class, 'updateHome'])->name('home.update');
    
     Route::resource('appointment-types', AppointmentTypeController::class);
     Route::resource('users', UserController::class);
@@ -54,6 +63,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function
     Route::resource('teams', TeamController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('slots', SlotController::class);
+    Route::get('booking-slot/{id}', [SlotController::class, 'booking_slot'])->name('booking-slot');
+    Route::post('book-slot', [SlotController::class, 'book_slot'])->name('book-slot');
     Route::get('appointment-slot', [SlotController::class, 'getAppointmentSlot'])->name('getAppointmentSlot');
 
 

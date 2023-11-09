@@ -82,9 +82,9 @@
                                                 {{-- <a href="{{ route('admin.patients.edit',$patientbooking->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
                                                 </a> --}}
-                                                <button class="btn btn-danger waves-effect" type="button" onclick="deletePatientBooking({{ $patientbooking->id }})">
+                                                {{-- <button class="btn btn-danger waves-effect" type="button" onclick="deletePatientBooking({{ $patientbooking->id }})">
                                                     <i class="material-icons">delete</i>
-                                                </button>
+                                                </button> --}}
                                                 <form id="delete-form-{{ $patientbooking->id }}" action="{{ route('admin.patients.destroy',$patientbooking->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')

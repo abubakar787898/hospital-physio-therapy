@@ -20,9 +20,9 @@ class FrontendController extends Controller
 $teams=Team::where('type','team')->get();
 $sliders=Team::where('type','slider')->get();
 $services=Services::all();
+$home=Page::find(2);
 
-
-        return view('welcome',compact('teams','sliders','services'));
+        return view('welcome',compact('teams','sliders','services','home'));
     }
     public function about()
     {
@@ -42,6 +42,12 @@ $meta_description="Explore a comprehensive range of physiotherapy services at Ho
 
         $service=Services::where('slug',$slug)->first();
         return view('servicedetail',compact('service'));
+    }
+    public function team_slug($slug)
+    {
+
+        $team=Team::where('slug',$slug)->first();
+        return view('team_detail',compact('team'));
     }
     public function booking(Request $request)
     {

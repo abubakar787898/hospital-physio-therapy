@@ -15,6 +15,35 @@ class GeneralController extends Controller
      
         return view('admin.pages.about',compact('about'));
     }
+    public function home()
+    {
+        $home=Page::find(2);
+     
+        return view('admin.pages.home',compact('home'));
+    }
+    public function updateHome(Request $request)
+    {
+        // dd($request->image);
+        $this->validate($request,[
+            'title' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
+        ]);
+       
+        $home = Page::find(2);
+       
+        $home->title = $request->title;
+      
+        $home->description = $request->description;
+        $home->meta_title = $request->meta_title;
+        $home->meta_description = $request->meta_description;
+      
+        $home->save();
+
+      
+        Toastr::success('Home Updated Successfully :)' ,'Success');
+        return redirect()->route('admin.home');
+    }
     public function updateAbout(Request $request)
     {
         // dd($request->image);

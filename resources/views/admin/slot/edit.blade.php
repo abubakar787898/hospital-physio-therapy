@@ -18,7 +18,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                EDIT Slot
+                                EDIT SLOT
                             </h2>
                         </div>
                         <div class="body">
@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group form-float">
                                 <div class="form-line">
-                                    <input type="date" id="date" class="form-control" name="date" value="{{ $slot->date }}">
+                                    <input type="date" id="date" class="form-control" name="date" value="{{ $slot?->date }}">
                                     <label class="form-label">Date</label>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="time" id="from_time" class="form-control" name="from_time" value="{{ $slot->from_time }}">
+                                        <input type="time" id="from_time" class="form-control" name="from_time" value="{{ $slot?->from_time }}">
                                         <label class="form-label">Start Time</label>
                                     </div>
                                 </div>
@@ -52,15 +52,24 @@
                             <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="time" id="to_time" class="form-control" name="to_time" value="{{ $slot->to_time }}">
+                                        <input type="time" id="to_time" class="form-control" name="to_time" value="{{ $slot?->to_time }}">
                                         <label class="form-label">End Time</label>
                                     </div>
                                 </div>
                             </div>
                            </div>
+                           
                            <div class="form-group form-float">
+
                             <div class="form-line">
-                                <input type="text" class="form-control" value="{{ $slot->status }}">
+                                <input type="number" class="form-control" name="price" value="{{ $slot?->price }}">
+                                <label class="form-label">Status</label>
+                            </div>
+                        </div>
+                           <div class="form-group form-float">
+
+                            <div class="form-line">
+                                <input type="text" class="form-control" value="{{ $slot?->status }}">
                                 <label class="form-label">Status</label>
                             </div>
                         </div>

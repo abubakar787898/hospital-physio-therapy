@@ -17,13 +17,13 @@
 @endpush
 
 @section('content')
-<div class="hero_section">
+{{-- <div class="hero_section">
 
     <div class="hero_title">
         <h1>Services We Offer You</h1>
     </div>
 
-</div>
+</div> --}}
 <div class="blog_menu">
 
     <div  class="blog_head">

@@ -46,6 +46,7 @@
 <script src="{{ asset('assets/frontend/js/swiper.js') }}"></script>
 <script src="{{ asset('assets/frontend/js/scripts.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="https://kit.fontawesome.com/2ee5c96cad.js" crossorigin="anonymous"></script>
 {!! Toastr::message() !!}
 <script>
     @if($errors->any())

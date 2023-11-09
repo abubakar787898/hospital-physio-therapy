@@ -1,7 +1,11 @@
 @extends('layouts.frontend.app')
 
 @section('title', 'Home')
-
+@push('meta')
+    <meta name="title" content="{{ $home?->meta_title }}">
+    <meta name="description" content="{{ $home?->meta_description }}">
+ 
+@endpush
 @push('css')
     <link href="{{ asset('assets/frontend/css/home/style.css') }}" rel="stylesheet">
 
@@ -39,10 +43,10 @@
                                     alt="...">
                                 <div class="carousel-caption d-none d-md-block">
                                     @if (!empty($slider->description))
-                                        <h5>{!! \Illuminate\Support\Str::limit($slider->description, 10) !!}</h5>
+                                        <h5>{!! $slider->description !!}</h5>
                                     @endif
                                     @if (!empty($slider->title))
-                                        <h1>{{ \Illuminate\Support\Str::limit($slider->title, 10) }}</h1>
+                                        <h1 style="color:{{$slider->title_color}}">{{ $slider->title }}</h1>
                                     @endif
                                 </div>
                             </div>
@@ -69,11 +73,52 @@
     </section>
    
 
-    <style>
-     
-    </style>
+ 
+    <div class="services_section team_section">
 
-    <h2 class="title">
+        <div class="service_head">
+           <h1 class="title">Our Services</h1>
+        </div>
+      
+        <div class="services_menu">
+          <div class="cover">
+            <button class="left" onclick="leftScroll()">
+              <i class="fas fa-angle-double-left"></i>
+            </button>
+      
+            <div class="scroll-images">
+      
+                @foreach ($services as $service)
+              <div class="child">
+                <div class="card_img">
+                  <img src="/image/{{ $service->image }}" alt="" width="100%" height="100%">
+                </div>
+                <div class="card_text">
+                  <h4>  {{ $service->name }}</h4>
+                  <p> @if (strlen(strip_tags($service->description)) > 70)
+                    {{ substr(strip_tags($service->description), 0, 70) . '...' }}
+                  @else
+                    {{ strip_tags($service->description) }}
+                  @endif</p>
+                </div>
+                <div class="card_btn">
+                  <a href="{{ route('booking') }}"><button>Book Now</button></a>
+                  <a href="{{ route('service.slug', ['slug' => $service?->slug]) }}"><button>Read more</button></a>
+                </div>
+              </div>
+              @endforeach
+             
+      
+              
+            </div>
+            
+            <button class="right" onclick="rightScroll()">
+              <i class="fas fa-angle-double-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    {{-- <h2 class="title">
         Our Services
     </h2>
 
@@ -111,62 +156,74 @@
             </div>
         @endforeach
 
-    </div>
+    </div> --}}
     
     <!-- joins us section  -->
-    <div class="joinus_menu">
-        <h1 class="title">Why Us ?</h1>
-
-        <span>
-            <p>- One to one attention, with the same physiotherapist each visit</p>
-            <p>- Appropriate balance of conventional practices and modern technology</p>
-            <p>- Quality care and expert knowledge</p>
-            <p>- Ongoing support and compassion</p>
-            <p>- Easy Access and Free Parking</p>
-        </span>
-
-    </div>
-
-    <section class="swiper mySwiper">
-        <h1 class="title">Our Team</h1>
-        <div class="swiper-wrapper">
-
-            @foreach ($teams as $key => $team)
-                <div class="team__card swiper-slide">
-                    <div class="card__image">
-                        <img src="/image/{{ $team->image }}" alt="card image">
-                    </div>
-
-                    <div class="card__content">
-                        <span class="card__title">{{ $team->title }}</span>
-                        {{-- <span class="card__name">Vanessa Martinez</span> --}}
-                        <p class="card__text">{!! $team->description !!}<br> </p>
-                        {{-- <a href="#" style=" text-align:center">View More</a> --}}
-                    </div>
-
-                    <div class="icons">
-                        @if (!empty($team->fb_link))
-                            <a href="{{ $team->fb_link }}" class="card__btn"><i class="ri-facebook-fill"></i></a>
-                        @endif
-                        @if (!empty($team->youtube_link))
-                            <a href="{{ $team->youtube_link }}" class="card__btn"><i class="ri-youtube-fill"></i></a>
-                        @endif
-                        @if (!empty($team->linkedin_link))
-                            <a href="{{ $team->linkedin_link }}" class="card__btn"><i class="ri-linkedin-fill"></i></a>
-                        @endif
-                        @if (!empty($team->insta_link))
-                            <a href="{{ $team->insta_link }}" class="card__btn"><i class="ri-instagram-fill"></i></a>
-                        @endif
-                        @if (!empty($team->twitter_link))
-                            <a href="{{ $team->twitter_link }}" class="card__btn"><i class="ri-twitter-fill"></i></a>
-                        @endif
-                    </div>
-                </div>
-            @endforeach
-
-
+    {{-- <div class="joinus_menu"> --}}
+        <div class="container" style="padding: 30px; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
+            <h1 class="title">{{$home->title}}</h1>
+        
+            <div>
+                {!! $home->description !!}
+            </div>
         </div>
-    </section>
+        
+        
+
+    <div class="team_section">
+
+        <div class="team_head">
+          <h1 class="title">Our Team</h1>
+        </div>
+  
+          <div class="team_profiles">
+            @foreach ($teams as $key => $team)
+            <div class="team_card">
+    
+              <div class="card_top_bg"></div>
+  
+              <div class="card_img">
+                <img src="/image/{{ $team->image }}" alt="profile_img" width="100%" height="100%">
+              </div>
+    
+              <div class="card_info">
+                <h3>{{ $team->title }}</h3>
+                <p> @if (strlen(strip_tags($team->description)) > 70)
+                    {{ substr(strip_tags($team->description), 0, 70) . '...' }}
+                  @else
+                    {{ strip_tags($team->description) }}
+                  @endif</p>
+              </div>
+              <div class="card_icons">
+                @if (!empty($team->fb_link))
+                    <a href="{{ $team->fb_link }}"  target="_blank"  class="card__btn"><i class="fa fa-brand fa-facebook"></i></a>
+                @endif
+                @if (!empty($team->youtube_link))
+                    <a href="{{ $team->youtube_link }}"  target="_blank" class="card__btn"><i class="fa fa-brand fa-youtube"></i></a>
+                @endif
+                @if (!empty($team->linkedin_link))
+                    <a href="{{ $team->linkedin_link }}"  target="_blank" class="card__btn"><i class="fa fa-brand fa-linkedin"></i></a>
+                @endif
+                @if (!empty($team->insta_link))
+                    <a href="{{ $team->insta_link }}" target="_blank"  class="card__btn"><i class="fa fa-brand fa-instagram"></i></a>
+                @endif
+                @if (!empty($team->twitter_link))
+                    <a href="{{ $team->twitter_link }}"  target="_blank" class="card__btn"><i class="fa fa-brand fa-twitter"></i></a>
+                @endif
+            </div>
+           
+  
+              <div class="card_btn">
+              <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}"  target="_blank">
+                <button>Read More</button></a>
+              </div>
+    
+            </div>
+  
+            @endforeach
+  
+          </div>
+        </div>
     {{-- <div class="container text-center py-5">
   <h3 >Building Team</h3>
   <h4 class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, explicabo.</h4>
@@ -222,7 +279,52 @@
 @endsection
 @push('js')
     <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/2ee5c96cad.js" crossorigin="anonymous"></script>
     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const scrollImages = document.querySelector(".scroll-images");
+    const scrollLength = scrollImages.scrollWidth - scrollImages.clientWidth;
+    const leftButton = document.querySelector(".left");
+    const rightButton = document.querySelector(".right");
+  
+    function checkScroll() {
+      const currentScroll = scrollImages.scrollLeft;
+      if (currentScroll === 0) {
+        leftButton.setAttribute("disabled", "true");
+        rightButton.removeAttribute("disabled");
+      } else if (currentScroll === scrollLength) {
+        rightButton.setAttribute("disabled", "true");
+        leftButton.removeAttribute("disabled");
+      } else {
+        leftButton.removeAttribute("disabled");
+        rightButton.removeAttribute("disabled");
+      }
+    }
+  
+    scrollImages.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+    checkScroll();
+  
+    function leftScroll() {
+      scrollImages.scrollBy({
+        left: -200,
+        behavior: "smooth"
+      });
+    }
+
+    function rightScroll() {
+      scrollImages.scrollBy({
+        left: 200,
+        behavior: "smooth"
+      });
+    }
+  
+    leftButton.addEventListener("click", leftScroll);
+    rightButton.addEventListener("click", rightScroll);
+  });
+
+    </script>
+    {{-- <script>
         var swiper = new Swiper(".mySwiper", {
 
             loop: true,
@@ -245,5 +347,5 @@
                 el: ".swiper-pagination",
             },
         });
-    </script>
+    </script> --}}
 @endpush

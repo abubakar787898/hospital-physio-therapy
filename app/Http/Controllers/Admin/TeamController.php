@@ -57,6 +57,7 @@ class TeamController extends Controller
     $team = new Team();
     // $team->user_id = Auth::id();
     $team->title = $request->title;
+    $team->title_color = $request->title_color;
     $team->description = $request->description;
   
     $team->image = $profileImage;
@@ -122,6 +123,7 @@ class TeamController extends Controller
       
      
         $team->title = $request->title;
+        $team->title_color = $request->title_color;
    
         $team->description = $request->description;
         $team->type = $request->type;
