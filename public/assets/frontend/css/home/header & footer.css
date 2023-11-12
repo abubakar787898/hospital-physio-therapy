@@ -50,6 +50,7 @@ header{
 }
 .navbar .brand_logo{
   display: flex;
+  gap: 20px;
   align-items: center;
   justify-content: center;
 }
@@ -105,6 +106,7 @@ header{
 }
 .footer_end .list_first .footer_logo{
   display: flex;
+  flex-direction: column;
   align-items: center;
   transform: translateX(-32px);
 }

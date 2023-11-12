@@ -65,14 +65,15 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-12 col-sm-12 col-lg-12">
+                                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
                                 <table class="table table-striped " id="booking-table">
                                     <thead>
-                                        <tr>
+                                        <tr style="position: sticky; top: 0; background-color: white;">
                                             <th id="header">  {{$appointmenttype}} : Booking Time and Detail</th>
                                             <th width="300px;"></th>
                                         </tr>
                                     </thead>
-                                    <tbody class="custom-scrollbar">
+                                    <tbody class="custom-scrollbar" style="max-height: 300px; overflow-y: auto;">
                                         @if (!empty($data) && $data->count())
                                             @foreach ($data as $key => $value)
                                                 <tr>
@@ -96,7 +97,7 @@
                                         @endif
                                     </tbody>
                                 </table>
-
+                                </div>
                               <div class="pagination">
     {{-- {{ $data->links() }} --}}
 </div>

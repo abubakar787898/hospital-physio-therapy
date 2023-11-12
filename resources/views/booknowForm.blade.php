@@ -47,6 +47,18 @@
               <p>Kevin Hartin</p>
             </span> --}}
                     </div>
+                    <div class="info">
+                        <span>
+                            <h6>Amount:</h6>
+                            <p>€{{ $data->price}}
+                            </p>
+                        </span>
+                        {{-- 
+            <span>
+              <h6>With:</h6>
+              <p>Kevin Hartin</p>
+            </span> --}}
+                    </div>
 
                 </div>
 
@@ -59,14 +71,14 @@
 
 
 
+    {{-- <h1>Plz Fill All Fields</h1> --}}
         <div class="booking_form">
-
 
 
             <form action="{{ route('patient-booked') }}" method="POST" class="row g-3 needs-validation  ">
                 @csrf
 
-                <input type="hidden" name="slot_id" value="{{ $data->appointment_type_id }}">
+                <input type="hidden" name="slot_id" value="{{ $data->id }}">
                 <div class="fields">
                     <span>
                         <label for="fname">First Name</label>
@@ -129,3 +141,4 @@
 
     @push('js')
     @endpush
+ 

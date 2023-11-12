@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\AppointmentType;
+use App\Models\Contact;
 use App\Models\Page;
 use App\Models\PatientBooking;
 use App\Models\Services;
 use App\Models\Slot;
 use App\Models\Team;
+use App\Notifications\Admin\NewAppointmentNotification;
+use App\Notifications\BookingNotification;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class FrontendController extends Controller
 {
@@ -84,26 +88,81 @@ $today = Carbon::now()->toDateString();
     public function patient_booked(Request $request)
     {
         
+        $this->validate($request, [
+            'slot_id' => 'required',
+            'email' => 'required',
+            'f_name' => 'required',
+            'l_name' => 'required',
+            'mobile' => 'required',
+            'age' => 'required',
+        ]);
+        $companyEmail = env('COMPANY_MAIL');
+        $slot = Slot::find($request->slot_id);
+        
+        if ($slot && $slot->status =='available') {
+            $slot->status = 'booked';
+        
+            $patient = new PatientBooking();
+            $patient->slot_id = $request->slot_id;
+            $patient->f_name = $request->f_name;
+            $patient->l_name = $request->l_name;
+            $patient->email = $request->email;
+            $patient->mobile = $request->mobile;
+            $patient->age = $request->age;
+            $patient->comment = $request->comment;
+            $slot->save();
+        
+            if ($patient->save()) {
+                $patient = PatientBooking::with('slot.appointment_type')->find($patient->id);
+                Notification::send($patient, new BookingNotification($patient));
+                Notification::route('mail', $companyEmail)->notify(new NewAppointmentNotification($patient));
+                // Notification::send(env('COMPANY_MAIL'), new NewAppointmentNotification($patient));
+                
+                Toastr::success('Booking Completed :)', 'Success');
+                return redirect()->route('home');
+            } else {
+                Toastr::error('Booking failed. Please try again.', 'Error');
+                return redirect()->back();
+            }
+        } else {
+            Toastr::error('Slot is already booked. Please choose another slot.', 'Error');
+            return redirect()->back();
+        }
+        
+    //     $this->validate($request,[
+    //         'slot_id' => 'required',
+    //         'email' => 'required',
+    //         'f_name' => 'required',
+    //         'mobile' => 'required',
+    //         'age' => 'required',
+            
+    //     ]);
+      
+    //     $data = Slot::with('appointment_type')->find($request->slot_id);
+    //     if ($data) {
+    //         # code...
+    //         $data->status="booked";
+    //     }
+    //     $data->save();
+    //   $patient=new PatientBooking();
+    //   $patient->slot_id=$request->slot_id;
+    //   $patient->f_name=$request->f_name;
+    //   $patient->l_name=$request->l_name;
+    //   $patient->email=$request->email;
+    //   $patient->mobile=$request->mobile;
+    //   $patient->age=$request->age;
+    //   $patient->comment=$request->comment;
+
+    //   if ($patient->save()) {
+    //     $patient= PatientBooking::with('slot.appointment_type')->find($patient->id);
+    //     Notification::send($patient, new BookingNotification($patient));
+    //     Notification::send(env('COMPANY_MAIL'), new NewAppointmentNotification($patient));
+    //     Toastr::success('Booking Completed :)' ,'Success');
+    //   return redirect()->route('home');
+    //   }
 
       
-        $data = Slot::with('appointment_type')->find($request->slot_id);
-        if ($data) {
-            # code...
-            $data->status="booked";
-        }
-        $data->save();
-      $patient=new PatientBooking();
-      $patient->slot_id=$request->slot_id;
-      $patient->f_name=$request->f_name;
-      $patient->l_name=$request->l_name;
-      $patient->email=$request->email;
-      $patient->mobile=$request->mobile;
-      $patient->age=$request->age;
-      $patient->comment=$request->comment;
-
-      $patient->save();
-      Toastr::success('Booking Completed :)' ,'Success');
-      return redirect()->route('home');
+    
         // return view('booknowForm',compact('data'));
     }
     public function getSlot(Request $request)
@@ -131,5 +190,21 @@ $today = Carbon::now()->toDateString();
     public function contact()
     {
         return view('contact');
+    }
+    public function contact_form(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required',
+            
+        ]);
+        $contact=new Contact();
+        $contact->name=$request->name;
+        $contact->email=$request->email;
+        $contact->comment=$request->comment;
+        $contact->save();
+        
+        Toastr::success('Send Successfully :)' ,'Success');
+      return redirect()->route('home');
     }
 }

@@ -126,6 +126,8 @@
     <!-- Jquery DataTable Plugin Js -->
     <script src="{{ asset('assets/backend/js/jquery-ui.multidatespicker.js') }}"></script>
     <script src="{{ asset('assets/backend/js/jquery-ui.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+
 
     <script type="text/javascript">
         // resources/js/app.js
@@ -283,10 +285,10 @@ function saveSlots() {
                 slots=result.data.slots;
 
                 setLabels()
-                setTimeout(function() {
-    location.reload();
-}, 3000);
-                // $.notify(result.message, "success");
+//                 setTimeout(function() {
+//     location.reload();
+// }, 3000);
+                $.notify(result.message, "success");
             }
 
             // $('.showId').text(id);
@@ -297,7 +299,7 @@ function saveSlots() {
             // if (!!result.responseJSON.errors) {
             //     $('#nameValidationMessage').text(result.responseJSON.errors.name);
             // } else {
-            //     $.notify(result.responseJSON.message, "error");
+                $.notify(result.responseJSON.message, "error");
             // }
             $.notify(result.message, "error");
 

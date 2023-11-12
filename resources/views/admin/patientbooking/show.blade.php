@@ -68,8 +68,10 @@
                         <div class="body">
                          <label for="">Appointment Type:</label>
                                 <p class="">{{ $patientbooking->slot->appointment_type->name }}</p><br>
+                         <label for="">Payment Type:</label>
+                                <p class="">{{ $patientbooking?->payment_type }}</p>
                                 <label for="">Booking Date:</label>
-                                <p class="">{{ $patientbooking->slot->date}}</p><br>
+                                <p class="">{{ $patientbooking->slot->date}}</p>
                                 <label for="">Timing:</label>
                                 <p class="">{{ $patientbooking->slot->from_time."-".$patientbooking->slot->to_time }}</p>
                                 <label for="">Amount:</label>

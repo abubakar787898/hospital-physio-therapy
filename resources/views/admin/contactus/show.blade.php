@@ -27,7 +27,7 @@
                             </h2>
                         </div>
                         <div class="body">
-                            {!! $contact->body !!}
+                            {!! $contact->comment !!}
                         </div>
                     </div>
                 </div>

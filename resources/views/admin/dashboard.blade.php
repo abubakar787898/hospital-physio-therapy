@@ -22,7 +22,7 @@
                     </div>
                     <div class="content">
                         <div class="text">TOTAL BOOKINGS</div>
-                        <div class="number count-to" data-from="0" data-to="{{ $patientbookings->count() }}" data-speed="15" data-fresh-interval="20"></div>
+                        <div class="number count-to" data-from="0" data-to="{{ $todayBookings->count() }}" data-speed="15" data-fresh-interval="20"></div>
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="header">
-                        <h2> ALL PATIENT BOOKINGS</h2>
+                        <h2> ALL TODAY BOOKINGS ({{$todayBookings->count()}})</h2>
                     </div>
                     <div class="body">
                         <div class="table-responsive">
@@ -102,11 +102,16 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Full Name</th>
+                                    <th>Appointment</th>
+                                    <th>Name</th>
                                     <th>Email</th>
-                                    <th>Appointment Type</th>
+                                    <th>Mobile</th>
                                     <th>Date</th>
                                     <th>Time</th>
+                                    <th>Amount</th>
+                                    
+                                    {{-- <th>Payment</th> --}}
+                                    <th>Mail Status</th>
                                   
                               
                                     <th>Action</th>
@@ -115,27 +120,142 @@
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Full Name</th>
+                                    <th>Appointment</th>
+                                    <th>Name</th>
                                     <th>Email</th>
-
-                                    <th>Appointment Type</th>
+                                    <th>Mobile</th>
                                     <th>Date</th>
                                     <th>Time</th>
+                                    <th>Amount</th>
+                                    
+                                    {{-- <th>Payment</th> --}}
+                                    <th>Mail Status</th>
                                  
                             
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach($patientbookings as $key=>$patientbooking)
+                                    @foreach($todayBookings as $key=>$patientbooking)
+                                  
+                                    <tr>
+                                        <td>{{ $patientbooking->id }}</td>
+                                        <td>{{ $patientbooking?->slot?->appointment_type->name }}</td>
+                                        <td>{{ $patientbooking->f_name ." ".$patientbooking->l_name}}</td>
+                                        <td><a href="mailto:{{ $patientbooking->email}}">{{ $patientbooking->email}}</a></td>
+                                        <td>{{ $patientbooking->mobile}}</td>
+                                        <td> {{ \Carbon\Carbon::parse( $patientbooking?->slot?->date)->format('d-m-Y') }}</td>
+                                        <td>
+                                            {{ \Carbon\Carbon::parse($patientbooking->slot->from_time)->format('h:i A') }}
+                                            - 
+                                            {{ \Carbon\Carbon::parse($patientbooking->slot->to_time)->format('h:i A') }}
+                                        </td>
+                                        <td>€{{ $patientbooking->slot->price}}</td>
+                                        {{-- <td>{{ $patientbooking?->payment_type}}</td> --}}
+                                        <td >    @if($patientbooking?->mail_status != "pending")
+                                            
+                                            <span class="badge bg-green">{{ $patientbooking?->mail_status}}</span>
+                                      
+                                      @else
+                                    
+                                        <span class="badge bg-red">{{ $patientbooking?->mail_status}}</span>
+                                 
+                                        @endif</td>
+                                        
+                                      
+                                       
+                                     
+                    
+                                   
+                                        <td class="text-center">
+                                            <a href="{{ route('admin.patients.show',$patientbooking->id) }}" class="btn btn-info waves-effect">
+                                                <i class="material-icons">visibility</i>
+                                            </a>
+                                            <a class="btn btn-success waves-effect" href="{{ route('admin.appointment-reminder',$patientbooking->id) }}" title="Send Mail" type="button" >
+                                                <i class="material-icons">send</i>
+                                            </a>
+                                           
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="card">
+                    <div class="header">
+                        <h2> ALL TOMORROW BOOKINGS ({{$tomorrowBookings->count()}})</h2><br>
+                     
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Appointment</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Amount</th>
+                                    {{-- <th>Payment</th> --}}
+                                    <th>Mail Status</th>
+                                 
+                                  
+                              
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Appointment</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Mobile</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Amount</th>
+                                    {{-- <th>Payment</th> --}}
+                                    <th>Mail Status</th>
+                                 
+                            
+                                    <th>Action</th>
+                                </tr>
+                                </tfoot>
+                                <tbody>
+                                    @foreach($tomorrowBookings as $key=>$patientbooking)
                                   
                                         <tr>
                                             <td>{{ $patientbooking->id }}</td>
+                                            <td>{{ $patientbooking?->slot?->appointment_type->name }}</td>
                                             <td>{{ $patientbooking->f_name ." ".$patientbooking->l_name}}</td>
                                             <td><a href="mailto:{{ $patientbooking->email}}">{{ $patientbooking->email}}</a></td>
-                                            <td>{{ $patientbooking?->slot?->appointment_type->name }}</td>
-                                            <td>{{ $patientbooking?->slot?->date }}</td>
-                                            <td>{{ $patientbooking?->slot?->from_time."-".$patientbooking?->slot?->to_time }}</td>
+                                            <td>{{ $patientbooking->mobile}}</td>
+                                            <td> {{ \Carbon\Carbon::parse( $patientbooking?->slot?->date)->format('d-m-Y') }}</td>
+
+                                            <td>
+                                                {{ \Carbon\Carbon::parse($patientbooking->slot->from_time)->format('h:i A') }}
+                                                - 
+                                                {{ \Carbon\Carbon::parse($patientbooking->slot->to_time)->format('h:i A') }}
+                                            </td>
+                                        <td>€{{ $patientbooking->slot->price}}</td>
+
+                                            {{-- <td>{{ $patientbooking?->payment_type}}</td> --}}
+                                        <td >    @if($patientbooking?->mail_status != "pending")
+                                            
+                                                <span class="badge bg-green">{{ $patientbooking?->mail_status}}</span>
+                                          
+                                          @else
+                                        
+                                            <span class="badge bg-red">{{ $patientbooking?->mail_status}}</span>
+                                     
+                                            @endif</td>
                                             
                                           
                                            
@@ -146,6 +266,9 @@
                                             <td class="text-center">
                                                 <a href="{{ route('admin.patients.show',$patientbooking->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a class="btn btn-success waves-effect" href="{{ route('admin.appointment-reminder',$patientbooking->id) }}" title="Send Mail" type="button" >
+                                                    <i class="material-icons">send</i>
                                                 </a>
                                                 {{-- <a href="{{ route('admin.patients.edit',$patientbooking->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
@@ -205,6 +328,39 @@
     <!-- Sparkline Chart Plugin Js -->
     <script src="assets/backend/plugins/jquery-sparkline/jquery.sparkline.js"></script>
     <script src="{{ asset('assets/backend/js/pages/index.js') }}"></script>
- 
+    <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
+
+    <script type="text/javascript">
+        function sendMail(id) {
+            swal({
+                title: 'Are you sure?',
+                text: "You want to send mail",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes ',
+                cancelButtonText: 'No, cancel!',
+                confirmButtonClass: 'btn btn-success',
+                cancelButtonClass: 'btn btn-danger',
+                buttonsStyling: false,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    event.preventDefault();
+                    document.getElementById('send-form-'+id).submit();
+                } else if (
+                    // Read more about handling dismissals
+                    result.dismiss === swal.DismissReason.cancel
+                ) {
+                    swal(
+                        'Cancelled',
+                       'Message not send',
+                        'error'
+                    )
+                }
+            })
+        }
+    </script>
     
 @endpush

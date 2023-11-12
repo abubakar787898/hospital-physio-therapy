@@ -39,39 +39,39 @@ transform: rotate(180deg);
         <!-- <div class="image">
             <img src="{{ Storage::disk('public')->url('profile/'.Auth::user()->image) }}" width="48" height="48" alt="User" />
         </div> -->
-        <div class="name btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; opacity: 75%;">{{ Auth::user()->name }}</div>
-        <div class="info-container">
-            
-            <!-- <div class="email">{{ Auth::user()->email }}</div> -->
-            <div class="btn-group user-helper-dropdown">
-                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                <ul class="dropdown-menu pull-right">
-
-                    <li>
-                        {{-- <a href="{{ Auth::user()->role->id == 1 ? route('admin.settings') : route('author.settings')}}"><i class="material-icons">settings</i>Settings</a> --}}
-                    </li>
-
-                    <li role="seperator" class="divider"></li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            <i class="material-icons">input</i>Sign Out
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </li>
-                </ul>
-            </div>
+        {{-- <div class="name btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; opacity: 75%;">{{ Auth::user()->name }}</div> --}}
+       
         </div>
     </div>
     <!-- #User Info -->
     <!-- Menu -->
     <div class="menu">
         <ul class="list">
-            <li class="header">MAIN NAVIGATION</li>
+            <li class="header">MAIN NAVIGATION  <div style="margin-left: 180px" class="info-container">
+            
+                <!-- <div class="email">{{ Auth::user()->email }}</div> -->
+                <div class="btn-group user-helper-dropdown">
+                    <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                    <ul class="dropdown-menu pull-left">
+    
+                        <li>
+                            <div class="name btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; opacity: 75%;">{{ Auth::user()->name }}</div>
+                        </li>
+    
+                        <li role="seperator" class="divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                <i class="material-icons">input</i>Sign Out
+                            </a>
+    
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </div></li>
 
             @if(Request::is('admin*'))
                 <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
@@ -82,7 +82,7 @@ transform: rotate(180deg);
                 </li>
                 <li>
                     <a href="{{ route('admin.patients.index') }}">
-                        <i class="material-icons">photo_album</i>
+                        <i class="material-icons">book</i>
                         <span>Bookings</span>
                     </a>
                 </li>
@@ -93,33 +93,20 @@ transform: rotate(180deg);
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.services.index') }}">
-                        <i class="material-icons">local_library</i>
-                        <span>Service</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ route('admin.teams.index') }}">
-                        <i class="material-icons">local_library</i>
-                        <span>Team & Slider</span>
-                    </a>
-                </li>
-                <li>
                     <a href="{{ route('admin.slots.index') }}">
                         <i class="material-icons">local_library</i>
                         <span>Slots</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.users.index') }}">
-                        <i class="material-icons">group</i>
-                        <span>User</span>
+                    <a href="{{ route('admin.services.index') }}">
+                        <i class="material-icons">medical_services</i>
+                        <span>Service</span>
                     </a>
                 </li>
-           
-                  <li class="has-submenu">
+                <li class="has-submenu">
                     <a href="#" class="toggle-submenu">
-                        <i class="material-icons">group</i>
+                        <i class="material-icons">pages</i>
                         <span>Pages</span>
                         <span class="arrow">&#9654;</span>
                     </a>
@@ -136,14 +123,30 @@ transform: rotate(180deg);
                                 <span>About</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="">
-                               
-                                <span>Home</span>
-                            </a>
-                        </li>
+                      
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ route('admin.teams.index') }}">
+                        <i class="material-icons">slideshow</i>
+                        <span>Team & Slider</span>
+                    </a>
+                </li>
+              
+                <li>
+                    <a href="{{ route('admin.contacts.index') }}">
+                        <i class="material-icons">contact_emergency</i>
+                        <span>Contact Us</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.users.index') }}">
+                        <i class="material-icons">group</i>
+                        <span>User</span>
+                    </a>
+                </li>
+           
+                 
               
                 {{-- <li>
                     <a href="{{ route('admin.about') }}">
@@ -233,13 +236,20 @@ transform: rotate(180deg);
     <!-- Footer -->
     <div class="legal">
         <div class="copyright">
-            &copy; 2022 - {{ date("Y") }} All rights reserved. <br>
-            <strong> Developed &amp; <i class="far fa-heart"></i> by </strong>
-                        <a href="" target="_blank">Hospital Physiotherapy</a>.
+            <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+             <i class="material-icons">input</i>
+             <span>Logout</span>
+         </a>
+
+         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+             @csrf
+         </form>
         </div>
-        <div class="version">
+        {{-- <div class="version">
             <b>Version: </b> 1.0.5
-        </div>
+        </div> --}}
     </div>
     <!-- #Footer -->
 </aside>

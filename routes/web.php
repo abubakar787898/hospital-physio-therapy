@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AppointmentTypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
@@ -44,6 +45,7 @@ Route::post('patient-booked', [FrontendController::class, 'patient_booked'])->na
 Route::post('get-slot', [FrontendController::class, 'booking'])->name('get.slot');
 Route::get('getSlot', [FrontendController::class, 'getSlot'])->name('getSlot');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
+Route::post('contact-form', [FrontendController::class, 'contact_form'])->name('contact-form');
 
 
 Route::post('/initiate-payment', [PatientBookingController::class, 'initiatePayment']);
@@ -51,6 +53,8 @@ Route::post('/handle-payment-response', [PatientBookingController::class, 'handl
 
 Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function (){
     Route::get('dashboard',[DashboardController::class, 'index'])->name('dashboard');
+    Route::get('appointment-reminder/{id}',[DashboardController::class, 'appointmentReminderMail'])->name('appointment-reminder');
+
     Route::put('update-about', [GeneralController::class, 'updateAbout'])->name('about.update');
     Route::get('about', [GeneralController::class, 'about'])->name('about');
 
@@ -60,6 +64,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function
     Route::resource('appointment-types', AppointmentTypeController::class);
     Route::resource('users', UserController::class);
     Route::resource('patients', PatientController::class);
+    Route::resource('contacts', AdminContactController::class);
     Route::resource('teams', TeamController::class);
     Route::resource('services', ServiceController::class);
     Route::resource('slots', SlotController::class);

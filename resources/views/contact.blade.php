@@ -3,13 +3,61 @@
 @section('title','Contact Us')
 
 @push('css')
-    <link href="{{ asset('assets/frontend/css/contact/contact.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/frontend/css/contact/contact.css') }}" rel="stylesheet"> --}}
+    <link href="{{ asset('assets/frontend/css/contact/contactform.css') }}" rel="stylesheet">
 
     
 @endpush
 
 @section('content')
-<section>
+
+<div class="main">
+  <h1>Contact Us</h1><br>
+<div class="container">
+  <div class="content">
+    <div class="left-side">
+      <div class="address details">
+        <i style="color: rgb(56 121 145 / 90%)"  class="fas fa-map-marker-alt"></i>
+        <div class="topic">Address</div>
+        <div class="text-one">Hospital, Co. Limerick, </div>
+        <div class="text-two">Ireland</div>
+      </div>
+      <div class="phone details">
+        <i style="color: rgb(56 121 145 / 90%)"  class="fas fa-phone-alt"></i>
+        <div  class="topic">Phone</div>
+        <div class="text-one">+353 {{env('MOBILE_NUMBER')}}</div>
+        
+      </div>
+      <div class="email details">
+        <i style="color: rgb(56 121 145 / 90%)" class="fas fa-envelope"></i>
+        <div class="topic">Email</div>
+        <div class="text-one">{{env('COMPANY_MAIL')}}</div>
+     
+      </div>
+    </div>
+    <div class="right-side">
+      <div class="topic-text">Send us a message</div>
+      <p>If you have any work from me or any types of quries related to my tutorial, you can send me message from here. It's my pleasure to help you.</p>
+    <form action="{{ route('contact-form') }}" method="POST">
+      @csrf
+      <div class="input-box">
+        <input type="text" name="name" placeholder="Enter your name" required>
+      </div>
+      <div class="input-box">
+        <input type="email" name="email" placeholder="Enter your email" required>
+      </div>
+      <div class="input-box message-box">
+        <textarea name="comment" id="" cols="30" rows="10"></textarea>
+      </div>
+      <div class="button">
+        <input type="submit" value="Send Now" >
+      </div>
+    </form>
+  </div>
+  </div>
+</div>
+</div>
+{{-- <section>
     <div class="hero_section">
 
       <div class="hero_title">
@@ -112,7 +160,7 @@
 
   </div>
 
-<section>
+<section> --}}
 
 
 @endsection

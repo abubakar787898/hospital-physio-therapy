@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','PatientBooking')
+@section('title','AppointmentType')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -9,101 +9,70 @@
 
 @section('content')
     <div class="container-fluid">
-        {{-- <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{ route('admin.patients.create') }}">
+        <div class="block-header">
+            <a class="btn btn-primary waves-effect" href="{{ route('admin.appointment-types.create') }}">
                 <i class="material-icons">add</i>
-                <span>Add New PatientBooking</span>
+                <span>Add New Appointment Type</span>
             </a>
-        </div> --}}
+        </div>
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL PATIENT BOOKINGS
-                            <span class="badge bg-blue">{{ $patientbookings->count() }}</span>
+                            ALL APPOINTMENT TYPE
+                            <span class="badge bg-blue">{{ $appointmenttypes->count() }}</span>
                         </h2>
                     </div>
-                    
                     <div class="body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th> Name</th>
-                                    <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th>Appointment</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Age</th>
-                                    <th>Amount</th>
-                                    <th>Payment</th>
-                              
+                                    <th>Name</th>
+                                   
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th> Name</th>
-                                    <th>Email</th>
-                                    <th>Mobile</th>
-                                    <th>Appointment</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    
-                                    <th>Age</th>
-                                    <th>Amount</th>
-                                    <th>Payment</th>
-                            
+                                    <th>Name</th>
+                                  
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
+                                {{-- {{dd($appointmenttypes)}} --}}
+                                
                                 <tbody>
-                                    @foreach($patientbookings as $key=>$patientbooking)
-                                  
+                                    @foreach($appointmenttypes as $key=>$appointment_type)
                                         <tr>
-                                            <td>{{ $patientbooking->id }}</td>
-                                            <td>{{ $patientbooking->f_name ." ".$patientbooking->l_name}}</td>
-                                            <td>{{ $patientbooking->email}}</td>
-                                            <td>{{ $patientbooking->mobile}}</td>
-                                            <td>{{ $patientbooking?->slot?->appointment_type->name }}</td>
-                                            <td> {{ \Carbon\Carbon::parse( $patientbooking?->slot?->date)->format('d-m-Y') }}</td>
-                                            <td>
-                                                {{ \Carbon\Carbon::parse($patientbooking->slot->from_time)->format('h:i A') }}
-                                                - 
-                                                {{ \Carbon\Carbon::parse($patientbooking->slot->to_time)->format('h:i A') }}
-                                            </td>
-                                            
-                                            <td>{{ $patientbooking->age}}</td>
-                                            <td>€{{ $patientbooking?->slot->price}}</td>
-                                            <td>{{ $patientbooking?->payment_type }}</td>
-                                          
-                                           
-                                         
-                        
-                                            {{-- <td>{{ $patientbooking->created_at }}</td> --}}
-                                            {{--<td>{{ $patientbooking->updated_at }}</td>--}}
+                                            <td>{{ $appointment_type->id }}</td>
+                                            <td>{{ $appointment_type->name }}</td>
+                                            <td>{{ $appointment_type->created_at }}</td>
+                                            <td>{{ $appointment_type->updated_at }}</td>
                                             <td class="text-center">
-                                                <a href="{{ route('admin.patients.show',$patientbooking->id) }}" class="btn btn-info waves-effect">
-                                                    <i class="material-icons">visibility</i>
-                                                </a>
-                                                {{-- <a href="{{ route('admin.patients.edit',$patientbooking->id) }}" class="btn btn-info waves-effect">
+                                                <a href="{{ route('admin.appointment-types.edit',$appointment_type->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
-                                                </a> --}}
-                                                {{-- <button class="btn btn-danger waves-effect" type="button" onclick="deletePatientBooking({{ $patientbooking->id }})">
+                                                </a>
+                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteAppointmentType({{ $appointment_type->id }})">
                                                     <i class="material-icons">delete</i>
-                                                </button> --}}
-                                                <form id="delete-form-{{ $patientbooking->id }}" action="{{ route('admin.patients.destroy',$patientbooking->id) }}" method="POST" style="display: none;">
+                                                </button>
+                                                <form id="delete-form-{{ $appointment_type->id }}" action="{{ route('admin.appointment-types.destroy',$appointment_type->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
                                             </td>
                                         </tr>
                                     @endforeach
+                                  
+
                                 </tbody>
                             </table>
                         </div>
@@ -113,6 +82,7 @@
         </div>
         <!-- #END# Exportable Table -->
     </div>
+
 @endsection
 
 @push('js')
@@ -130,7 +100,7 @@
     <script src="{{ asset('assets/backend/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script type="text/javascript">
-        function deletePatientBooking(id) {
+        function deleteAppointmentType(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

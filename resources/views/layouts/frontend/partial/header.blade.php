@@ -4,15 +4,15 @@
     <nav class="navbar">
 
        <div class="brand_logo">
-         <a href="index.html">
-           <img src="{{ asset('assets/frontend/images/logo real.png') }}" alt="" width="120px" height="95px">
+         <a href="{{ route('home') }}">
+           <img src="{{ asset('favicon.svg') }}" alt="" width="100px" height="60px">
          </a>
-             <h2>Physio-Works</h2>
+             <h2>Hospital Physio Therapy</h2>
        </div>
 
        <input type="checkbox" id="check">
        <label for="check" class="checkbtn">
-       <img src="assets/svg/Burger Menu.svg" alt="" width="40px" height="40px">
+       <img src="{{asset('menu_bar.svg')}}" alt="" width="40px" height="40px">
        </label>
 
        <ul>

@@ -102,6 +102,7 @@
 
 <!-- Custom Js -->
 <script src="{{ asset('assets/backend/js/admin.js') }}"></script>
+<script src="{{ asset('assets/backend/js/notify.min.js') }}"></script>
 
 
 <!-- Demo Js -->

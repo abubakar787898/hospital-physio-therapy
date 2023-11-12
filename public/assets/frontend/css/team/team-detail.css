@@ -24,14 +24,13 @@ section{
 }
 .team_card-info{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
-    margin: 2rem auto;
+    align-items: start;
+    padding: 60px;
+    gap: 60px;
+    margin: 2rem 2.5vw;
     background-color: var(--lettercolor--);
     flex-wrap: wrap;
-    width: 1000px;
-    height: 600px;
+    min-height: 600px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
     border-radius: 20px;
 }
@@ -39,11 +38,16 @@ section{
     max-width: 50%;
     height: 75%;
 }
-.team_card-info .card_img img{
+.team_card-info .card_img{
+    overflow: hidden;
     border-radius: 10px;
 }
+.team_card-info .card_img img{
+    max-height: 400px;
+    width: 400px;
+}
 .team_card-info .card_content{
-    width: 45%;
+    width: 100%;
 }
 .team_card-info .card_content .title h2{
     font-weight: bold;
@@ -52,6 +56,7 @@ section{
 }
 .team_card-info.card_content h5{
     font-weight: bold;
+    width: 100%;
 }
 .team_card-info .card_content .detail,
 .team_card-info .card_content .benefits{

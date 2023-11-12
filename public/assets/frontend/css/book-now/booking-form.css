@@ -72,6 +72,7 @@ h6{
     margin: 4rem auto;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
     padding: 3rem 0;
+    border-radius: 3%;
     width: 1050px;
 }
 .booking_form form input{
@@ -86,6 +87,7 @@ h6{
     border: 2px solid var(--secondarycolor--);
     border-radius: 5px;
     padding: 10px;
+    margin-left: 9px;
 }
 .booking_form form textarea::placeholder{
     font-weight: bold;
@@ -107,6 +109,7 @@ h6{
     background-color: var(--lettercolor--);
     width: 100px;
     margin-top: 1rem;
+    margin-left: 15px;
 }
 .booking_form form #submit:hover{
     background-color: var(--secondarycolor--);

@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL Contact US
+                            ALL CONTACT US
                             <span class="badge bg-blue">{{ $contacts->count() }}</span>
                         </h2>
                     </div>
