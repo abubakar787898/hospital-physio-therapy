@@ -46,7 +46,10 @@ Route::post('get-slot', [FrontendController::class, 'booking'])->name('get.slot'
 Route::get('getSlot', [FrontendController::class, 'getSlot'])->name('getSlot');
 Route::get('contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('contact-form', [FrontendController::class, 'contact_form'])->name('contact-form');
-
+Route::controller(PatientBookingController::class)->group(function(){
+    Route::get('stripe', 'stripe');
+    Route::post('stripe', 'stripePost')->name('stripe.post');
+});
 
 Route::post('/initiate-payment', [PatientBookingController::class, 'initiatePayment']);
 Route::post('/handle-payment-response', [PatientBookingController::class, 'handlePaymentResponse']);
