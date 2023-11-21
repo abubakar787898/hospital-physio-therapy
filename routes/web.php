@@ -60,12 +60,13 @@ Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function
 
     Route::get('home', [GeneralController::class, 'home'])->name('home');
     Route::put('update-home', [GeneralController::class, 'updateHome'])->name('home.update');
-   
+    
     Route::resource('appointment-types', AppointmentTypeController::class);
     Route::resource('users', UserController::class);
     Route::resource('patients', PatientController::class);
     Route::resource('contacts', AdminContactController::class);
     Route::resource('teams', TeamController::class);
+    Route::get('slider', [TeamController::class, 'slider_index'])->name('slider');
     Route::resource('services', ServiceController::class);
     Route::resource('slots', SlotController::class);
     Route::get('booking-slot/{id}', [SlotController::class, 'booking_slot'])->name('booking-slot');

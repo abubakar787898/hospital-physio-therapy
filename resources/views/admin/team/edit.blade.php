@@ -33,6 +33,12 @@
                                 </select>
                              
                             </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="color" id="title_color" class="form-control" name="title_color" value="{{$team->title_color}}">
+                                    <label class="form-label">Title Color</label>
+                                </div>
+                            </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
                                         <input type="text" id="title" class="form-control" name="title" value="{{$team->title}}" required>
@@ -41,8 +47,26 @@
                                 </div>
                                 <div class="form-group form-float">
                                     <div class="form-line">
-                                        <input type="color" id="title_color" class="form-control" name="title_color" value="{{$team->title_color}}">
-                                        <label class="form-label">Title Color</label>
+                                        <input type="text" id="speciality" class="form-control" value="{{$team->speciality}}" name="speciality" >
+                                        <label class="form-label">Speciality</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="email" class="form-control" value="{{$team->email}}"  name="email" >
+                                        <label class="form-label">Email</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="phone" class="form-control" value="{{$team->phone}}"   name="phone" >
+                                        <label class="form-label">Phone</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="experience" class="form-control" value="{{$team->experience}}"  name="experience" >
+                                        <label class="form-label">Experience</label>
                                     </div>
                                 </div>
                                 <div class="form-group">

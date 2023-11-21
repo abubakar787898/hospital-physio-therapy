@@ -69,8 +69,22 @@
                 </div>
                
             </div>
-          
             <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                               BODY
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <textarea cols="150" rows="10"  name="description">{{ $about?->description }}</textarea>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -80,6 +94,67 @@
                         </div>
                         <div class="body">
                             <textarea id="tinymce" name="description">{{ $about->description }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Our Vision
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <textarea cols="150" rows="10"  name="description_1">{{ $about?->description_1 }}</textarea>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Our Mission
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <textarea cols="150" rows="10"  name="description_2">{{ $about?->description_2 }}</textarea>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Our Philosophy
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <textarea cols="150" rows="10"  name="description_3">{{ $about?->description_3 }}</textarea>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                Our Achievements
+                            </h2>
+                        </div>
+                        <div class="body">
+                            <textarea cols="150" rows="10"  name="description_4">{{ $about?->description_4 }}</textarea>
+                           
                         </div>
                     </div>
                 </div>

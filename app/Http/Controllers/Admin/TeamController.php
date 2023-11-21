@@ -15,10 +15,17 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::get();
+        $teams = Team::where('type','team')->get();
        
 
         return view('admin.team.index',compact('teams'));
+    }
+    public function slider_index()
+    {
+        $teams = Team::where('type','slider')->get();
+       
+
+        return view('admin.team.slider_index',compact('teams'));
     }
 
     /**
@@ -62,6 +69,11 @@ class TeamController extends Controller
     $team->slug = $slug;
     $team->title_color = $request->title_color;
     $team->description = $request->description;
+    $team->experience = $request->experience;
+    $team->phone = $request->phone;
+    $team->email = $request->email;
+    $team->speciality = $request->speciality;
+ 
   
     $team->image = $profileImage;
     $team->type = $request->type;
@@ -135,6 +147,10 @@ class TeamController extends Controller
         $team->title_color = $request->title_color;
    
         $team->description = $request->description;
+        $team->experience = $request->experience;
+        $team->phone = $request->phone;
+        $team->email = $request->email;
+        $team->speciality = $request->speciality;
         $team->type = $request->type;
         $team->fb_link = $request->fb_link;
         $team->insta_link = $request->insta_link;

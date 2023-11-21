@@ -129,7 +129,13 @@ transform: rotate(180deg);
                 <li>
                     <a href="{{ route('admin.teams.index') }}">
                         <i class="material-icons">slideshow</i>
-                        <span>Team & Slider</span>
+                        <span>Team</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.slider') }}">
+                        <i class="material-icons">slideshow</i>
+                        <span>Slider</span>
                     </a>
                 </li>
               

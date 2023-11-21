@@ -35,6 +35,8 @@ class GeneralController extends Controller
         $home->title = $request->title;
       
         $home->description = $request->description;
+       
+       
         $home->meta_title = $request->meta_title;
         $home->meta_description = $request->meta_description;
       
@@ -58,6 +60,10 @@ class GeneralController extends Controller
         $about->title = $request->title;
       
         $about->description = $request->description;
+        $about->description_1 = $request->description_1;
+        $about->description_2 = $request->description_2;
+        $about->description_3 = $request->description_3;
+        $about->description_4 = $request->description_4;
         $about->meta_title = $request->meta_title;
         $about->meta_description = $request->meta_description;
       

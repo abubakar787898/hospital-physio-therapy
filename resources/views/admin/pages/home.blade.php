@@ -26,7 +26,7 @@
                             <div class="form-group form-float">
                                 <div class="form-line">
                                     <input type="text" id="title" class="form-control" name="title" value="{{ $home?->title }}">
-                                    <label class="form-label">Home Title</label>
+                                    <label class="form-label">Why Choose Us Title</label>
                                 </div>
                             </div>
                             <div class="form-group form-float">
@@ -75,11 +75,12 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                BODY
+                                Why Choose Us Description
                             </h2>
                         </div>
                         <div class="body">
-                            <textarea id="tinymce" name="description">{{ $home?->description }}</textarea>
+                            <textarea cols="150" rows="10"  name="description">{{ $home?->description }}</textarea>
+                            {{-- <textarea id="tinymce" name="description">{{ $home?->description }}</textarea> --}}
                         </div>
                     </div>
                 </div>

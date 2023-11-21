@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL TEAMS
+                            ALL SLIDERS
                             <span class="badge bg-blue">{{ $teams->count() }}</span>
                         </h2>
                     </div>
@@ -37,7 +37,7 @@
                                     <th>Image</th>
                                  
                                     <th>Type</th>
-                                    <th>Speciality</th>
+                                    {{-- <th>Speciality</th> --}}
                                 
                                     <th>Action</th>
                                 </tr>
@@ -50,7 +50,7 @@
                                     <th>Image</th>
                                  
                                     <th>Type</th>
-                                    <th>Speciality</th>
+                                    {{-- <th>Speciality</th> --}}
                                  
                                     <th>Action</th>
                                 </tr>
@@ -67,7 +67,7 @@
                                             <td>
                                                 {{$team->type}}
                                             </td>
-                                            <td>{{ $team->speciality }}</td>
+                                            {{-- <td>{{ $team->speciality }}</td> --}}
                                             {{--<td>{{ $team->updated_at }}</td>--}}
                                             <td class="text-center">
                                                 {{-- <a href="{{ route('admin.teams.show',$team->id) }}" class="btn btn-info waves-effect">

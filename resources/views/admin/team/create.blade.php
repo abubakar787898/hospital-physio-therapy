@@ -22,26 +22,9 @@
                         </div>
                         <div class="body">
                           
-                             
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="text" id="title" class="form-control" name="title" required>
-                                        <label class="form-label">Title</label>
-                                    </div>
-                                </div>
-                                <div class="form-group form-float">
-                                    <div class="form-line">
-                                        <input type="color" id="title_color" class="form-control" name="title_color" required>
-                                        <label class="form-label">Title Color</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="image">Featured Image</label>
-                                    <input type="file" name="image" required>
-                                </div>
-
                             <div class="form-group">
+                                <label class="form-label">Select Type</label>
+
                                 <select name="type" id="type" class="form-control"  >
                                    
                                         <option value="team" selected>Team</option>
@@ -50,6 +33,52 @@
                                 </select>
                              
                             </div>
+                            <div class="form-group form-float">
+                                <div class="form-line">
+                                    <input type="color" id="title_color" class="form-control" name="title_color" required>
+
+                                    <label class="form-label">Select Title Color</label>
+                                </div>
+                            </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="title" class="form-control" name="title" required>
+                                        <label class="form-label">Title/Name</label>
+                                       
+                                    </div>
+                                </div>
+                             
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="speciality" class="form-control" name="speciality" required>
+                                        <label class="form-label">Speciality</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="email" class="form-control" name="email" >
+                                        <label class="form-label">Email</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="phone" class="form-control" name="phone" >
+                                        <label class="form-label">Phone</label>
+                                    </div>
+                                </div>
+                                <div class="form-group form-float">
+                                    <div class="form-line">
+                                        <input type="text" id="experience" class="form-control" name="experience" >
+                                        <label class="form-label">Experience</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="image">Featured Image</label>
+                                    <input type="file" name="image" required>
+                                </div>
+
+                         
                           
                         </div>
                     </div>
