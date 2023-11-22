@@ -130,7 +130,7 @@ $today = Carbon::now()->toDateString();
                 Notification::route('mail', $companyEmail)->notify(new NewAppointmentNotification($patient));
                 // Notification::send(env('COMPANY_MAIL'), new NewAppointmentNotification($patient));
                 
-                Toastr::success('Booking Completed :)', 'Success');
+                Toastr::success('Booking Completed Plz Check Your Mail :)', 'Success');
                 return redirect()->route('booking');
             } else {
                 Toastr::error('Booking failed. Please try again.', 'Error');
