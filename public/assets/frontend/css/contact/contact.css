@@ -1,167 +1,153 @@
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none !important;
-    list-style-type: none;
-    font-family: sans-serif;
-    letter-spacing: .35px;
-}
-
-:root{
-    --textcolor--: royalblue !important;
-    --secondarycolor--: rgba(56, 121, 145, 0.9);
-    --lettercolor--: #fff;
-    --contentBG--: rgb(226, 108, 87) !important;
-}
-
-/* bootstrap auto margin bottom P is 1rem */
-p{
-    margin-bottom: 5px; 
-}
-
-.hero_section{
-    position: relative;
-    top: -80px;
-    background: url(../../images/snow.jpg) white 50% / cover no-repeat;
-    width: 100%;
-    height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.hero_title h1{
-    font-size: 5rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-.visit_section{
-    padding: 2rem 1vw;
-}
-.visit_section .visit_head{
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--secondarycolor--);
-}
-.visit_section .visit_content{
+.contact__header {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-}
-.visit_section .visit_content ul li{
-    list-style-type: disc !important;
-    padding-bottom: 10px;
-}
-.visit_section .visit_content h5{
-    font-weight: 600;
-}
-.visit_section .visit_menu{
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 1vw;
-}
-.visit_section .visit_menu .visit_map{
-    width: 50%;
-    height: 100%;
-}
-.visit_section .visit_map iframe{
-    width: 100%;
-    height: 100vh;
-}
-
-
-.visit_content .visit_addres,
-.visit_content .visit_phone{
-    display: flex;
-    align-items: center;
-    gap: 1vw;
-}
-
-
-.contact_menu{
-    margin-top: 3rem;
-}
-.contact_menu .contact_head{
-    text-align: center;
-}
-
-.contact_menu .contact_form{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 3rem 0;
-}
-.contact_menu .contact_form span{
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    margin-bottom: 2rem;
-}
-.contact_menu .contact_form input,
-.contact_menu .contact_form textarea{
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid grey;
-    width: 500px;
-
-
-}
-.contact_menu .contact_form .submit_btn{
-    border: 2px solid var(--secondarycolor--);
-    background-color: var(--lettercolor--);
-    color: var(--secondarycolor--);
-    padding: 8px 1.2rem;
-    width: fit-content;
-}
-.contact_menu .contact_form .submit_btn:hover{
-    background-color: var(--secondarycolor--);
-    color: var(--lettercolor--);
+    padding: 80px 0 0 0;
 }
 
+.contact__form {
+    padding: 60px 6vw;
+    display: grid;
+
+    gap: 32px;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    .input {
+        padding: 14px;
+        border-radius: 4px;
+        outline: none;
+
+        border: 1px solid rgba(0, 0, 0, 0.1);
+
+        font-size: 16px;
+    }
+
+    .input::placeholder {
+        font-size: 16px;
+        color: var(--dark-color);
+    }
+
+    .text__area {
+        outline: none;
+        border-radius: 4px;
+        grid-column: 1;
+        grid-column-end: 3;
+
+        height: 240px;
+
+        resize: none;
+    }
 
 
-@media (max-width: 832px){
-    .visit_section .visit_content{
-        justify-content: center;
+    .btn {
+        text-align: center;
+        grid-column: 1;
+        grid-column-end: 3;
+        border: 0;
+        outline: 0;
+
+        cursor: pointer;
+        
         width: 100%;
-        height: 100%;
-        margin-bottom: 2rem;
+
+        color: var(--white-color);
     }
-    .visit_section .visit_menu{
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-    }
-    .visit_section .visit_menu .visit_map{
-        justify-content: center;
+}
+
+.contact__detail {
+    display: flex;
+    align-items: center;
+
+    padding: 30px 6vw;
+
+    .hospital__detail {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 64px;
+
         width: 100%;
-        height: 100%;
+
+        .detail__container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .detail__list {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+
+                .list {
+                    font-size: 18px;
+                    color: #666;
+
+                    cursor: pointer;
+
+                    transition: .3s color;
+                }
+
+                .list:hover {
+                    color: var(--primary-color);
+                }
+            }
+        }
+
+        .detail__container:first-child {
+            grid-row: 1;
+            grid-row-end: 3;
+        }
+
+        .detail__container:last-child {
+            .detail__list {
+                flex-direction: row;
+
+                >i {
+                    font-size: 24px;
+                    color: #666;
+
+                    cursor: pointer;
+
+                    transition: .3s color;
+                }
+
+                >i:hover {
+                    color: var(--primary-color);
+                }
+            }
+        }
     }
+
+    .hospital__map {
+        height: 500px;
+        width: 100%;
+
+        border: 0;
+        border-radius: 10px;
+    }
+
 }
 
+@media (max-width:1200px) {
 
+    .contact__detail {
+        gap: 64px;
+        flex-direction: column-reverse;
+    }
 
-@media (max-width: 510px) {
-    .contact_menu .contact_form input,
-.contact_menu .contact_form textarea{
-    width: 400px;
-}
 }
 
+@media (max-width:638px) {
 
-@media (max-width: 410px) {
-    .contact_menu .contact_form input,
-.contact_menu .contact_form textarea{
-    width: 300px;
-}
-.hero_title h1{
-    font-size: 3.5rem;
-}
-.visit_content .visit_addres,
-.visit_content .visit_phone{
-    display: inline-block;
-}
+    .contact__form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact__detail {
+        .hospital__detail {
+            grid-template-columns: repeat(1, 1fr);
+        }
+    }
 }

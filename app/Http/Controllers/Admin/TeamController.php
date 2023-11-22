@@ -89,8 +89,14 @@ class TeamController extends Controller
     $team->save();
 
   
-    Toastr::success('Team Successfully Saved :)' ,'Success');
-    return redirect()->route('admin.teams.index');
+    Toastr::success('Successfully Saved :)' ,'Success');
+    if ($request->type=='team') {
+        # code...
+        return redirect()->route('admin.teams.index');
+    }else{
+        return redirect()->route('admin.slider');
+
+    }
     }
 
     /**
@@ -161,8 +167,14 @@ class TeamController extends Controller
         $team->update();
 
       
-        Toastr::success('Team Updated Successfully :)' ,'Success');
-        return redirect()->route('admin.teams.index');
+        Toastr::success('Updated Successfully :)' ,'Success');
+        if ($request->type=='team') {
+            # code...
+            return redirect()->route('admin.teams.index');
+        }else{
+            return redirect()->route('admin.slider');
+    
+        }
     }
 
     /**
@@ -176,7 +188,7 @@ class TeamController extends Controller
         }
 
         // $team->delete();
-        Toastr::success('Team Successfully Deleted :)','Success');
+        Toastr::success('Successfully Deleted :)','Success');
         return redirect()->back();
     }
 }

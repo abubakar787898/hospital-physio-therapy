@@ -1,5 +1,5 @@
  <!-- footer  -->
-
+{{-- 
  <footer>
 
   <div class="footer_end">
@@ -35,15 +35,14 @@
         <a href="{{ route('service') }}">Services</a>
         <a href="{{ route('booking') }}">Book Now</a>
         <a href="{{ route('contact') }}">Contact</a>
-        {{-- <a href="FAQ/FAQ.html">FAQ</a> --}}
+        
       </div>
 
       <div class="list_third">
         <h3>Links</h3>
         <a href="{{ route('service') }}">Services</a>
         <a href="{{ route('contact') }}">Support</a>
-        {{-- <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a> --}}
+      
         <a href="{{ route('booking') }}">
           <button>Book Now</button>
         </a>
@@ -53,10 +52,10 @@
     </div>
   </div>
 
-</footer>
+</footer> --}}
 
 <!-- icons  -->
-<div class="footer_icons">
+{{-- <div class="footer_icons">
   <span>
     <a href="#"><i class="fa fa-brand fa-facebook"></i></a>
     <a href="#"><i class="fa fa-brand fa-twitter"></i></a>
@@ -66,45 +65,136 @@
 
   <p>Copyright © hospitalphysiotherapy.com 2023</p>
   
-</div>
- {{-- <footer>
+</div> --}}
+<div class="footer__section">
 
-    <div class="footer_end">
+  <div class="main__footer">
 
-      <div class="footer_list">
+      <div class="footer__container">
 
-        <div class="list_first">
-          <a href="index.html">
-            <img src="{{ asset('assets/frontend/images/logo real.png') }}" alt="" width="120px" height="100px">
-          </a>
-          <h3>Physio-Therapy</h3>
+          <h1 class="container__heading">
+              Our Services
+          </h1>
+
+          <div class="footer__links">
+
+              <a href="{{ route('service') }}" class="link">
+                  Physiotherapy
+              </a>
+
+              <a href="{{ route('service') }}" class="link">
+                  Chiropractic Therapy
+              </a>
+
+              <a href="{{ route('service') }}" class="link">
+                  Clinical Pilates
+              </a>
+
+              <a href="{{ route('service') }}" class="link">
+                  Work Injuries
+              </a>
+
+              <a href="{{ route('service') }}" class="link">
+                  Massage Therapy
+              </a>
+
+          </div>
+
       </div>
 
-        <div class="list_sec">
-          <h3>Explore More</h3>
-          <a href="index.html">About</a>
-          <a href="Services/services.html">Services</a>
-          <a href="Book Now/Book Now.html">Book Now</a>
-          <a href="Contact/contact.html">Contact</a>
-          <a href="FAQ/FAQ.html">FAQ</a>
-        </div>
-  
-        <div class="list_third">
-          <h3>Read More</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus nihil pariatur, hic perspiciatis reprehenderit magni, veniam nesciunt tempora natus quisquam iure nostrum quod eligendi eum labore aut eos aliquid consectetur.
+      <div class="footer__container">
 
-          </p>
-        </div>
+          <h1 class="container__heading">
+              Useful Link
+          </h1>
+
+          <div class="footer__links">
+
+              <a href="{{ route('about') }}" class="link">
+                  About Us
+              </a>
+
+              <a href="{{ route('service') }}" class="link">
+                  Services
+              </a>
+
+              <a href="{{ route('booking') }}" class="link">
+                  Book Now
+              </a>
+
+              <a href="{{ route('our-team') }}" class="link">
+                  Our Team
+              </a>
+
+              <a href="{{ route('contact') }}" class="link">
+                  Contact Us
+              </a>
+
+          </div>
+
+      </div>
+
+      <div class="footer__container">
+
+          <h1 class="container__heading">
+              Get In Touch
+          </h1>
+
+          <div class="footer__links">
         
+            
+              <a href="https://www.google.com/maps/search/?q=Hospital, Co. Limerick, Ireland" target="_blank" class="link">
+                  <i class="ri-map-pin-fill"></i>
+                  Hospital, Co. Limerick,
+                  Ireland
+              </a>
+
+              <a href="mailto:{{env('COMPANY_MAIL')}}" class="link">
+                  <i class="ri-mail-fill"></i>
+                  {{env('COMPANY_MAIL')}}
+              </a>
+
+              <a href="tel:+352{{env('MOBILE_NUMBER')}}" class="link">
+                  <i class="ri-phone-fill"></i>
+                 +352 {{env('MOBILE_NUMBER')}}
+              </a>
+
+          </div>
+
       </div>
-    </div>
 
-  </footer>
+  </div>
 
-  <!-- icons  -->
-  <div class="footer_icons">
-    <a href="#"><i class="fa fa-brand fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-brand fa-twitter"></i></a>
-    <a href="#"><i class="fa fa-brand fa-linkedin"></i></a>
-    <a href="#"><i class="fa fa-brand fa-instagram"></i></a>
-  </div> --}}
+  <div class="footer__copy">
+
+      <span class="copy">
+          Copyright © 2023 All Rights Reserved
+      </span>
+
+      <div class="footer__icons">
+
+          <a href="#">
+              <i class="ri-facebook-circle-fill"></i>
+          </a>
+
+          <a href="#">
+              <i class="ri-dribbble-line"></i>
+          </a>
+
+          <a href="#">
+              <i class="ri-instagram-fill"></i>
+          </a>
+
+          <a href="#">
+              <i class="ri-twitter-x-fill"></i>
+          </a>
+
+          <a href="#">
+              <i class="ri-linkedin-box-fill"></i>
+          </a>
+
+      </div>
+
+  </div>
+
+</div>

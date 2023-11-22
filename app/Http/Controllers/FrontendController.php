@@ -10,6 +10,7 @@ use App\Models\Services;
 use App\Models\Slot;
 use App\Models\Team;
 use App\Notifications\Admin\NewAppointmentNotification;
+use App\Notifications\Admin\NewContactUsNotification;
 use App\Notifications\BookingNotification;
 use Brian2694\Toastr\Facades\Toastr;
 use Carbon\Carbon;
@@ -25,13 +26,16 @@ $teams=Team::where('type','team')->get();
 $sliders=Team::where('type','slider')->get();
 $services=Services::all();
 $home=Page::find(2);
+$about=Page::find(1);
 
-        return view('welcome',compact('teams','sliders','services','home'));
+        return view('welcome',compact('teams','sliders','services','home','about'));
     }
     public function about()
     {
         $about=Page::find(1);
-        return view('about', compact('about'));
+$teams=Team::where('type','team')->get();
+
+        return view('about', compact('about','teams'));
     }
     public function service()
     {
@@ -45,13 +49,21 @@ $meta_description="Explore a comprehensive range of physiotherapy services at Ho
     {
 
         $service=Services::where('slug',$slug)->first();
-        return view('servicedetail',compact('service'));
+        $services=Services::get();
+        return view('servicedetail',compact('service','services'));
     }
     public function team_slug($slug)
     {
 
         $team=Team::where('slug',$slug)->first();
         return view('team_detail',compact('team'));
+    }
+    public function ourTeam()
+    {
+
+        $teams=Team::where('type','team')->get();
+
+        return view('teams',compact('teams'));
     }
     public function booking(Request $request)
     {
@@ -119,7 +131,7 @@ $today = Carbon::now()->toDateString();
                 // Notification::send(env('COMPANY_MAIL'), new NewAppointmentNotification($patient));
                 
                 Toastr::success('Booking Completed :)', 'Success');
-                return redirect()->route('home');
+                return redirect()->route('booking');
             } else {
                 Toastr::error('Booking failed. Please try again.', 'Error');
                 return redirect()->back();
@@ -198,13 +210,19 @@ $today = Carbon::now()->toDateString();
             'email' => 'required',
             
         ]);
+        $companyEmail = env('COMPANY_MAIL');
         $contact=new Contact();
         $contact->name=$request->name;
         $contact->email=$request->email;
         $contact->comment=$request->comment;
-        $contact->save();
+       
         
+if ( $contact->save()) {
+    Notification::route('mail', $companyEmail)->notify(new NewContactUsNotification($contact));
+}
+
+
         Toastr::success('Send Successfully :)' ,'Success');
-      return redirect()->route('home');
+      return redirect()->route('contact');
     }
 }

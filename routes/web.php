@@ -38,6 +38,7 @@ Route::get('/', [FrontendController::class, 'home'])->name('home');
 Route::get('about', [FrontendController::class, 'about'])->name('about');
 Route::get('service', [FrontendController::class, 'service'])->name('service');
 Route::get('service/{slug}', [FrontendController::class, 'service_slug'])->name('service.slug');
+Route::get('our-team', [FrontendController::class, 'ourTeam'])->name('our-team');
 Route::get('team/{slug}', [FrontendController::class, 'team_slug'])->name('team.slug');
 Route::get('booking', [FrontendController::class, 'booking'])->name('booking');
 Route::get('booking-form/{id}', [FrontendController::class, 'book'])->name('booking-form');

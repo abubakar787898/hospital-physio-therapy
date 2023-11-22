@@ -7,18 +7,117 @@
  
 @endpush
 @push('css')
-    <link href="{{ asset('assets/frontend/css/home/style.css') }}" rel="stylesheet">
+<link href="{{ asset('assets/frontend/css/home/home.css') }}" rel="stylesheet">
+
+{{-- <link href="{{ asset('assets/frontend/css/team/team.css') }}" rel="stylesheet"> --}}
+
+    {{-- <link href="{{ asset('assets/frontend/css/home/style.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-
-
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet"> --}}
 @endpush
 
 @section('content')
 
-    <section>
+<div class="hero__section">
+
+  <div class="swiper heroSwiper mySwiper">
+
+      <div class="swiper-wrapper">
+        @foreach ($sliders as $key => $slider)
+          <div class="swiper-slide" style="background-image: url(./image/{{ $slider->image }});">
+
+              <div class="slide__content">
+
+                
+                    @if (!empty($slider->title))
+                    <h1 class="heading" style="color:{{$slider->title_color}}">{{ $slider->title }}</h1>
+                @endif
+                
+
+             
+                    @if (!empty($slider->description))
+                    <p class="paragraph"> {!! $slider->description !!}    </p>
+                @endif
+              
+
+                  <div class="btns">
+
+                      <a href="{{ route('booking') }}" class="btn sec__btn">
+                          Book Now
+                      </a>
+
+                      <a href="#" class="btn">
+                          Contact Us
+                      </a>
+
+                  </div>
+
+              </div>
+
+          </div>
+
+          @endforeach
+
+      </div>
+      <i class="ri-arrow-left-s-line slide__arrow arrow__left"></i>
+      <i class="ri-arrow-right-s-line slide__arrow arrow__right"></i>
+  </div>
+</div>
+
+<div class="company__section">
+
+    <div class="swiper mySwiper mySwiperCompany">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <img src="{{asset('assets/frontend/images/companies/client-logo01.png')}}" alt="">
+            </div>
+
+            <div class="swiper-slide">
+                <img src="{{asset('assets/frontend/images/companies/client-logo02.png')}}" alt="">
+
+            </div>
+
+            <div class="swiper-slide">
+                <img src="{{asset('assets/frontend/images/companies/client-logo03.png')}}" alt="">
+
+            </div>
+
+            <div class="swiper-slide">
+                <img src="{{asset('assets/frontend/images/companies/client-logo04.png')}}" alt="">
+
+            </div>
+
+            <div class="swiper-slide">
+                <img src="{{asset('assets/frontend/images/companies/client-logo05.png')}}" alt="">
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+</div>
+{{-- <div class="company__section">
+
+  <img src="{{asset('assets/frontend/images/companies/client-logo01.png')}}" alt="">
+
+  <img src="{{asset('assets/frontend/images/companies/client-logo02.png')}}" alt="">
+
+  <img src="{{asset('assets/frontend/images/companies/client-logo03.png')}}" alt="">
+
+  <img src="{{asset('assets/frontend/images/companies/client-logo04.png')}}" alt="">
+
+  <img src="{{asset('assets/frontend/images/companies/client-logo05.png')}}" alt="">
+
+</div> --}}
+    {{-- <section>
 
         <div class="carousel_menu">
 
@@ -70,106 +169,274 @@
 
         </div>
 
-    </section>
+    </section> --}}
    
+    <div class="service__section">
 
- 
-    <div class="services_section team_section">
+      <div class="service__header">
 
-        <div class="service_head">
-           <h1 class="title">Our Services</h1>
-        </div>
-      
-        <div class="services_menu">
-          <div class="cover">
-            <button class="left" onclick="leftScroll()">
-              <i class="fas fa-angle-double-left"></i>
-            </button>
-      
-            <div class="scroll-images">
-      
+          <span class="text">
+              Our services
+          </span>
+
+          <h1 class="title">
+              Hospital Physio Therapy Services
+          </h1>
+
+      </div>
+
+      <div class="service__slider">
+
+          <div class="swiper mySwiper mySwiperService">
+
+              <div class="swiper-wrapper">
                 @foreach ($services as $service)
-              <div class="child">
-                <div class="card_img">
-                  <img src="/image/{{ $service->image }}" alt="" width="100%" height="100%">
-                </div>
-                <div class="card_text">
-                  <h4>  {{ $service->name }}</h4>
-                  <p> @if (strlen(strip_tags($service->description)) > 70)
-                    {{ substr(strip_tags($service->description), 0, 70) . '...' }}
+                  <div class="swiper-slide">
+
+                      <div class="service__img">
+                          <img src="/image/{{ $service->image }}" alt={{ $service->name }}>
+                          <div class="type">
+                              <img src="/image/{{ $service->image }}" alt={{ $service->name }}>
+                          </div>
+                      </div>
+
+                      <div class="service__content">
+                          <h2 class="service__heading">
+                            {{ $service->name }}
+                          </h2>
+                          <p class="paragraph">
+                            @if (strlen(strip_tags($service->description)) > 72)
+                    {{ substr(strip_tags($service->description), 0, 72)   }}
                   @else
                     {{ strip_tags($service->description) }}
-                  @endif</p>
-                </div>
-                <div class="card_btn">
-                  <a href="{{ route('booking') }}"><button>Book Now</button></a>
-                  <a href="{{ route('service.slug', ['slug' => $service?->slug]) }}"><button>Read more</button></a>
-                </div>
+                  @endif
+                          </p>
+                          <a href="{{ route('service.slug', ['slug' => $service?->slug]) }}" class="read">
+                              Read More
+                          </a>
+                      </div>
+
+                  </div>
+                  @endforeach
+                 
               </div>
-              @endforeach
-             
-      
-              
-            </div>
-            
-            <button class="right" onclick="rightScroll()">
-              <i class="fas fa-angle-double-right"></i>
-            </button>
+
+              <div class="swiper-pagination"></div>
+
           </div>
-        </div>
+
       </div>
-    {{-- <h2 class="title">
-        Our Services
-    </h2>
 
-    <div class="card_group">
-
-        @foreach ($services as $service)
-            <div class="single__card ">
-                <img src="/image/{{ $service->image }}" alt="">
-
-                <div class="card__detail">
-
-                    <span class="card__title">
-                      {{ $service->name }}
-                    </span>
-
-                    <p class="paragarph">
-                      @if (strlen(strip_tags($service->description)) > 70)
-                      {{ substr(strip_tags($service->description), 0, 70) . '...' }}
-                    @else
-                      {{ strip_tags($service->description) }}
-                    @endif
-                       
-                    </p>
-
-                    <a href="{{ route('booking') }}"class="btn btn-2">
-                        Book Now
-                    </a>
-
-                    <a href="{{ route('service.slug', ['slug' => $service->slug]) }}" class="btn">
-                        Learn More
-                    </a>
-
-                </div>
-
-            </div>
-        @endforeach
-
-    </div> --}}
+  </div>
+ 
+    
     
     <!-- joins us section  -->
-    {{-- <div class="joinus_menu"> --}}
-        <div class="container" style="padding: 30px; border-radius: 15px; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
-            <h1 class="title">{{$home->title}}</h1>
-        
-            <div>
-                {!! $home->description !!}
-            </div>
-        </div>
+  
         
         
+        <div class="about__section">
 
+          <div class="about__img">
+              <img src="https://vaidy.themeht.com/wp-content/uploads/2023/02/service-03.jpg" />
+          </div>
+  
+          <div class="about__content">
+  
+              <span class="text">
+                  About Us
+              </span>
+  
+              <h1 class="heading">
+                  {{$about->title}}
+              </h1>
+  
+              <p class="paragraph">
+                {{$about->description}}
+              </p>
+  
+              <a href="{{route('about')}}" class="btn">
+                  Read More
+              </a>
+  
+          </div>
+  
+      </div>
+
+
+
+      <div class="video__section">
+        <a class="video__btn" href="#"><i class="ri-play-mini-fill"></i></a>
+        <img src="{{asset('assets/frontend/images/about/project-img-02.jpg')}}">
+
+    </div>
+
+    <div class="choose__section">
+
+      <div class="choose__content">
+
+          <span class="text">
+              Why Choose us
+          </span>
+
+          <h1 class="title">
+             {{$home?->title}}
+          </h1>
+
+          <p class="paragraph">
+            {{$home?->description}}
+
+          </p>
+
+      </div>
+
+      <div class="choose__card">
+
+          <div class="card">
+
+              <img src="{{asset('assets/frontend/images/choose/1.png')}}" alt="">
+
+              <span class="choose__heading">
+                  Expert Therapist
+              </span>
+
+              <p class="paragraph">
+                  Finding a Therapist Who Can Help You Heal.
+              </p>
+
+          </div>
+
+          <div class="card">
+
+              <img src="{{asset('assets/frontend/images/choose/2.png')}}" alt="">
+
+              <span class="choose__heading">
+                  Trusted Clinic
+              </span>
+
+              <p class="paragraph">
+                  We are world's best and trusted therapy center.
+              </p>
+
+          </div>
+
+          <div class="card">
+
+              <img src="{{asset('assets/frontend/images/choose/3.png')}}" alt="">
+
+              <span class="choose__heading">
+                  Health Guarantee
+              </span>
+
+              <p class="paragraph">
+                  A health guarantee is a promise from the Therapist.
+              </p>
+
+          </div>
+
+          <div class="card">
+
+              <img src="{{asset('assets/frontend/images/choose/1.png')}}" alt="">
+
+              <span class="choose__heading">
+                  Expert Therapist
+              </span>
+
+              <p class="paragraph">
+                  Finding a Therapist Who Can Help You Heal.
+              </p>
+
+          </div>
+
+      </div>
+
+  </div>
+
+
+
+  <div class="team__section">
+
+    <div class="team__content">
+
+        <span class="text">
+            Our Team
+        </span>
+
+        <h1 class="title">
+            Meet the Team
+        </h1>
+
+    </div>
+
+    <div class="team__card">
+      @foreach ($teams as $key => $team)
+        <div class="card">
+
+            <div class="team__img">
+                <img src="/image/{{ $team->image }}" alt="">
+
+                <div class="social__icon">
+                    <i class="ri-share-fill"></i>
+
+                    <div class="icon">
+                      @if (!empty($team->fb_link))
+                      <a href="{{ $team->fb_link }}"  target="_blank"  >
+                        <i class="ri-facebook-fill"></i>
+                      </a>
+                        @endif
+                      @if (!empty($team->linkedin_link))
+                      <a href="{{ $team->linkedin_link }}"  target="_blank"  >
+                        <i class="ri-linkedin-fill"></i>
+                      </a>
+                        @endif
+                      @if (!empty($team->insta_link))
+                      <a href="{{ $team->insta_link }}"  target="_blank"  >
+                        <i class="ri-instagram-fill"></i>
+                      </a>
+                        @endif
+                      @if (!empty($team->twitter_link))
+                      <a href="{{ $team->twitter_link }}"  target="_blank"  >
+                        <i class="ri-twitter-fill"></i>
+                      </a>
+                        @endif
+                      @if (!empty($team->youtube_link))
+                      <a href="{{ $team->youtube_link }}"  target="_blank"  >
+                        <i class="ri-youtube-fill"></i>
+                      </a>
+                        @endif
+                        {{-- <i class="ri-linkedin-fill"></i>
+                        <i class="ri-instagram-fill"></i>
+                        <i class="ri-twitter-fill"></i> --}}
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card__content">
+
+                <span class="team__heading">
+                  <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}"  target="_blank"> {{ $team->title }}</a>
+                </span>
+
+                <span class="text">
+                  {{ $team->speciality }}
+                </span>
+
+            </div>
+
+        </div>
+        @endforeach
+
+       
+
+    </div>
+
+</div>
+
+
+{{-- 
+  
     <div class="team_section">
 
         <div class="team_head">
@@ -223,129 +490,66 @@
             @endforeach
   
           </div>
-        </div>
-    {{-- <div class="container text-center py-5">
-  <h3 >Building Team</h3>
-  <h4 class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque, explicabo.</h4>
-  <div class="row row-cols-1 row-cols-md-3 g-4 py-5">
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('assets/frontend/images/image1.jpg') }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Leanne Graham</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, neque.</p>
-          </div>
-          <div class="d-flex justify-content-evenly p-4">
-              <i class="bi bi-facebook"></i>
-              <i class="bi bi-linkedin"></i>
-              <i class="bi bi-envelope-fill"></i>
-              <i class="bi bi-whatsapp"></i>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('assets/frontend/images/image1.jpg') }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Leanne Graham</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, neque.</p>
-          </div>
-          <div class="d-flex justify-content-evenly p-4">
-              <i class="bi bi-facebook"></i>
-              <i class="bi bi-linkedin"></i>
-              <i class="bi bi-envelope-fill"></i>
-              <i class="bi bi-whatsapp"></i>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <img src="{{ asset('assets/frontend/images/image1.jpg') }}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Leanne Graham</h5>
-            <p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, neque.</p>
-          </div>
-          <div class="d-flex justify-content-evenly p-4">
-              <i class="bi bi-facebook"></i>
-              <i class="bi bi-linkedin"></i>
-              <i class="bi bi-envelope-fill"></i>
-              <i class="bi bi-whatsapp"></i>
-          </div>
-        </div>
-      </div>
-   
-    </div>
-</div> --}}
+        </div> --}}
+
 @endsection
 @push('js')
-    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/2ee5c96cad.js" crossorigin="anonymous"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const scrollImages = document.querySelector(".scroll-images");
-    const scrollLength = scrollImages.scrollWidth - scrollImages.clientWidth;
-    const leftButton = document.querySelector(".left");
-    const rightButton = document.querySelector(".right");
-  
-    function checkScroll() {
-      const currentScroll = scrollImages.scrollLeft;
-      if (currentScroll === 0) {
-        leftButton.setAttribute("disabled", "true");
-        rightButton.removeAttribute("disabled");
-      } else if (currentScroll === scrollLength) {
-        rightButton.setAttribute("disabled", "true");
-        leftButton.removeAttribute("disabled");
-      } else {
-        leftButton.removeAttribute("disabled");
-        rightButton.removeAttribute("disabled");
-      }
-    }
-  
-    scrollImages.addEventListener("scroll", checkScroll);
-    window.addEventListener("resize", checkScroll);
-    checkScroll();
-  
-    function leftScroll() {
-      scrollImages.scrollBy({
-        left: -200,
-        behavior: "smooth"
-      });
-    }
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-    function rightScroll() {
-      scrollImages.scrollBy({
-        left: 200,
-        behavior: "smooth"
-      });
-    }
-  
-    leftButton.addEventListener("click", leftScroll);
-    rightButton.addEventListener("click", rightScroll);
-  });
+<script>
 
-    </script>
-    {{-- <script>
-        var swiper = new Swiper(".mySwiper", {
+    var swiper = new Swiper(".heroSwiper", {
+        navigation: {
+            nextEl: ".ri-arrow-right-s-line",
+            prevEl: ".ri-arrow-left-s-line",
+        },
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+        loop: true,
+    });
 
-            loop: true,
-            autoplay: true,
-            autoplayTimeout: 1000, //2000ms = 2s;
-            autoplayHoverPause: true,
-
-            effect: "coverflow",
-            grabCursor: true,
+    var serviceSwiper = new Swiper(".mySwiperService", {
+        slidesPerView: 3,
+        spaceBetween: 60,
+        grabCursor: true,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        loop: true,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+        breakpoints: {
+            1010: {
+                slidesPerView: 3,
+                spaceBetween: 30,
+            },
+            650: {
+                slidesPerView: 2,
+                spaceBetween: 30,
+            },
+            300: {
+                slidesPerView: 1,
+                spaceBetween: 30,
+            },
+            // Add more breakpoints if needed for other screen sizes
+        }
+    });
+    var swiperCompany = new Swiper(".mySwiperCompany", {
+            spaceBetween: 30,
+            slidesPerView: 5,
             centeredSlides: true,
-            slidesPerView: "auto",
-            coverflowEffect: {
-                rotate: 0,
-                stretch: 0,
-                depth: 300,
-                modifier: 1,
-                slideShadows: false,
-            },
-            pagination: {
-                el: ".swiper-pagination",
-            },
+            loop: true,
+            autoplay: {
+                delay: 500,
+                disableOnInteraction: false,
+            }
         });
-    </script> --}}
+
+</script>
+
 @endpush

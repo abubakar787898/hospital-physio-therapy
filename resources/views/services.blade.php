@@ -16,64 +16,85 @@
 @endpush
 
 @section('content')
-    <section>
+<div class="banner__section">
 
-        <div class="hero_section">
+    <h1 class="title">
+        Our services
+    </h1>
 
-            <div class="hero_title">
-                <h1>Services We Offer You</h1>
+    <div class="url">
+
+        <a href="{{route('home')}}"> <span class="text">
+            Home
+        </span></a>
+        /
+        <span>
+            Our services
+        </span>
+
+    </div>
+
+</div>
+
+
+{{-- start --}}
+<div class="services__section">
+
+    <div class="services__content">
+
+        <span class="text">
+            Our services
+        </span>
+
+        <h1 class="title">
+            Services We Provide
+        </h1>
+
+    </div>
+
+    <div class="services__card">
+        @foreach ($services as $service)
+        <div class="card">
+
+            <div class="services__img">
+                <img src="/image/{{ $service->image }}" alt="{{ $service->name}}">
+            </div>
+
+            <div class="card__content">
+
+                <a href="servicesSingle.html" class="services__heading">
+                    {{ $service->name}}
+                </a>
+
+                <a href="servicesSingle.html" class="text">
+                    @if (strlen(strip_tags($service->description)) > 72)
+                    {{ substr(strip_tags($service->description), 0, 72)   }}
+                  @else
+                    {{ strip_tags($service->description) }}
+                  @endif
+                </a>
+                <a href="{{ route('service.slug', ['slug' => $service->slug]) }}" class="text">
+                    Read More
+                </a>
+            
+
             </div>
 
         </div>
+@endforeach
 
-    </section>
 
-
-    <div class="services_menu">
-
-        <div class="service_head">
-            <h6>We offer a full range of physiotherapy services catered to match your personal goals</h6>
-        </div>
-
-        <div class="service_cards">
-
-            <div class="card_group">
-
-                @foreach ($services as $service)
-                <div class="single__card ">
-                    <img src="/image/{{ $service->image }}" alt="">
-    
-                    <div class="card__detail">
-    
-                        <span class="card__title">
-                          {{ $service->name }}
-                        </span>
-    
-                        <p class="paragarph">
-                          @if (strlen(strip_tags($service->description)) > 70)
-                          {{ substr(strip_tags($service->description), 0, 70) . '...' }}
-                        @else
-                          {{ strip_tags($service->description) }}
-                        @endif
-                           
-                        </p>
-    
-                        <a href="{{ route('booking') }}" class="btn btn-2">
-                            Book Now
-                        </a>
-    
-                        <a href="{{ route('service.slug', ['slug' => $service->slug]) }}" class="btn">
-                            Learn More
-                        </a>
-    
-                    </div>
-    
-                </div>
-                @endforeach
-
-        </div>
     </div>
-    <section>
+
+</div>
+{{-- end --}}
+
+
+
+
+
+
+  
 
 
     @endsection

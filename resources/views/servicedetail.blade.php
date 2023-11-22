@@ -12,59 +12,118 @@
     <!-- You can add other meta tags as needed -->
 @endpush --}}
 @push('css')
-    <link href="{{ asset('assets/frontend/css/services/services.css') }}" rel="stylesheet">
+
     <link href="{{ asset('assets/frontend/css/services/service-detail.css') }}" rel="stylesheet">
 @endpush
 
 @section('content')
-{{-- <div class="hero_section">
+<div class="banner__section">
 
-    <div class="hero_title">
-        <h1>Services We Offer You</h1>
+    <h1 class="title">
+       {{$service->name}}
+    </h1>
+
+    <div class="url">
+
+        <a href="{{route('home')}}"> <span class="text">
+            Home
+        </span></a>
+        /
+        <span>
+            Our service
+        </span>
+
     </div>
 
-</div> --}}
-<div class="blog_menu">
+</div>
+{{-- start --}}
+<div class="single__service">
 
-    <div  class="blog_head">
-        <h2 style="color: white" >Service Detail</h2>
+    <div class="total__services">
 
-        <div class="crumbs">
-            <li><a style="color: white" href="{{route('home')}}">Home</a></li>
-            <li style="color: white">Service Detail</li>
+        <h1 class="title">
+            Our Services
+        </h1>
+
+        <div class="service__list">
+
+            @foreach ($services as $item)
+    
+                    <a  href="{{ route('service.slug', ['slug' => $item->slug]) }}" class="list text">
+                        <img src="/image/{{ $item->image }}" alt="{{$item->name}}">
+                        {{$item->name}}
+                    </a>
+                    @endforeach
+
         </div>
+
     </div>
 
-        <div class="blog_content">
+    <div class="service__detail">
 
-            <div class="cards">
+        <div class="service__img">
+            <img src="/image/{{ $service->image }}" alt=" {{$service->name}}">
+        </div>
 
-             
-                <div class="card">
-                    
-                    <div class="card_img">
-                        <img src="/image/{{ $service->image }}" >
-                       {{-- <img src="{{ asset('assets/frontend/css/blog/image/1.png') }}"  alt="" > --}}
-         
-                    </div>
-                    <h1 style="color: #209ace; text-align:center" >{{$service->name}}</h1>
-                    {{-- <p>          
+        <div class="paragraph">
+          {!!$service->description !!}
+        </div>
+{{-- 
+        <h1 class="title">
+            Maintaining Your Quality of Life
+        </h1> --}}
 
+        {{-- <div class="service__maintenance">
 
-Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorum animi facere sit, beatae ipsum repellat tempora commodi veritatis saepe adipisci rerum quidem porro nostrum voluptate amet laboriosam eius! Itaque, ipsum.
-
-                    </p> --}}
-                    <p>{{strip_tags($service->description)}}</p>
-                </div>
-
-               
-
+            <div class="li">
+                <i class="ri-check-double-line"></i>
+                No Appointments – Walk-Ins Welcome
             </div>
 
-        </div>
+            <div class="li">
+                <i class="ri-check-double-line"></i>
+                No Insurance Hassles – $0 Copays
+            </div>
 
-    
+            <div class="li">
+                <i class="ri-check-double-line"></i>
+                Open Evenings & Weekends
+            </div>
+
+            <div class="li">
+                <i class="ri-check-double-line"></i>
+                Quality Care by Licensed Professionals
+            </div>
+
+            <div class="li">
+                <i class="ri-check-double-line"></i>
+                No Insurance Hassles – $0 Copays
+            </div>
+
+            <div class="li">
+                <i class="ri-check-double-line"></i>
+                Open Evenings & Weekends
+            </div>
+
+            <div class="li">
+                <i class="ri-check-double-line"></i>
+                Quality Care by Licensed Professionals
+            </div>
+
+            <div class="li">
+                <i class="ri-check-double-line"></i>
+                No Insurance Hassles – $0 Copays
+            </div>
+
+        </div> --}}
+
+    </div>
+
 </div>
+{{-- end --}}
+
+
+
 
 
     @endsection

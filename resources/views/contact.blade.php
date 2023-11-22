@@ -1,170 +1,228 @@
 @extends('layouts.frontend.app')
 
-@section('title','Contact Us')
+@section('title', 'Contact Us')
 
 @push('css')
-    {{-- <link href="{{ asset('assets/frontend/css/contact/contact.css') }}" rel="stylesheet"> --}}
-    <link href="{{ asset('assets/frontend/css/contact/contactform.css') }}" rel="stylesheet">
-
-    
+    <link href="{{ asset('assets/frontend/css/contact/contact.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('assets/frontend/css/contact/contactform.css') }}" rel="stylesheet"> --}}
 @endpush
 
 @section('content')
 
-<div class="main">
-  <h1>Contact Us</h1><br>
-<div class="container">
-  <div class="content">
-    <div class="left-side">
-      <div class="address details">
-        <i style="color: rgb(56 121 145 / 90%)"  class="fas fa-map-marker-alt"></i>
-        <div class="topic">Address</div>
-        <div class="text-one">Hospital, Co. Limerick, </div>
-        <div class="text-two">Ireland</div>
-      </div>
-      <div class="phone details">
-        <i style="color: rgb(56 121 145 / 90%)"  class="fas fa-phone-alt"></i>
-        <div  class="topic">Phone</div>
-        <div class="text-one">+353 {{env('MOBILE_NUMBER')}}</div>
-        
-      </div>
-      <div class="email details">
-        <i style="color: rgb(56 121 145 / 90%)" class="fas fa-envelope"></i>
-        <div class="topic">Email</div>
-        <div class="text-one">{{env('COMPANY_MAIL')}}</div>
-     
-      </div>
+
+    <div class="banner__section">
+
+        <h1 class="title">
+            Contact Us
+        </h1>
+
+        <div class="url">
+
+            <a href="{{ route('home') }}"> <span class="text">
+                    Home
+                </span></a>
+            /
+            <span>
+                Contact Us
+            </span>
+
+        </div>
+
     </div>
-    <div class="right-side">
-      <div class="topic-text">Send us a message</div>
-      <p>If you have any work from me or any types of quries related to my tutorial, you can send me message from here. It's my pleasure to help you.</p>
-    <form action="{{ route('contact-form') }}" method="POST">
-      @csrf
-      <div class="input-box">
-        <input type="text" name="name" placeholder="Enter your name" required>
-      </div>
-      <div class="input-box">
-        <input type="email" name="email" placeholder="Enter your email" required>
-      </div>
-      <div class="input-box message-box">
-        <textarea name="comment" id="" cols="30" rows="10"></textarea>
-      </div>
-      <div class="button">
-        <input type="submit" value="Send Now" >
-      </div>
+
+    <div class="contact__header">
+
+        <span class="text">
+            Let's get in touch
+        </span>
+
+        <h1 class="title">
+            Contact With Us
+        </h1>
+
+    </div>
+
+    <form action="{{ route('contact-form') }}" method="POST" class="contact__form">
+        @csrf
+
+
+        <input type="text" placeholder="Your Name" class="input" name="name" required/>
+
+        <input type="email" placeholder="Your Email Address" class="input" name="email" required />
+
+
+
+
+        <textarea placeholder="Message" class="input text__area" name="comment"></textarea>
+
+            <input class="btn" type="submit" value="Send Now">
     </form>
-  </div>
-  </div>
-</div>
-</div>
-{{-- <section>
-    <div class="hero_section">
 
-      <div class="hero_title">
-        <h1>Come Find Us</h1>
+    <div class="contact__detail">
+
+      <div class="hospital__detail">
+
+          <div class="detail__container">
+
+              <h1 class="heading">
+                  Hours of Operation
+              </h1>
+
+              <div class="detail__list">
+
+                  <span class="list">
+                      Monday: 7:00am – 6:00pm
+                  </span>
+
+                  <span class="list">
+                      Monday: 7:00am – 6:00pm
+                  </span>
+
+                  <span class="list">
+                      Monday: 7:00am – 6:00pm
+                  </span>
+
+                  <span class="list">
+                      Monday: 7:00am – 6:00pm
+                  </span>
+
+                  <span class="list">
+                      Monday: 7:00am – 6:00pm
+                  </span>
+
+              </div>
+
+          </div>
+
+          <div class="detail__container">
+
+              <h1 class="heading">
+                  Email Address
+              </h1>
+
+              <div class="detail__list">
+
+                  <span class="list">
+                      Xyz@gmail.com
+                  </span>
+
+              </div>
+
+          </div>
+
+          <div class="detail__container">
+
+              <h1 class="heading">
+                  Location
+              </h1>
+
+              <div class="detail__list">
+
+                  <span class="list">
+                      423B, Road Wordwide Country, USA
+                  </span>
+
+              </div>
+
+          </div>
+
+          <div class="detail__container">
+
+              <h1 class="heading">
+                  Phone Number
+              </h1>
+
+              <div class="detail__list">
+
+                  <span class="list">
+                      +92 123 456 7890
+                  </span>
+
+              </div>
+
+          </div>
+
+          <div class="detail__container">
+
+              <h1 class="heading">
+                  Follow Us
+              </h1>
+
+              <div class="detail__list">
+
+                  <i class="ri-facebook-fill"></i>
+
+                  <i class="ri-instagram-fill"></i>
+
+                  <i class="ri-twitter-fill"></i>
+
+                  <i class="ri-linkedin-fill"></i>
+
+              </div>
+
+          </div>
+
       </div>
 
-    </div>
-  </section>
-
-
-  <!-- visit us section  -->
-  
-  <div class="visit_section">
-
-    <div class="visit_head">
-      <h2>Visit Our Clinic at Mungret College</h2>
-    </div>
-
-    <div class="visit_menu">
-
-      <div class="visit_content">
-
-        <div class="visit_title">
-          <h5>Ameneties at Mungret College :</h5>
-          <ul>
-            <li>Free Parking</li>
-            <li>Coffee Shop</li>
-            <li>Public Park 2km</li>
-            <li>Playground</li>
-          </ul>
-        </div>
-
-        <div class="visit_hours">
-          <h5>Hours :</h5>
-          <ul>
-            <li>Monday-Friday, from 8am - 6pm</li>
-            <li>Saturday Mornings by appointment</li>
-
-          </ul>
-        </div>
-
-        <div class="visit_addres">
-          <h5>Addres:</h5>
-          <p>Mungret College,Mungret,Co.Limecrik v94</p>
-        </div>
-
-        <div class="visit_phone">
-          <h5>Phone:</h5>
-          <p>061 545 605 / 087 1278004</p>
-        </div>
-
-      </div>
-
-      <div class="visit_map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.8031728464507!2d70.29884267443681!3d28.42519539346781!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39375bdc46c6f91f%3A0x654490d339d046ce!2sDanZee%20Tech!5e0!3m2!1sen!2s!4v1697431936557!5m2!1sen!2s" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-
-    </div>
-    
-  </div>
-
-
-  <!-- contact us form  -->
-  <div class="contact_menu">
-
-    <div class="contact_head">
-      <h4>We'd Love To Hear From You</h4>
-    </div>
-
-    <div class="contact_form">
-
-      <form action="">
-
-        <span>
-          <label for="name">Name</label>
-          <input type="text" name="name" id="name" placeholder="Name">
-        </span>
-
-        <span>
-          <label for="email">Email</label>
-          <input type="email" name="email" id="email" placeholder="Email">
-        </span>
-
-        <span>
-          <label for="phone">Phone</label>
-          <input type="text" name="phone" id="phone" placeholder="Phone">
-        </span>
-
-        <span>
-          <textarea name="request" id="request" rows="6" placeholder="Your Request"></textarea>
-        </span>
-
-        <span>
-          <input type="submit" name="submit" id="#" class="submit_btn">
-        </span>
-
-      </form>
-
-    </div>
+      <iframe class="hospital__map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52998.130157721724!2d70.31055800936353!3d28.408761029376443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39375be564555555%3A0xf393db635d0b2944!2sAl-Saeed%20Medical%20Complex!5e0!3m2!1sen!2s!4v1700659458067!5m2!1sen!2s"></iframe>
 
   </div>
 
-<section> --}}
+
+
+
+    {{-- <div class="main">
+        <h1>Contact Us</h1><br>
+        <div class="container">
+            <div class="content">
+                <div class="left-side">
+                    <div class="address details">
+                        <i style="color: rgb(56 121 145 / 90%)" class="fas fa-map-marker-alt"></i>
+                        <div class="topic">Address</div>
+                        <div class="text-one">Hospital, Co. Limerick, </div>
+                        <div class="text-two">Ireland</div>
+                    </div>
+                    <div class="phone details">
+                        <i style="color: rgb(56 121 145 / 90%)" class="fas fa-phone-alt"></i>
+                        <div class="topic">Phone</div>
+                        <div class="text-one">+353 {{ env('MOBILE_NUMBER') }}</div>
+
+                    </div>
+                    <div class="email details">
+                        <i style="color: rgb(56 121 145 / 90%)" class="fas fa-envelope"></i>
+                        <div class="topic">Email</div>
+                        <div class="text-one">{{ env('COMPANY_MAIL') }}</div>
+
+                    </div>
+                </div>
+                <div class="right-side">
+                    <div class="topic-text">Send us a message</div>
+                    <p>If you have any work from me or any types of quries related to my tutorial, you can send me message
+                        from here. It's my pleasure to help you.</p>
+                    <form action="{{ route('contact-form') }}" method="POST">
+                        @csrf
+                        <div class="input-box">
+                            <input type="text" name="name" placeholder="Enter your name" required>
+                        </div>
+                        <div class="input-box">
+                            <input type="email" name="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="input-box message-box">
+                            <textarea name="comment" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <div class="button">
+                            <input type="submit" value="Send Now">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
 
 
 @endsection
 
 @push('js')
-
 @endpush

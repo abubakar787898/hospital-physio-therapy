@@ -14,15 +14,31 @@
 @endpush
 
 @section('content')
+<div class="banner__section">
+
+    <h1 class="title">
+        Book Now
+    </h1>
+
+    <div class="url">
+
+        <a href="{{ route('home') }}"> <span class="text">
+                Home
+            </span></a>
+        /
+        <span>
+            Book Now
+        </span>
+
+    </div>
+
+</div>
     <section>
         <div class="hero_section">
 
             <div class="hero_title">
                 <h1>Book Your Physiotherapy Session Today</h1>
-                <p>Embark on the journey to a healthier and more vibrant you. At our physiotherapy center, we believe in
-                    personalized care and effective treatments. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Our dedicated team is committed to guiding you through the path of recovery, addressing your unique
-                    needs with compassion and expertise. Take the first step towards a pain-free and active life.</p>
+              
 
             </div>
 
