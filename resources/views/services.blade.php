@@ -7,10 +7,7 @@
     {{-- <meta name="description" content="Your dynamic meta description here"> --}}
     <!-- You can add other meta tags as needed -->
 @endpush
-{{-- @push('meta')
-    <meta name="description" content="{{ $metaDescription }}">
-    <!-- You can add other meta tags as needed -->
-@endpush --}}
+
 @push('css')
     <link href="{{ asset('assets/frontend/css/services/services.css') }}" rel="stylesheet">
 @endpush
