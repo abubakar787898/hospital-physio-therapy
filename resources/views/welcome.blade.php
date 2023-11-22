@@ -504,7 +504,7 @@
             prevEl: ".ri-arrow-left-s-line",
         },
         autoplay: {
-            delay: 2000,
+            delay: 3000,
             disableOnInteraction: false,
         },
         loop: true,
@@ -520,7 +520,7 @@
         },
         loop: true,
         autoplay: {
-            delay: 2000,
+            delay: 4000,
             disableOnInteraction: false,
         },
         breakpoints: {
@@ -545,7 +545,7 @@
             centeredSlides: true,
             loop: true,
             autoplay: {
-                delay: 500,
+                delay: 3000,
                 disableOnInteraction: false,
             }
         });
