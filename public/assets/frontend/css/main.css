@@ -245,6 +245,10 @@
                     color: var(--dark-color);
                     font-size: 22px;
                 }
+
+                .text{
+                    text-align: center;
+                }
             }
         }
 

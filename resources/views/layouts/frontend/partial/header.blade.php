@@ -1,6 +1,6 @@
 <header class="whole__navbar">
 
-    <div class="top__bar">
+    {{-- <div class="top__bar">
 
         <div class="personal__details">
 
@@ -33,7 +33,7 @@
 
         </div>
 
-    </div>
+    </div> --}}
 
     <div class="nav__bar">
 
