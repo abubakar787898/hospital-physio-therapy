@@ -42,7 +42,7 @@ class BookingNotification extends Notification
         ->markdown(
             'emails.user.booking_mail_patient',
             [
-                'patient' => $this->patient,
+                'patient' => $this->patient, 
             
             ]
         );
