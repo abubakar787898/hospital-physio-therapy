@@ -87,15 +87,28 @@ transform: rotate(180deg);
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('admin.payments.index') }}">
+                        <i class="material-icons">payment</i>
+                        <span>Payment</span>
+                    </a>
+                </li>
+                <hr>
+                <li>
                     <a href="{{ route('admin.appointment-types.index') }}">
                         <i class="material-icons">photo_album</i>
                         <span>Appointment Type</span>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('admin.slots.index') }}">
+                    <a href="{{ route('admin.companies.index') }}">
                         <i class="material-icons">local_library</i>
-                        <span>Slots</span>
+                        <span>Company</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.durations.index') }}">
+                        <i class="material-icons">watch_later</i>
+                        <span>Duration</span>
                     </a>
                 </li>
                 <li>

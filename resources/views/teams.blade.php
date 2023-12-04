@@ -55,7 +55,7 @@
           <div class="team__img">
               <img src="/image/{{ $team->image }}" alt="">
 
-              <div class="social__icon">
+              {{-- <div class="social__icon">
                   <i class="ri-share-fill"></i>
 
                   <div class="icon">
@@ -84,12 +84,10 @@
                       <i class="ri-youtube-fill"></i>
                     </a>
                       @endif
-                      {{-- <i class="ri-linkedin-fill"></i>
-                      <i class="ri-instagram-fill"></i>
-                      <i class="ri-twitter-fill"></i> --}}
+                    
                   </div>
 
-              </div>
+              </div> --}}
 
           </div>
 

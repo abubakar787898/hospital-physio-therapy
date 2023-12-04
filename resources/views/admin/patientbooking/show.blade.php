@@ -24,6 +24,71 @@
                             </h2>
                         </div>
                         <div class="body">
+                                 <label for="">Payment Type:</label>
+                                   <p class="">{{ $patientbooking?->payment_type }}</p>
+                                  <label for="">Appointment Type:</label>
+                                   <p class="">{{ $patientbooking->appointment_type->name }}</p>
+                                  <label for="">Service Type:</label>
+                                   <p class="">{{ $patientbooking->service->name }}</p>
+                                   <label for="">Booking Date:</label>
+                                   <p class="">{{ \Carbon\Carbon::parse( $patientbooking?->booking_date)->format('d-m-Y') }}</p>
+                                   <label for="">Timing:</label>
+                                   <p class=""> {{ \Carbon\Carbon::parse($patientbooking->booking_time)->format('h:i A') }}</p>
+                                   <label for="">Amount:</label>
+                                   <p class="">{{ $patientbooking->duration->duration}} Minutes</p>
+                                   <label for="">Amount:</label>
+                                   <p class="">€{{ $patientbooking?->duration->amount}}</p>
+                                   @if ($patientbooking?->payment)
+                                       
+                                   <h3>Payment Detail</h3>
+                                   <label for="">Payment Date:</label>
+                                   <p class="">{{ $patientbooking?->payment->payment_date}}</p>
+                                   <label for="">Status:</label>
+                                   @if( $patientbooking?->payment->status == "succeeded")
+                                            
+                                            <span class="badge bg-green">{{ $patientbooking?->payment->status}}</span>
+                                           
+                                      @else
+                                    
+                                        <span class="badge bg-red">{{ $patientbooking?->payment->status}}</span>
+                                 
+                                        @endif
+                                  <br>
+                                   <label for="">Transaction_id:</label>
+                                   <p class="">{{ $patientbooking?->payment->transaction_id}}</p>
+                                   <label for="">Amount:</label>
+                                   <p class="">€{{ ($patientbooking?->payment->amount)/100}}</p>
+                                   <label for="">Currency:</label>
+                                   <p class="">{{ $patientbooking?->payment->currency}}</p>
+                                   <label for="">Payment Method:</label>
+                                   <p class="">{{ $patientbooking?->payment->payment_method}}</p>
+                                   <label for="">Card Last Four Digit:</label>
+                                   <p class="">{{ $patientbooking?->payment->card_last_four}}</p>
+                                   @endif
+                            
+                           </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                    {{-- <div class="card">
+                        <div class="header bg-cyan">
+                            <h2>
+                                Categoryies
+                            </h2>
+                        </div>
+                        <div class="body">
+                            @foreach($patientbooking->categories as $category)
+                                <span class="label bg-cyan">{{ $category->name }}</span>
+                            @endforeach
+                        </div>
+                    </div> --}}
+                    <div class="card">
+                        <div class="header bg-green">
+                            <h2>
+                                Patient Detail
+                            </h2>
+                        </div>
+                        <div class="body">
                             <label for="">Full Name :</label>
                             <p> {{ $patientbooking->f_name." ".$patientbooking->l_name }}</p>
                             <hr>
@@ -44,42 +109,7 @@
                             <label for="">Additional Info :</label><br>
                             {!! $patientbooking->comment !!}
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
-                    {{-- <div class="card">
-                        <div class="header bg-cyan">
-                            <h2>
-                                Categoryies
-                            </h2>
-                        </div>
-                        <div class="body">
-                            @foreach($patientbooking->categories as $category)
-                                <span class="label bg-cyan">{{ $category->name }}</span>
-                            @endforeach
-                        </div>
-                    </div> --}}
-                    <div class="card">
-                        <div class="header bg-green">
-                            <h2>
-                                Slot Detail
-                            </h2>
-                        </div>
-                        <div class="body">
-                         <label for="">Appointment Type:</label>
-                                <p class="">{{ $patientbooking->slot->appointment_type->name }}</p><br>
-                         <label for="">Payment Type:</label>
-                                <p class="">{{ $patientbooking?->payment_type }}</p>
-                                <label for="">Booking Date:</label>
-                                <p class="">{{ $patientbooking->slot->date}}</p>
-                                <label for="">Timing:</label>
-                                <p class="">{{ $patientbooking->slot->from_time."-".$patientbooking->slot->to_time }}</p>
-                                <label for="">Amount:</label>
-                                <p class="">{{ $patientbooking->slot->price }}</p>
-                                <label for="">Status:</label>
-                                <p class="">{{ $patientbooking->slot->status }}</p>
-                         
-                        </div>
+                      
                     </div>
                   
 

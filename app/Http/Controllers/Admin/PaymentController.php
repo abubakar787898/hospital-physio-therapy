@@ -3,23 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\PatientBooking;
-use Brian2694\Toastr\Facades\Toastr;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
-class PatientController extends Controller
+class PaymentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        $patientbookings = PatientBooking::with(['appointment_type','duration','service','payment'])->get();
+          //
+          $payments = Payment::with('booking')->get();
        
 
-        return view('admin.patientbooking.index',compact('patientbookings'));
-
+          return view('admin.payment.index',compact('payments'));
     }
 
     /**
@@ -43,10 +41,7 @@ class PatientController extends Controller
      */
     public function show(string $id)
     {
-        $patientbooking = PatientBooking::with(['appointment_type','duration','service','payment'])->find($id);
-       
-
-        return view('admin.patientbooking.show',compact('patientbooking'));
+        //
     }
 
     /**
@@ -71,11 +66,5 @@ class PatientController extends Controller
     public function destroy(string $id)
     {
         //
-        $patient=PatientBooking::find($id)->delete();
-
-
-        // $patient->delete();
-        Toastr::success('Patient Record Successfully Deleted :)','Success');
-        return redirect()->back();
     }
 }

@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AppointmentTypeController;
+use App\Http\Controllers\Admin\CompanyController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DurationController;
 use App\Http\Controllers\Admin\GeneralController;
 use App\Http\Controllers\Admin\PatientController;
+use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
@@ -70,6 +74,11 @@ Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function
     Route::resource('patients', PatientController::class);
     Route::resource('contacts', AdminContactController::class);
     Route::resource('teams', TeamController::class);
+    Route::resource('companies', CompanyController::class);
+    Route::resource('durations', DurationController::class);
+    Route::resource('payments', AdminPaymentController::class);
+    // Route::resource('payments', PaymentController::class);
+
     Route::get('slider', [TeamController::class, 'slider_index'])->name('slider');
     Route::resource('services', ServiceController::class);
     Route::resource('slots', SlotController::class);

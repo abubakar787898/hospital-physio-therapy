@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Comments')
+@section('title','Duration')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -9,72 +9,67 @@
 
 @section('content')
     <div class="container-fluid">
-
+        <div class="block-header">
+            <a class="btn btn-primary waves-effect" href="{{ route('admin.durations.create') }}">
+                <i class="material-icons">add</i>
+                <span>Add New Duration</span>
+            </a>
+        </div>
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL COMMENTS
-                            <span class="badge bg-blue">{{ $comments->count() }}</span>
+                            ALL DURATIONS
+                            <span class="badge bg-blue">{{ $durations->count() }}</span>
                         </h2>
                     </div>
+                    
                     <div class="body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                 <tr>
-                                    <th class="text-center">Comments Info</th>
-                                    <th class="text-center">Post Info</th>
-                                    <th class="text-center">Action</th>
+                                    <th>ID</th>
+                         
+                                    <th>Duration</th>
+                                    <th>Amount</th>
+                                 
+                                    
+                                
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
-                                    <th class="text-center">Comments Info</th>
-                                    <th class="text-center">Post Info</th>
-                                    <th class="text-center">Action</th>
+                                    <th>ID</th>
+                                
+                                    <th>Duration</th>
+                                    <th>Amount</th>
+                                 
+                                    
+                                 
+                                    <th>Action</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach($comments as $key=>$comment)
+                                    @foreach($durations as $key=>$duration)
+                                  
                                         <tr>
-                                            <td>
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img class="media-object" src="{{ Storage::disk('public')->url('profile/'.$comment->user->image) }}" width="64" height="64">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4 class="media-heading">{{ $comment->user->name }} <small>{{ $comment->created_at->diffForHumans() }}</small>
-                                                        </h4>
-                                                        <p>{{ $comment->comment }}</p>
-                                                        <a target="_blank" href="{{ route('post.details',$comment->post->slug.'#comments') }}">Reply</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="media">
-                                                    <div class="media-right">
-                                                        <a target="_blank" href="{{ route('post.details',$comment->post->slug) }}">
-                                                            <img class="media-object" src="{{ Storage::disk('public')->url('post/'.$comment->post->image) }}" width="64" height="64">
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <a target="_blank" href="{{ route('post.details',$comment->post->slug) }}">
-                                                            <h4 class="media-heading">{{ str_limit($comment->post->title,'40') }}</h4>
-                                                        </a>
-                                                        <p>by <strong>{{ $comment->post->user->name }}</strong></p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-danger waves-effect" onclick="deleteComment({{ $comment->id }})">
+                                            <td>{{ $duration->id }}</td>
+                             
+                                            <td>{{$duration->duration}} Minutes</td>
+                                            <td>{{$duration->amount}} €</td>
+                                            <td class="text-center">
+                                               
+                                                <a href="{{ route('admin.durations.edit',$duration->id) }}" class="btn btn-info waves-effect">
+                                                    <i class="material-icons">edit</i>
+                                                </a>
+                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteDuration({{ $duration->id }})">
                                                     <i class="material-icons">delete</i>
                                                 </button>
-                                                <form id="delete-form-{{ $comment->id }}" method="POST" action="{{ route('admin.comment.destroy',$comment->id) }}" style="display: none;">
+                                                <form id="delete-form-{{ $duration->id }}" action="{{ route('admin.durations.destroy',$duration->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -107,7 +102,7 @@
     <script src="{{ asset('assets/backend/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script type="text/javascript">
-        function deleteComment(id) {
+        function deleteDuration(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

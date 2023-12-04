@@ -85,7 +85,7 @@
             
 
           </div>
-          <div class="social__icon">
+          {{-- <div class="social__icon">
          
 
             <div class="icon">
@@ -114,12 +114,10 @@
                 <i class="ri-youtube-fill"></i>
               </a>
                 @endif
-                {{-- <i class="ri-linkedin-fill"></i>
-                <i class="ri-instagram-fill"></i>
-                <i class="ri-twitter-fill"></i> --}}
+          
             </div>
 
-        </div>
+        </div> --}}
           {{-- <div class="social__icons">
 
               <i class="ri-facebook-fill"></i>

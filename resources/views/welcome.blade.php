@@ -25,7 +25,10 @@
 
             <div class="swiper-wrapper">
                 @foreach ($sliders as $key => $slider)
-                    <div class="swiper-slide" style="background-image: url(./image/{{ $slider->image }});">
+                    {{-- <div class="swiper-slide" style="background-image: url(./image/{{ $slider->image }});"> --}}
+                    <div class="swiper-slide">
+
+                        <img src="./image/{{ $slider->image }}" class="slide__background">
 
                         <div class="slide__content">
 
@@ -69,12 +72,21 @@
         <div class="swiper mySwiper mySwiperCompany">
 
             <div class="swiper-wrapper">
+                @foreach ($companies as $company)
+                    <div class="swiper-slide">
+                        <img src="/image/{{ $company->image }}" alt={{ $company->name }}>
+                        {{-- <img src="{{ asset('assets/frontend/images/companies/client-logo02.png') }}" alt=""> --}}
+                    </div>
+                @endforeach
+                @foreach ($companies as $company)
+                    <div class="swiper-slide">
+                        <img src="/image/{{ $company->image }}" alt={{ $company->name }}>
+                        {{-- <img src="{{ asset('assets/frontend/images/companies/client-logo02.png') }}" alt=""> --}}
+                    </div>
+                @endforeach
 
-                <div class="swiper-slide">
-                    <img src="{{ asset('assets/frontend/images/companies/client-logo01.png') }}" alt="">
-                </div>
 
-                <div class="swiper-slide">
+                {{-- <div class="swiper-slide">
                     <img src="{{ asset('assets/frontend/images/companies/client-logo02.png') }}" alt="">
 
                 </div>
@@ -92,7 +104,7 @@
                 <div class="swiper-slide">
                     <img src="{{ asset('assets/frontend/images/companies/client-logo05.png') }}" alt="">
 
-                </div>
+                </div> --}}
 
             </div>
         </div>
@@ -371,9 +383,9 @@
                 <div class="card">
 
                     <div class="team__img">
-                        <img src="/image/{{ $team->image }}" alt="">
+                        <img src="/image/{{ $team->image }}" alt="{{$team->title}}">
 
-                        <div class="social__icon">
+                        {{-- <div class="social__icon">
                             <i class="ri-share-fill"></i>
 
                             <div class="icon">
@@ -402,12 +414,10 @@
                                         <i class="ri-youtube-fill"></i>
                                     </a>
                                 @endif
-                                {{-- <i class="ri-linkedin-fill"></i>
-                        <i class="ri-instagram-fill"></i>
-                        <i class="ri-twitter-fill"></i> --}}
+                               
                             </div>
 
-                        </div>
+                        </div> --}}
 
                     </div>
 

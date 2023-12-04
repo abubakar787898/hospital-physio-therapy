@@ -12,10 +12,13 @@ A new appointment has been scheduled. Here are the details:
 - **Contact Number:** {{$patient->mobile}}
 
 **Appointment Details:**
-- **Appointment Type:** {{$patient?->slot?->appointment_type?->name}}
-- **Date:** {{ \Carbon\Carbon::parse($patient->slot->date)->format('l, F j, Y') }}
-- **Time:** from {{ \Carbon\Carbon::parse($patient->slot->from_time)->format('h:i A') }} to {{ \Carbon\Carbon::parse($patient->slot->to_time)->format('h:i A') }}
-- **Amount:** €{{$patient->slot->price}}
+- **Payment Type:** {{$patient?->payment_type=='cos'?"Cash On Service(COS)":"Online"}}
+- **Appointment Type:** {{$patient?->appointment_type?->name}}
+- **Service :** {{$patient?->service?->name}}
+- **Date:** {{ \Carbon\Carbon::parse($patient->booking_date)->format('l, F j, Y') }}
+- **Time:** {{ \Carbon\Carbon::parse($patient->booking_time)->format('h:i A') }}
+- **Duration:** {{$patient->duration->duration}} Minutes
+- **Amount:** €{{$patient->duration->amouunt}}
 
 **Important Notes:**
 - Please ensure the patient is welcomed and guided for their appointment.

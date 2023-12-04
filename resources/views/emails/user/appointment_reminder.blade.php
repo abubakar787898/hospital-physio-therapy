@@ -6,10 +6,13 @@ Hi {{$patient->f_name.' '.$patient->l_name}},
 We hope this message finds you well. As your trusted healthcare provider, we would like to remind you of your upcoming appointment with us. Your commitment to your health is commendable, and we are here to ensure a smooth and comfortable experience for you.
 
 **Appointment Details:**
-- **Appointment Type:** {{$patient?->slot?->appointment_type?->name}}
-- **Date:** {{ \Carbon\Carbon::parse($patient->slot->date)->format('l, F j, Y') }}
-- **Time:** from {{ \Carbon\Carbon::parse($patient->slot->from_time)->format('h:i A') }} to {{ \Carbon\Carbon::parse($patient->slot->to_time)->format('h:i A') }}
-- **Amount:** €{{$patient->slot->price}}
+- **Payment Type:** {{$patient?->payment_type=='cos'?"Cash On Service(COS)":"Online"}}
+- **Appointment Type:** {{$patient?->appointment_type?->name}}
+- **Service :** {{$patient?->service?->name}}
+- **Date:** {{ \Carbon\Carbon::parse($patient->booking_date)->format('l, F j, Y') }}
+- **Time:** {{ \Carbon\Carbon::parse($patient->booking_time)->format('h:i A') }}
+- **Duration:** {{$patient->duration->duration}} Minutes
+- **Amount:** €{{$patient->duration->amouunt}}
 
 
 **Important Notes:**

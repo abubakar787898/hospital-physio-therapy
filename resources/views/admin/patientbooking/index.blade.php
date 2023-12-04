@@ -32,33 +32,36 @@
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th> Name</th>
+                                    <th>Payment</th>
+
+                                    <th>Name</th>
                                     <th>Email</th>
                                     <th>Mobile</th>
                                     <th>Appointment</th>
+                                    <th>Service</th>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    <th>Age</th>
+                                    <th>Duration</th>
                                     <th>Amount</th>
-                                    <th>Payment</th>
-                              
+                                
+                                    <th>Transation Id</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th> Name</th>
+                                    <th>Payment</th>
+                                    <th>Name</th>
                                     <th>Email</th>
                                     <th>Mobile</th>
                                     <th>Appointment</th>
+                                    <th>Service</th>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    
-                                    <th>Age</th>
+                                    <th>Duration</th>
                                     <th>Amount</th>
-                                    <th>Payment</th>
-                            
+                                    <th>Transation Id</th>
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
@@ -67,20 +70,20 @@
                                   
                                         <tr>
                                             <td>{{ $patientbooking->id }}</td>
+                                            <td>{{ $patientbooking?->payment_type }}</td>
                                             <td>{{ $patientbooking->f_name ." ".$patientbooking->l_name}}</td>
                                             <td>{{ $patientbooking->email}}</td>
                                             <td>{{ $patientbooking->mobile}}</td>
-                                            <td>{{ $patientbooking?->slot?->appointment_type->name }}</td>
-                                            <td> {{ \Carbon\Carbon::parse( $patientbooking?->slot?->date)->format('d-m-Y') }}</td>
+                                            <td>{{ $patientbooking?->appointment_type->name }}</td>
+                                            <td>{{ $patientbooking?->service->name }}</td>
+                                            <td> {{ \Carbon\Carbon::parse( $patientbooking?->booking_date)->format('d-m-Y') }}</td>
                                             <td>
-                                                {{ \Carbon\Carbon::parse($patientbooking->slot->from_time)->format('h:i A') }}
-                                                - 
-                                                {{ \Carbon\Carbon::parse($patientbooking->slot->to_time)->format('h:i A') }}
+                                                {{ \Carbon\Carbon::parse($patientbooking->booking_time)->format('h:i A') }}
                                             </td>
                                             
-                                            <td>{{ $patientbooking->age}}</td>
-                                            <td>€{{ $patientbooking?->slot->price}}</td>
-                                            <td>{{ $patientbooking?->payment_type }}</td>
+                                            <td>{{ $patientbooking->duration->duration}} Minutes</td>
+                                            <td>€{{ $patientbooking?->duration->amount}}</td>
+                                            <td>{{ $patientbooking?->payment?->transaction_id }}</td>
                                           
                                            
                                          

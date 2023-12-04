@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','Word')
+@section('title','Payment')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -9,22 +9,23 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{ route('admin.no_words.create') }}">
+        {{-- <div class="block-header">
+            <a class="btn btn-primary waves-effect" href="{{ route('admin.s.create') }}">
                 <i class="material-icons">add</i>
-                <span>Add New Word</span>
+                <span>Add New PatientBooking</span>
             </a>
-        </div>
+        </div> --}}
         <!-- Exportable Table -->
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL WORDS
-                            <span class="badge bg-blue">{{ $words->count() }}</span>
+                            ALL PAYMENTS
+                            <span class="badge bg-blue">{{ $payments->count() }}</span>
                         </h2>
                     </div>
+                    
                     <div class="body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
@@ -32,41 +33,64 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                   
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                    <th>Action</th>
+                                    <th>Email</th>
+                                    <th>Booking Id</th>
+                                    <th>Transaction Id</th>
+                                     <th>Amount</th>
+                                    <th>Currency</th>
+                                    <th>Last Four Digit</th>
+                                    <th>Status</th>                  
+
+                                    <th>Payment Date</th>                  
+                                    {{-- <th>Action</th> --}}
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
                                     <th>Name</th>
-                                  
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
-                                    <th>Action</th>
+                                    <th>Email</th>
+                                    <th>Booking Id</th>
+                                    <th>Transaction Id</th>
+                                     <th>Amount</th>
+                                    <th>Currency</th>
+                                    <th>Last Four Digit</th>
+                                    <th>Status</th>                  
+                                    <th>Payment Date</th>                  
+                                    {{-- <th>Action</th> --}}
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach($words as $key=>$word)
+                                    @foreach($payments as $key=>$payment)
+                                  
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $word->name }}</td>
-                                            <td>{{ $word->created_at }}</td>
-                                            <td>{{ $word->updated_at }}</td>
-                                            <td class="text-center">
-                                                <a href="{{ route('admin.no_words.edit',$word->id) }}" class="btn btn-info waves-effect">
+                                            <td>{{ $payment->id }}</td>
+                                            <td>{{ $payment?->booking?->f_name ." ".$payment?->booking?->l_name}}</td>
+                                            <td>{{ $payment?->booking?->email}}</td>
+                                            <td>{{ $payment?->patient_booking_id}}</td>
+                                            <td>{{ $payment?->transaction_id}}</td>
+                                            <td>{{ ($payment?->amount)/100}}</td>
+                                            <td>{{ $payment?->currency}}</td>
+                                            <td>{{ $payment?->card_last_four}}</td>
+                                            <td>{{ $payment?->status}}</td>
+                                            <td> {{ \Carbon\Carbon::parse( $payment?->payment_date)->format('d-m-Y') }}</td>
+
+
+                                            {{-- <td class="text-center">
+                                                <a href="{{ route('admin.payments.show',$payment->id) }}" class="btn btn-info waves-effect">
+                                                    <i class="material-icons">visibility</i>
+                                                </a>
+                                                <a href="{{ route('admin.payments.edit',$payment->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteWord({{ $word->id }})">
+                                                <button class="btn btn-danger waves-effect" type="button" onclick="deletePatientBooking({{ $payment->id }})">
                                                     <i class="material-icons">delete</i>
                                                 </button>
-                                                <form id="delete-form-{{ $word->id }}" action="{{ route('admin.no_words.destroy',$word->id) }}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{ $payment->id }}" action="{{ route('admin.payments.destroy',$payment->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -95,7 +119,7 @@
     <script src="{{ asset('assets/backend/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script type="text/javascript">
-        function deleteWord(id) {
+        function deletePatientBooking(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

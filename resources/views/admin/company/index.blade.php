@@ -1,6 +1,6 @@
 @extends('layouts.backend.app')
 
-@section('title','ReferenceStyle')
+@section('title','Company')
 
 @push('css')
     <!-- JQuery DataTable Css -->
@@ -10,9 +10,9 @@
 @section('content')
     <div class="container-fluid">
         <div class="block-header">
-            <a class="btn btn-primary waves-effect" href="{{ route('admin.reference_styles.create') }}">
+            <a class="btn btn-primary waves-effect" href="{{ route('admin.companies.create') }}">
                 <i class="material-icons">add</i>
-                <span>Add New ReferenceStyle</span>
+                <span>Add New Company</span>
             </a>
         </div>
         <!-- Exportable Table -->
@@ -21,48 +21,57 @@
                 <div class="card">
                     <div class="header">
                         <h2>
-                            ALL REFERENCESTYLE
-                            <span class="badge bg-blue">{{ $referencestyles->count() }}</span>
+                            ALL COMPANYS
+                            <span class="badge bg-blue">{{ $companies->count() }}</span>
                         </h2>
                     </div>
+                    
                     <div class="body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                   
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
+                         
+                                    <th>Title</th>
+                                    <th>Image</th>
+                                 
+                                    
+                                
                                     <th>Action</th>
                                 </tr>
                                 </thead>
                                 <tfoot>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                  
-                                    <th>Created At</th>
-                                    <th>Updated At</th>
+                                
+                                    <th>Title</th>
+                                    <th>Image</th>
+                                 
+                                    
+                                 
                                     <th>Action</th>
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                    @foreach($referencestyles as $key=>$referencestyle)
+                                    @foreach($companies as $key=>$company)
+                                  
                                         <tr>
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $referencestyle->name }}</td>
-                                            <td>{{ $referencestyle->created_at }}</td>
-                                            <td>{{ $referencestyle->updated_at }}</td>
+                                            <td>{{ $company->id }}</td>
+                             
+                                            <td>{{$company->name}}</td>
+                                            <td><img src="/image/{{ $company->image }}" width="100px" height="70px"></td>
+                                         
+                                            
                                             <td class="text-center">
-                                                <a href="{{ route('admin.reference_styles.edit',$referencestyle->id) }}" class="btn btn-info waves-effect">
+                                               
+                                                <a href="{{ route('admin.companies.edit',$company->id) }}" class="btn btn-info waves-effect">
                                                     <i class="material-icons">edit</i>
                                                 </a>
-                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteReferenceStyle({{ $referencestyle->id }})">
+                                                <button class="btn btn-danger waves-effect" type="button" onclick="deleteCompany({{ $company->id }})">
                                                     <i class="material-icons">delete</i>
                                                 </button>
-                                                <form id="delete-form-{{ $referencestyle->id }}" action="{{ route('admin.reference_styles.destroy',$referencestyle->id) }}" method="POST" style="display: none;">
+                                                <form id="delete-form-{{ $company->id }}" action="{{ route('admin.companies.destroy',$company->id) }}" method="POST" style="display: none;">
                                                     @csrf
                                                     @method('DELETE')
                                                 </form>
@@ -95,7 +104,7 @@
     <script src="{{ asset('assets/backend/js/pages/tables/jquery-datatable.js') }}"></script>
     <script src="https://unpkg.com/sweetalert2@7.19.1/dist/sweetalert2.all.js"></script>
     <script type="text/javascript">
-        function deleteReferenceStyle(id) {
+        function deleteCompany(id) {
             swal({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",

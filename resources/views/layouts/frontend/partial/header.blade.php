@@ -38,7 +38,7 @@
     <div class="nav__bar">
 
         <div class="logo">
-           <a href="{{ route('home') }}"> <img src="{{asset('logo.png')}}" alt="hospital physio therapy"></a>
+           <a href="{{ route('home') }}"> <img src="{{asset('newlogo.png')}}" alt="hospital physiotherapy"></a>
         </div>
 
         <div class="nav__links" id="nav__links">

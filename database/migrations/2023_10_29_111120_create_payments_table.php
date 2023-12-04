@@ -14,15 +14,16 @@ return new class extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('patient_booking_id')->nullable(); 
-            $table->decimal('amount', 10, 2); // Amount of the payment
-            $table->string('currency', 3); // Currency code (e.g., USD, EUR)
-            $table->string('status'); // Payment status (e.g., pending, success, failure)
-            // Add more columns as needed for your specific use case
-        
-            // AIB-specific columns
-            $table->string('aib_payment_id')->nullable(); // AIB payment ID
-            $table->string('aib_transaction_id')->nullable(); // AIB transaction ID
-            $table->foreign('patient_booking_id')->references('id')->on('patient_bookings')->onDelete('cascade');
+            $table->string('transaction_id');
+            $table->decimal('amount', 10, 2)->nullable();
+            $table->string('currency',20)->nullable();
+            $table->string('status')->nullable(); // 'success', 'pending', 'failed', etc.
+            $table->string('payment_method')->nullable();
+            $table->string('card_last_four')->nullable();
+            $table->timestamp('payment_date')->nullable();
+            $table->string('customer_email')->nullable();
+            $table->json('metadata')->nullable();
+            $table->foreign('patient_booking_id')->references('id')->on('patient_bookings');
             $table->timestamps();
         });
     }

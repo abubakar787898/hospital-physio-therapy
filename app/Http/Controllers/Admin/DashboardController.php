@@ -20,15 +20,18 @@ class DashboardController extends Controller
     }
     public function index()
     {
-        // $patientbookings = PatientBooking::with('slot')->get();
-        $todayBookings = PatientBooking::whereHas('slot', function ($query) {
-            $query->whereDate('date', '=', now()->toDateString())
-            ->where('status', '=', 'booked');
-        })->with('slot')->get();
-        $tomorrowBookings = PatientBooking::whereHas('slot', function ($query) {
-            $query->whereDate('date', '=', now()->addDay()->toDateString())
-            ->where('status', '=', 'booked');
-        })->with('slot')->get();
+      
+        // $todayBookings = PatientBooking::whereHas('slot', function ($query) {
+        //     $query->whereDate('date', '=', now()->toDateString())
+        //     ->where('status', '=', 'booked');
+        // })->with('slot')->get();
+        // $tomorrowBookings = PatientBooking::whereHas('slot', function ($query) {
+        //     $query->whereDate('date', '=', now()->addDay()->toDateString())
+        //     ->where('status', '=', 'booked');
+        // })->with('slot')->get();
+        $todayBookings = PatientBooking::whereDate('booking_date', '=', now()->toDateString())->get();
+        $tomorrowBookings = PatientBooking::whereDate('booking_date', '=',now()->addDay()->toDateString())->get();
+      
         $appointments = AppointmentType::count();
        
 
@@ -40,7 +43,7 @@ class DashboardController extends Controller
 
 
     public function appointmentReminderMail($id){
-        $patient= PatientBooking::with('slot.appointment_type')->find($id);
+        $patient= PatientBooking::with(['appointment_type','duration','service','payment'])->find($id);
         
         if ($patient) {
             try {

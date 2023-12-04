@@ -1,0 +1,81 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    list-style-type: none;
+    font-family: sans-serif;
+    letter-spacing: .35px;
+}
+
+:root{
+    --textcolor--: royalblue !important;
+    --secondarycolor--: rgba(56, 121, 145, 0.9);
+    --lettercolor--: #fff;
+    --contentBG--: rgb(226, 108, 87) !important;
+}
+
+.hero_section{
+    text-align: center;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+}
+.hero_section .hero_title{
+    margin-bottom: 2rem;
+}
+.hero_section .hero_content{
+    background-color: var(--contentBG--);
+    padding: 4rem 0;
+}
+.hero_content .form_menu input,
+.hero_content .form_menu select{
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: none;
+    width: 300px;
+}
+.hero_content .form_menu select{
+    padding: 10px;
+}
+.hero_content .form_menu{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+    gap: 2vw;
+}
+.hero_content .form_menu span{
+    display: flex;
+    flex-direction: column;
+    color: var(--lettercolor--);
+    margin-bottom: 1rem;
+}
+.hero_content .form_btn button{
+    background-color: var(--contentBG--);
+    color: var(--lettercolor--);
+    border: 1px solid var(--lettercolor--);
+    padding: 10px 1rem;
+    border-radius: 5px;
+}
+.hero_content .form_btn button:hover{
+    transform: scale(1.035);
+    transition: all .2s ease;
+}
+
+
+
+@media (max-width: 700px) {
+.hero_section .hero_title h1{
+    font-size: 3rem;
+}
+}
+
+@media (max-width: 618px){
+    .services_menu .service_cards .card_group{
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 2rem;
+    }
+}
