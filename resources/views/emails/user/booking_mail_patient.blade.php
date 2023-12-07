@@ -18,7 +18,7 @@ Your appointment is scheduled for {{ \Carbon\Carbon::parse($patient->booking_dat
 - **Date:** {{ \Carbon\Carbon::parse($patient->booking_date)->format('l, F j, Y') }}
 - **Time:** {{ \Carbon\Carbon::parse($patient->booking_time)->format('h:i A') }}
 - **Duration:** {{$patient->duration->duration}} Minutes
-- **Amount:** €{{$patient->duration->amouunt}}
+- **Amount:** €{{$patient->duration->amount}}
 
 ## Other Details :
 ---

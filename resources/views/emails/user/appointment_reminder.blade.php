@@ -12,7 +12,7 @@ We hope this message finds you well. As your trusted healthcare provider, we wou
 - **Date:** {{ \Carbon\Carbon::parse($patient->booking_date)->format('l, F j, Y') }}
 - **Time:** {{ \Carbon\Carbon::parse($patient->booking_time)->format('h:i A') }}
 - **Duration:** {{$patient->duration->duration}} Minutes
-- **Amount:** €{{$patient->duration->amouunt}}
+- **Amount:** €{{$patient->duration->amount}}
 
 
 **Important Notes:**

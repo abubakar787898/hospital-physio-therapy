@@ -18,7 +18,7 @@ A new appointment has been scheduled. Here are the details:
 - **Date:** {{ \Carbon\Carbon::parse($patient->booking_date)->format('l, F j, Y') }}
 - **Time:** {{ \Carbon\Carbon::parse($patient->booking_time)->format('h:i A') }}
 - **Duration:** {{$patient->duration->duration}} Minutes
-- **Amount:** €{{$patient->duration->amouunt}}
+- **Amount:** €{{$patient->duration->amount}}
 
 **Important Notes:**
 - Please ensure the patient is welcomed and guided for their appointment.
