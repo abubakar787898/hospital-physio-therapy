@@ -50,9 +50,9 @@
                                     Book Now
                                 </a>
 
-                                <a href="#" class="btn">
+                                {{-- <a href="#" class="btn">
                                     Contact Us
-                                </a>
+                                </a> --}}
 
                             </div>
 
@@ -62,8 +62,8 @@
                 @endforeach
 
             </div>
-            <i class="ri-arrow-left-s-line slide__arrow arrow__left"></i>
-            <i class="ri-arrow-right-s-line slide__arrow arrow__right"></i>
+            {{-- <i class="ri-arrow-left-s-line slide__arrow arrow__left"></i>
+            <i class="ri-arrow-right-s-line slide__arrow arrow__right"></i> --}}
         </div>
     </div>
 
@@ -512,7 +512,7 @@
                 prevEl: ".ri-arrow-left-s-line",
             },
             autoplay: {
-                delay: 3000,
+                delay: 5000,
                 disableOnInteraction: false,
             },
             loop: true,
@@ -554,7 +554,7 @@
             loop: true,
             centeredSlides: true,
             autoplay: {
-                delay: 3000,
+                delay: 6000,
                 disableOnInteraction: false,
             },
             breakpoints: {

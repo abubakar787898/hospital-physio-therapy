@@ -65,12 +65,15 @@
             <a href="{{ route('contact') }}" class="link">
                 Contact Us
             </a>
-
+            <a href="{{ route('booking') }}" class="btn">
+                Book Now
+            </a>
+            
         </div>
 
         <div class="btns">
 
-            <a href="tel:+352{{env('MOBILE_NUMBER')}}" class="sec__btn">
+            {{-- <a href="tel:+352{{env('MOBILE_NUMBER')}}" class="sec__btn">
                 <i class="ri-phone-fill"></i>
                 <div class="btn__context">
                     <span class="text">
@@ -81,12 +84,9 @@
                     
                     
                 </div>
-            </a>
+            </a> --}}
 
-            <a href="{{ route('booking') }}" class="btn">
-                Appointment
-            </a>
-            
+        
             <label for="check" class="menu" id="menuToggler">
                 <input type="checkbox" id="checkTo" />
                 <span></span>
