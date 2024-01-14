@@ -23,9 +23,9 @@ class GeneralController extends Controller
     }
     public function contact()
     {
-        $home=Page::find(2);
+        $contact=Page::find(3);
      
-        return view('admin.pages.home',compact('home'));
+        return view('admin.pages.contact',compact('contact'));
     }
     public function updateHome(Request $request)
     {
