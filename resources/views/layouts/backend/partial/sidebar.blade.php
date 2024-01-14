@@ -142,6 +142,12 @@ transform: rotate(180deg);
                                 <span>About</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.contact') }}">
+                               
+                                <span>Contact</span>
+                            </a>
+                        </li>
                       
                     </ul>
                 </li>

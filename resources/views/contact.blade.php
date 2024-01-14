@@ -1,7 +1,10 @@
 @extends('layouts.frontend.app')
 
 @section('title', 'Contact Us')
-
+@push('meta')
+    <meta name="title" content="{{ $contact?->meta_title }}">
+    <meta name="description" content="{{ $contact?->meta_description }}">
+@endpush
 @push('css')
     <link href="{{ asset('assets/frontend/css/contact/contact.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('assets/frontend/css/contact/contactform.css') }}" rel="stylesheet"> --}}
@@ -39,7 +42,9 @@
         <h1 class="title">
             Contact With Us
         </h1>
-
+<h2>@isset($contact->title)
+    {{$contact->title}}
+@endisset</h2>
     </div>
 
     <form action="{{ route('contact-form') }}" method="POST" class="contact__form">
@@ -71,23 +76,23 @@
               <div class="detail__list">
 
                   <span class="list">
-                      Monday: 10:30am – 5:00pm
+                      Monday:   10:30am – 6:30pm
                   </span>
 
                   <span class="list">
-                      Tuesday: 10:30am – 5:00pm
+                      Tuesday:  10:30am – 6:30pm
                   </span>
 
                   <span class="list">
-                      Wednesday: 10:30am – 5:00pm
+                      Wednesday: 10:30am – 6:30pm
                   </span>
 
                   <span class="list">
-                      Thursday: 10:30am – 5:00pm
+                      Thursday:   10:30am – 6:30pm
                   </span>
 
                   <span class="list">
-                      Friday: 10:30am – 5:00pm
+                      Friday:      10:30am – 6:30pm
                   </span>
 
               </div>
@@ -119,8 +124,7 @@
               <div class="detail__list">
 
                   <span class="list">
-                    Hospital PhysioTherapy,
-                    Ireland
+                    {{env('LOCATION_NAME')}}
                   </span>
 
               </div>
@@ -136,7 +140,16 @@
               <div class="detail__list">
 
                   <span class="list">
-                      +352 {{env('MOBILE_NUMBER')}}
+                    <i class="ri-phone-fill"></i>
+                      +352  {{env('MOBILE_NUMBER')}}
+                  </span>
+
+              </div>
+              <div class="detail__list">
+
+                  <span class="list">
+                    <i class="ri-phone-fill"></i>
+                      +352  {{env('MOBILE_NUMBER2')}}
                   </span>
 
               </div>

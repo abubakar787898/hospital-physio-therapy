@@ -246,7 +246,8 @@ class FrontendController extends Controller
     // }
     public function contact()
     {
-        return view('contact');
+        $contact = Page::find(3);
+        return view('contact',compact('contact'));
     }
     public function contact_form(Request $request)
     {

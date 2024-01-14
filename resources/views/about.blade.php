@@ -1,7 +1,10 @@
 @extends('layouts.frontend.app')
 
-@section('title','About')
-
+@section('title','About-us Hospital PhysioTherapy')
+@push('meta')
+    <meta name="title" content="{{ $about?->meta_title }}">
+    <meta name="description" content="{{ $about?->meta_description }}">
+@endpush
 @push('css')
 {{-- <link href="{{ asset('assets/frontend/css/team/team.css') }}" rel="stylesheet"> --}}
     <link href="{{ asset('assets/frontend/css/about/about.css') }}" rel="stylesheet">
@@ -13,7 +16,7 @@
 
 <div class="banner__section">
 
-    <h1 class="title">
+    <h1 class="title" title="hospital PhysioTherapy">
         About us
     </h1>
 
@@ -176,9 +179,9 @@
 
                 <img src="images/achivement/2.png" alt="">
 
-                <h1 class="title">
+                <h2 class="title">
                     {{ $teams->count() }}+
-                </h1>
+                </h2>
 
                 <span class="paragraph">
                     Expert Team
@@ -190,9 +193,9 @@
 
                 <img src="images/achivement/3.png" alt="">
 
-                <h1 class="title">
+                <h2 class="title">
                     1878+
-                </h1>
+                </h2>
 
                 <span class="paragraph">
                     Active Member
@@ -213,9 +216,9 @@
             Why Choose us
         </span>
 
-        <h1 class="title">
+        <h2 class="title">
             We offer Treatment to Your Pain
-        </h1>
+        </h2>
 
     </div>
 
@@ -317,75 +320,44 @@
             Our Team
         </span>
 
-        <h1 class="title">
+        <h2 class="title" title="Hospital Physiotherapy Team">
             Meet the Team
-        </h1>
+        </h2>
 
     </div>
 
     <div class="team__card">
-      @foreach ($teams as $key => $team)
-        <div class="card">
-
-            <div class="team__img">
-                <img src="/image/{{ $team->image }}" alt="">
-
-                <div class="social__icon">
-                    <i class="ri-share-fill"></i>
-
-                    <div class="icon">
-                      @if (!empty($team->fb_link))
-                      <a href="{{ $team->fb_link }}"  target="_blank"  >
-                        <i class="ri-facebook-fill"></i>
-                      </a>
-                        @endif
-                      @if (!empty($team->linkedin_link))
-                      <a href="{{ $team->linkedin_link }}"  target="_blank"  >
-                        <i class="ri-linkedin-fill"></i>
-                      </a>
-                        @endif
-                      @if (!empty($team->insta_link))
-                      <a href="{{ $team->insta_link }}"  target="_blank"  >
-                        <i class="ri-instagram-fill"></i>
-                      </a>
-                        @endif
-                      @if (!empty($team->twitter_link))
-                      <a href="{{ $team->twitter_link }}"  target="_blank"  >
-                        <i class="ri-twitter-fill"></i>
-                      </a>
-                        @endif
-                      @if (!empty($team->youtube_link))
-                      <a href="{{ $team->youtube_link }}"  target="_blank"  >
-                        <i class="ri-youtube-fill"></i>
-                      </a>
-                        @endif
-                        {{-- <i class="ri-linkedin-fill"></i>
-                        <i class="ri-instagram-fill"></i>
-                        <i class="ri-twitter-fill"></i> --}}
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="card__content">
-
-                <span class="team__heading">
-                  <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}"  target="_blank"> {{ $team->title }}</a>
-                </span>
-
-                <span class="text">
-                  {{ $team->speciality }}
-                </span>
-
-            </div>
-
-        </div>
-        @endforeach
-
-       
-
-    </div>
+        @foreach ($teams as $key => $team)
+          <div class="card">
+            <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}"  >
+              
+              <div class="team__img">
+                  <img src="/image/{{ $team->image }}" alt="{{ $team->title }}">
+    
+    
+              </div>
+    
+              <div class="card__content">
+    
+                  <span class="team__heading">
+                    <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}"  > {{ $team->title }}</a>
+                  </span>
+    
+                  <span >
+                    <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}" class="text"  >
+                    {{ $team->speciality }}
+                    </a>
+                  </span>
+    
+              </div>
+              
+            </a>
+          </div>
+          @endforeach
+    
+         
+    
+      </div>
 
 </div>
 

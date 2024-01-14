@@ -69,6 +69,8 @@ Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function
 
     Route::get('home', [GeneralController::class, 'home'])->name('home');
     Route::put('update-home', [GeneralController::class, 'updateHome'])->name('home.update');
+    Route::get('contact', [GeneralController::class, 'contact'])->name('contact');
+    Route::put('update-contact', [GeneralController::class, 'updateContact'])->name('contact.update');
     
     Route::resource('appointment-types', AppointmentTypeController::class);
     Route::resource('service-names', ServiceNameController::class);

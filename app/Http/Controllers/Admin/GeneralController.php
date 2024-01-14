@@ -21,6 +21,12 @@ class GeneralController extends Controller
      
         return view('admin.pages.home',compact('home'));
     }
+    public function contact()
+    {
+        $home=Page::find(2);
+     
+        return view('admin.pages.home',compact('home'));
+    }
     public function updateHome(Request $request)
     {
         // dd($request->image);
@@ -45,6 +51,31 @@ class GeneralController extends Controller
       
         Toastr::success('Home Updated Successfully :)' ,'Success');
         return redirect()->route('admin.home');
+    }
+    public function updateContact(Request $request)
+    {
+        // dd($request->image);
+        $this->validate($request,[
+            'title' => 'required',
+            'meta_title' => 'required',
+            'meta_description' => 'required',
+        ]);
+       
+        $contact = Page::find(3);
+       
+        $contact->title = $request->title;
+      
+       
+       
+       
+        $contact->meta_title = $request->meta_title;
+        $contact->meta_description = $request->meta_description;
+      
+        $contact->save();
+
+      
+        Toastr::success('Home Updated Successfully :)' ,'Success');
+        return redirect()->route('admin.contact');
     }
     public function updateAbout(Request $request)
     {

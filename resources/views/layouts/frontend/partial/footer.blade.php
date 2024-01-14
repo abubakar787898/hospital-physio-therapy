@@ -78,10 +78,10 @@
 
           <div class="footer__links">
 @php
-    $services = app('App\Models\ServiceName')->take(5)->get(); 
+    $services = app('App\Models\Services')->take(5)->get(); 
 @endphp
 @foreach ($services as $item)
-<a href="{{ route('service') }}" class="link">
+<a href="{{ route('service.slug', ['slug' => $item?->slug]) }}" class="link">
     {{ $item?->name }}
 </a>
 @endforeach
@@ -151,8 +151,7 @@
               {{-- <a href="https://www.google.com/maps/search/?q=Hospital, Co. Limerick, Ireland" target="_blank" class="link"> --}}
               <a href="{{env('LOCATION')}}" target="_blank" title="Hospital PhysioTherapy" class="link">
                   <i class="ri-map-pin-fill"></i>
-                  Hospital PhysioTherapy
-                  Ireland
+                  Hospital PhysioTherapy Coolscart, Hospital, Co. Limerick, Ireland
               </a>
 
               <a href="mailto:{{env('COMPANY_MAIL')}}" class="link">
@@ -164,7 +163,13 @@
                   <i class="ri-phone-fill"></i>
                  +352 {{env('MOBILE_NUMBER')}}
               </a>
-
+              <a href="tel:+352{{env('MOBILE_NUMBER2')}}" class="link">
+                  <i class="ri-phone-fill"></i>
+                 +352 {{env('MOBILE_NUMBER2')}}
+              </a>
+              <a href="{{env('BOOK_NOW')}}" target="_blank" style="background:var(--primary-color)" class="btn">
+                Book Now
+            </a>
           </div>
 
       </div>
@@ -173,13 +178,14 @@
 
   <div class="footer__copy">
 
-      <span class="copy">
-          Copyright © 2023 All Rights Reserved
-      </span>
+    <span class="copy">
+        Copyright © <?php echo date('Y'); ?> All Rights Reserved
+    </span>
+    
 
       <div class="footer__icons">
 
-          <a href="{{env('FACEBOOK_LINK')}}">
+          <a href="{{env('FACEBOOK_LINK')}}" target="_blank">
               <i class="ri-facebook-circle-fill"></i>
           </a>
 
@@ -187,7 +193,7 @@
               <i class="ri-dribbble-line"></i>
           </a> --}}
 
-          <a href="{{env('INSTA_LINK')}}">
+          <a href="{{env('INSTA_LINK')}}" target="_blank">
               <i class="ri-instagram-fill"></i>
           </a>
 

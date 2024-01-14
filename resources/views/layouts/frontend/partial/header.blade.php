@@ -1,4 +1,6 @@
-<header class="whole__navbar">
+<header class="whole__navbar" style="
+padding-top: 10px;
+">
 
     {{-- <div class="top__bar">
 

@@ -16,7 +16,7 @@
 <div class="banner__section">
 
     <h1 class="title">
-        Our services
+        Our Services
     </h1>
 
     <div class="url">
@@ -26,7 +26,7 @@
         </span></a>
         /
         <span>
-            Our services
+            Our Services
         </span>
 
     </div>
@@ -43,7 +43,7 @@
             Our services
         </span>
 
-        <h1 class="title">
+        <h1 class="title" title="hospital PhysioTherapy Services">
             Services We Provide
         </h1>
 
@@ -51,19 +51,20 @@
 
     <div class="services__card">
         @foreach ($services as $service)
+        
         <div class="card">
-
+            <a href="{{ route('service.slug', ['slug' => $service->slug]) }}" class="service-link">
             <div class="services__img">
                 <img src="/image/{{ $service->image }}" alt="{{ $service->name}}">
             </div>
 
             <div class="card__content">
 
-                <a href="servicesSingle.html" class="services__heading">
+                <a href="{{ route('service.slug', ['slug' => $service->slug]) }}" class="services__heading">
                     {{ $service->name}}
                 </a>
 
-                <a href="servicesSingle.html" class="text">
+                <a href="{{ route('service.slug', ['slug' => $service->slug]) }}" class="text">
                     @if (strlen(strip_tags($service->description)) > 72)
                     {{ substr(strip_tags($service->description), 0, 72)   }}
                   @else
@@ -76,6 +77,7 @@
             
 
             </div>
+            </a>
 
         </div>
 @endforeach

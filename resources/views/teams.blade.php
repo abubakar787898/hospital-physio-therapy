@@ -15,9 +15,9 @@
 
 <div class="banner__section">
 
-  <h1 class="title">
+  <h2 class="title">
       Our Team
-  </h1>
+  </h2>
 
   <div class="url">
 
@@ -42,20 +42,48 @@
           Our Team
       </span>
 
-      <h1 class="title">
+      <h1 class="title" title="Hospital Physiotherapy Team">
           Meet the Team
       </h1>
 
   </div>
 
   <div class="team__card">
-    @foreach ($teams as $key => $team)
-      <div class="card">
+      @foreach ($teams as $key => $team)
+        <div class="card">
+          <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}"  >
+            
+            <div class="team__img">
+                <img src="/image/{{ $team->image }}" alt="{{ $team->title }}">
+  
+  
+            </div>
+  
+            <div class="card__content">
+  
+                <span class="team__heading">
+                  <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}"  > {{ $team->title }}</a>
+                </span>
+  
+                <span >
+                  <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}" class="text"  >
+                  {{ $team->speciality }}
+                  </a>
+                </span>
+  
+            </div>
+            
+          </a>
+        </div>
+        @endforeach
+  
+       
+  
+    </div>
 
-          <div class="team__img">
-              <img src="/image/{{ $team->image }}" alt="">
+</div>
 
-              {{-- <div class="social__icon">
+      {{-- <div class="social__icon">
                   <i class="ri-share-fill"></i>
 
                   <div class="icon">
@@ -84,35 +112,10 @@
                       <i class="ri-youtube-fill"></i>
                     </a>
                       @endif
-                    
+                     
                   </div>
 
               </div> --}}
-
-          </div>
-
-          <div class="card__content">
-
-              <span class="team__heading">
-                <a href="{{ route('team.slug', ['slug' => $team?->slug]) }}"  target="_blank"> {{ $team->title }}</a>
-              </span>
-
-              <span class="text">
-                {{ $team->speciality }}
-              </span>
-
-          </div>
-
-      </div>
-      @endforeach
-
-     
-
-  </div>
-
-</div>
-
-
     @endsection
 
     @push('js')
