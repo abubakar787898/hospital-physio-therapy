@@ -77,12 +77,17 @@
           </h1>
 
           <div class="footer__links">
+@php
+    $services = app('App\Models\ServiceName')->take(5)->get(); 
+@endphp
+@foreach ($services as $item)
+<a href="{{ route('service') }}" class="link">
+    {{ $item?->name }}
+</a>
+@endforeach
+              
 
-              <a href="{{ route('service') }}" class="link">
-                  Physiotherapy
-              </a>
-
-              <a href="{{ route('service') }}" class="link">
+              {{-- <a href="{{ route('service') }}" class="link">
                   Chiropractic Therapy
               </a>
 
@@ -96,7 +101,7 @@
 
               <a href="{{ route('service') }}" class="link">
                   Massage Therapy
-              </a>
+              </a> --}}
 
           </div>
 
@@ -118,7 +123,7 @@
                   Services
               </a>
 
-              <a href="{{ route('booking') }}" class="link">
+              <a href="{{env('BOOK_NOW')}}" target="_blank"  class="link">
                   Book Now
               </a>
 
@@ -143,9 +148,10 @@
           <div class="footer__links">
         
             
-              <a href="https://www.google.com/maps/search/?q=Hospital, Co. Limerick, Ireland" target="_blank" class="link">
+              {{-- <a href="https://www.google.com/maps/search/?q=Hospital, Co. Limerick, Ireland" target="_blank" class="link"> --}}
+              <a href="{{env('LOCATION')}}" target="_blank" title="Hospital PhysioTherapy" class="link">
                   <i class="ri-map-pin-fill"></i>
-                  Hospital, Co. Limerick,
+                  Hospital PhysioTherapy
                   Ireland
               </a>
 
@@ -173,25 +179,25 @@
 
       <div class="footer__icons">
 
-          <a href="#">
+          <a href="{{env('FACEBOOK_LINK')}}">
               <i class="ri-facebook-circle-fill"></i>
           </a>
 
-          <a href="#">
+          {{-- <a href="#">
               <i class="ri-dribbble-line"></i>
-          </a>
+          </a> --}}
 
-          <a href="#">
+          <a href="{{env('INSTA_LINK')}}">
               <i class="ri-instagram-fill"></i>
           </a>
 
-          <a href="#">
+          {{-- <a href="#">
               <i class="ri-twitter-x-fill"></i>
           </a>
 
           <a href="#">
               <i class="ri-linkedin-box-fill"></i>
-          </a>
+          </a> --}}
 
       </div>
 

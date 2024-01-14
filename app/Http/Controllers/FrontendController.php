@@ -260,11 +260,11 @@ class FrontendController extends Controller
         $contact->name = $request->name;
         $contact->email = $request->email;
         $contact->comment = $request->comment;
+        $contact->save();
 
-
-        if ($contact->save()) {
-            Notification::route('mail', $companyEmail)->notify(new NewContactUsNotification($contact));
-        }
+        // if ($contact->save()) {
+        //     Notification::route('mail', $companyEmail)->notify(new NewContactUsNotification($contact));
+        // }
 
 
         Toastr::success('Send Successfully :)', 'Success');

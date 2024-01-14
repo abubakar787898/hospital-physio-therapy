@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\GeneralController;
 use App\Http\Controllers\Admin\PatientController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceNameController;
 use App\Http\Controllers\Admin\TeamController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\FrontendController;
@@ -70,6 +71,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin','middleware'=>['auth']], function
     Route::put('update-home', [GeneralController::class, 'updateHome'])->name('home.update');
     
     Route::resource('appointment-types', AppointmentTypeController::class);
+    Route::resource('service-names', ServiceNameController::class);
     Route::resource('users', UserController::class);
     Route::resource('patients', PatientController::class);
     Route::resource('contacts', AdminContactController::class);

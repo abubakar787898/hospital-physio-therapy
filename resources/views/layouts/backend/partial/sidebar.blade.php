@@ -80,23 +80,29 @@ transform: rotate(180deg);
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('admin.patients.index') }}">
                         <i class="material-icons">book</i>
                         <span>Bookings</span>
                     </a>
-                </li>
-                <li>
+                </li> --}}
+                {{-- <li>
                     <a href="{{ route('admin.payments.index') }}">
                         <i class="material-icons">payment</i>
                         <span>Payment</span>
                     </a>
-                </li>
+                </li> --}}
                 <hr>
                 <li>
                     <a href="{{ route('admin.appointment-types.index') }}">
                         <i class="material-icons">photo_album</i>
                         <span>Appointment Type</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.service-names.index') }}">
+                        <i class="material-icons">book</i>
+                        <span>Service Name</span>
                     </a>
                 </li>
                 <li>

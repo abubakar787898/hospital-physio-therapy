@@ -44,9 +44,9 @@
                             @endif
 
 
-                            <div class="btns">
+                            <div class="hero_btns">
 
-                                <a href="{{ route('booking') }}" class="btn sec__btn">
+                                <a href="{{env('BOOK_NOW')}}" target="_blank" class="btn hero_btn sec__btn">
                                     Book Now
                                 </a>
 
@@ -512,7 +512,7 @@
                 prevEl: ".ri-arrow-left-s-line",
             },
             autoplay: {
-                delay: 5000,
+                delay: 7000,
                 disableOnInteraction: false,
             },
             loop: true,

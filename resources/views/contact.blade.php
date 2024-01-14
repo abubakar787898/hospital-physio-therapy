@@ -71,23 +71,23 @@
               <div class="detail__list">
 
                   <span class="list">
-                      Monday: 7:00am – 6:00pm
+                      Monday: 10:30am – 5:00pm
                   </span>
 
                   <span class="list">
-                      Monday: 7:00am – 6:00pm
+                      Tuesday: 10:30am – 5:00pm
                   </span>
 
                   <span class="list">
-                      Monday: 7:00am – 6:00pm
+                      Wednesday: 10:30am – 5:00pm
                   </span>
 
                   <span class="list">
-                      Monday: 7:00am – 6:00pm
+                      Thursday: 10:30am – 5:00pm
                   </span>
 
                   <span class="list">
-                      Monday: 7:00am – 6:00pm
+                      Friday: 10:30am – 5:00pm
                   </span>
 
               </div>
@@ -103,7 +103,7 @@
               <div class="detail__list">
 
                   <span class="list">
-                      Xyz@gmail.com
+                     {{env('COMPANY_MAIL')}}
                   </span>
 
               </div>
@@ -119,7 +119,8 @@
               <div class="detail__list">
 
                   <span class="list">
-                      423B, Road Wordwide Country, USA
+                    Hospital PhysioTherapy,
+                    Ireland
                   </span>
 
               </div>
@@ -135,21 +136,23 @@
               <div class="detail__list">
 
                   <span class="list">
-                      +92 123 456 7890
+                      +352 {{env('MOBILE_NUMBER')}}
                   </span>
 
               </div>
 
           </div>
 
-          <div class="detail__container">
+          {{-- <div class="detail__container">
 
               <h1 class="heading">
                   Follow Us
               </h1>
 
               <div class="detail__list">
-
+                <a href="{{env('FACEBOOK_LINK')}}">
+                    <i class="ri-facebook-fill"></i>
+                </a>
                   <i class="ri-facebook-fill"></i>
 
                   <i class="ri-instagram-fill"></i>
@@ -160,12 +163,12 @@
 
               </div>
 
-          </div>
+          </div> --}}
 
       </div>
-
-      <iframe class="hospital__map"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52998.130157721724!2d70.31055800936353!3d28.408761029376443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39375be564555555%3A0xf393db635d0b2944!2sAl-Saeed%20Medical%20Complex!5e0!3m2!1sen!2s!4v1700659458067!5m2!1sen!2s"></iframe>
+      <iframe class="hospital__map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.358455720484!2d-8.432472299999999!3d52.472645199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x485b55e99cd6217f%3A0x7c026955597e45dc!2sHospital%20Main%20Street%2C%20Coolscart%2C%20Hospital%2C%20Co.%20Limerick%2C%20Ireland!5e0!3m2!1sen!2s!4v1705229120208!5m2!1sen!2s"  ></iframe>
+      {{-- <iframe class="hospital__map"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52998.130157721724!2d70.31055800936353!3d28.408761029376443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39375be564555555%3A0xf393db635d0b2944!2sAl-Saeed%20Medical%20Complex!5e0!3m2!1sen!2s!4v1700659458067!5m2!1sen!2s"></iframe> --}}
 
   </div>
 

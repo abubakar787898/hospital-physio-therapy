@@ -27,7 +27,7 @@
                 z-index: 9;
                 position: relative;
 
-                padding: 0 0 0 6vw ;
+                padding: 0 0 0 6vw;
 
                 display: flex;
                 flex-direction: column;
@@ -64,9 +64,28 @@
                         background-color: var(--dark-color);
                     }
                 }
+
+                .hero_btns {
+                    display: flex;
+                    align-items: center;
+                    gap: 30px;
+                    justify-content: center;
+
+                    .sec__btn {
+                        background-color: var(--primary-color);
+                    }
+
+                    .sec__btn:hover {
+                        background-color: var(--dark-color);
+                    }
+                }
             }
         }
-
+.hero_btn{
+    cursor: pointer;
+    padding: 19px 50px;
+    font-size: 18px;
+}
         .slide__arrow {
 
             /* Layout */
@@ -548,6 +567,7 @@
 @media (max-width: 880px) {
 
     .hero__section {
+
         .swiper {
             .swiper-slide {
                 .slide__content {
@@ -586,6 +606,7 @@
 @media (max-width: 648px) {
 
     .hero__section {
+        height: 362px;
         .swiper {
             .slide__arrow {
                 top: auto;

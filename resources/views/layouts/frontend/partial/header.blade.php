@@ -58,14 +58,14 @@
             <a href="{{ route('service') }}" class="link">
                 Services
             </a>
-            <a href="{{ route('booking') }}" class="link">
+            {{-- <a href="{{ route('booking') }}" class="link">
                 Book Now
-            </a>
+            </a> --}}
 
             <a href="{{ route('contact') }}" class="link">
                 Contact Us
             </a>
-            <a href="{{ route('booking') }}" class="btn">
+            <a href="{{env('BOOK_NOW')}}" target="_blank" class="btn">
                 Book Now
             </a>
             
