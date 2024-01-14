@@ -99,12 +99,12 @@ transform: rotate(180deg);
                         <span>Appointment Type</span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('admin.service-names.index') }}">
                         <i class="material-icons">book</i>
                         <span>Service Name</span>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ route('admin.companies.index') }}">
                         <i class="material-icons">local_library</i>
